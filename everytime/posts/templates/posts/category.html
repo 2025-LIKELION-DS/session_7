@@ -1,45 +1,79 @@
 {% load static %}
-<body>
-    {% load humanize %}
-    <a href={% url 'posts:main' %}>메인페이지로 돌아가기</a><br><br>
-    {% if request.user.is_authenticated %}
-        <p>nickname : {{ user }}</p>
-        <a href="{% url 'accounts:logout' %}">로그아웃</a>
-    {% else %}
-        <a href="{% url 'accounts:login' %}">로그인</a>
-    {% endif %}
-    <hr>
-    
-
-    <h1>{{ category.name }}</h1>
-    
-    <form method="POST" action="{% url 'posts:create' category.slug %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" placeholder="제목 입력" name="title"><br>
-        <textarea name="content" placeholder="본문 입력"></textarea><br><br>
-        <div class="file">
-            <input type="file" name="image">
-            <input type="file" name="video">
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>에브리타임</title>
+        <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+        <link rel="icon" href="{% static 'img/browser_logo.png' %}" />
+        <link rel="apple-touch-icon" href="{% static 'img/browser_logo.png' %}" />
+    </head>
+    <body>
+        {% include "./header.html" %}
+        {% include "./nav.html" %}
+        <div class="wrap">
+            <section class="secBox">
+                <section class="sec1">
+                    <div class="categoryName">비밀게시판</div>
+                    <div class="recom">
+                        <div class="recom-q">
+                            <img class="questImg" src="{% static 'img/icn_mcr_board_question_light.png' %}" />
+                            <span>덕성</span>
+                            <span>13기</span>
+                            <span>파이팅~</span>
+                        </div>
+                        <div class="recom-h">
+                            <img class="hotImg" src="{% static 'img/icn_mcr_board_hotarticle_light.png' %}" />
+                            <span>덕멋최고</span>
+                            <span>어흥</span>
+                        </div>
+                    </div>
+                    <div class="addBtn" onclick='showForm(event)'>
+                        <div>새 글을 작성해주세요!</div>
+                        <img class="pen" src="{% static 'img/pen.png' %}" />
+                    </div>
+                    {% include "./post.html" %}
+                    <div class="postBox">
+                        {% for post in posts %}
+                        {% if post.anonymity %}
+                        {% else %}
+                            <a href="{% url 'posts:detail' post.id %}">
+                                <div class="post">
+                                    <div class="postText">
+                                        <div class="post-title">{{ post.title }}</div>
+                                        <div class="post-content">{{ post.content }}</div>
+                                        <div class="post-detail">
+                                            <img class="like" src="{% static 'img/like.png' %}" />
+                                            <div id="like-count">{{ post.like.count }}</div>
+                                            <img class="reply" src="{% static 'img/reply.png' %}" />
+                                            <div id="reply-count">{{ post.comments.count }}</div>
+                                            | {{ post.created_at | naturaltime }} | {{ post.author_display_name }}
+                                        </div>
+                                    </div>
+                                    {% if post.image %}
+                                        <img class="previewImg"  src="/media/{{ post.image }}" alt="프리뷰" />
+                                    {% endif %}
+                                </div>
+                            </a>
+                        {% endif %}
+                        {% empty %} <h2>글이 없습니다.</h2>
+                        {% endfor %}
+                    </div>
+                </section>
+                {% include "./section2.html" %}
+            </section>
+            {% include "./aside.html" %}
         </div>
-        <br>
-        <input type="checkbox" name="is_anonymous">익명
-        <input type="submit" value="작성 완료">
-    </form>
-
-    <hr>
-
-    {% for post in posts %}
-
-    {% if post.anonymity %}
-        <h2><a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a></h2>
-        <p>{{ post.content }}</p>
-        <p>{{ post.created_at | naturaltime }}</p>
-    {% else %}
-        <h2><a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a></h2>
-        <p>{{ post.content }}</p>
-        <p>{{ post.created_at | naturaltime }}</p>
-    {% endif %}
-    <hr>
-    {% empty %} <h2>글이 없습니다.</h2> {% endfor %}
-
-</body>
+        {% include "./footer.html" %}
+        <script>
+            const addForm = document.querySelector(".addForm");
+            function showForm(e) {
+                event.preventDefault();
+                e.target.style.display = "none"
+                addForm.style.display = "flex"
+            }
+        </script>
+    </body>
+</html>

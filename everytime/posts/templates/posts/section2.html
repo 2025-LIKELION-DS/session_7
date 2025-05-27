@@ -1,0 +1,16 @@
+{% load static %}
+                <section class="sec2">
+                    <form class="search">
+                        <select name="category-select" id="category-select">
+                            <option value="s-all">전체</option>
+                            <option value="s-tag">해시태그</option>
+                            <option value="s-con">글 내용</option>
+                            <option value="s-title">글 제목</option>
+                        </select>
+                        <input type="text" placeholder="검색어를 입력하세요" />
+                    </form>
+                    <a class="nextBtn" href="#"
+                        ><div>다음</div>
+                        <img class="next" src="{% static 'img/next.png' %}"
+                    /></a>
+                </section>
