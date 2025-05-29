@@ -1,7 +1,40 @@
-<h2>로그인</h2>
-<form method='post' action={% url 'accounts:login' %}>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">login</button>
-</form>
-<p><a href="{% url 'accounts:signup' %}">회원가입</a></p>
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>에브리타임 로그인 페이지</title>
+  </head>
+  <body>
+    <div class="hugger">
+      <div class="container">
+        <img src="{% static '/img/logo.png' %}" alt="에브리타임 로고" class="logo" />
+        <form method='post' action={% url 'accounts:login' %}>
+              {% csrf_token %}
+
+          <input type="text" class="inputtypes" id="id" placeholder=" 아이디" name="username"/>
+          <input
+            name="password"
+            type="password"
+            id="pw"
+            class="inputtypes"
+            placeholder=" 비밀번호"
+          />
+          <button type="submit" id="submitbtn" value="에브리타임 로그인">
+            에브리타임 로그인
+          </button>
+        </form>
+        <a href="{% url 'accounts:signup' %}" class="signuplink"><ins>회원가입</ins></a>
+        <ul>
+          <li>이용약관</li>
+          <li>개인정보처리방침</li>
+          <li>문의하기</li>
+          <li>&copy; 에브리타임</li>
+        </ul>
+      </div>
+    </div>
+    <script src="{% static 'js/login.js' %}"></script>
+  </body>
+</html>

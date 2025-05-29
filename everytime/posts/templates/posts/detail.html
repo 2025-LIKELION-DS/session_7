@@ -1,3 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'details/main.css' %}" />
+    <title>에브리타임 비밀게시판 메인페이지</title>
+  </head>
+  <body>
+    {% include "./header.html" %} {% include "./navigation.html" %}
+    <div class="main_container">
+      <div class="sec_asi">
+        {% include "./detail_section.html" %} {% include "./aside.html" %}
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
 <body>
     <a href={% url 'posts:main' %}>메인페이지로 돌아가기</a><br><br>
     {% if request.user.is_authenticated %}
@@ -66,3 +86,4 @@
     <hr>
     <br>
 </body>
+-->

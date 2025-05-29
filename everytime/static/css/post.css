@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+KR:wght@200..900&display=swap");
+/*class이름을 body로 한 이유는 main.html에서 css파일 두 개를 사용하기에 body 속성이 겹치지 않게 하기 위함입니다.*/
+.body {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 320px;
+}
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 320px;
+}
+hr {
+  margin: 0px;
+  height: auto;
+  border: none;
+  border-top: 1px solid silver;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+.positive {
+  width: 15px;
+  height: 15px;
+  padding: 2px;
+  padding-left: 5px;
+  justify-content: center;
+}
+.positive_gray {
+  width: 15px;
+  height: 15px;
+  padding-right: 5px;
+}
+.comment {
+  width: 15px;
+  height: 15px;
+  padding: 2px;
+  padding-left: 5px;
+  justify-content: center;
+}
+.miniicons {
+  width: 25px;
+  height: 25px;
+  padding: 10px;
+}
+.contentbox_rightinforms {
+  font-weight: lighter;
+  font-size: smaller;
+  color: silver;
+}
+#anony {
+  margin-left: 10px;
+  width: 15px;
+  accent-color: red;
+}
+#que {
+  display: flex;
+  accent-color: rgb(19, 161, 161);
+  width: 15px;
+  float: right;
+}
+.done {
+  background-color: red;
+  width: 41px;
+  display: flex;
+  border-bottom: 1px solid rgb(201, 201, 201);
+  border-top: 1px solid rgb(201, 201, 201);
+}
+.contentbox_rightinforms:hover {
+  cursor: pointer;
+}
+
+.writing_title {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  color: gray;
+  font-size: 17px;
+  font-weight: bold;
+  height: 60px;
+  border: 2px solid silver;
+  border-bottom: 0;
+  resize: none;
+  display: flex;
+  padding: 15px;
+  overflow: hidden;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+#writingarea {
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  color: gray;
+  font-size: 15px;
+  font-weight: light;
+  height: 400px;
+  border: 2px solid silver;
+  overflow: scroll;
+  overflow-x: hidden;
+  border-top: 1px solid rgb(201, 201, 201);
+  border-bottom: 1px solid rgb(201, 201, 201);
+  resize: none;
+  padding: 20px;
+  padding-bottom: 0;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+#post {
+  flex-direction: column;
+}
+.submitbtn {
+  height: 40px;
+  width: 775px;
+  border: 2px solid silver;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: none;
+  color: gray;
+  font-size: smaller;
+  margin-top: -5px;
+  margin-bottom: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.submitbtn span {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+.textdetailsbtn {
+  width: 45px;
+}
+.textdetailsbtn:hover {
+  cursor: pointer;
+}
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: white;
+  margin-left: 11px;
+}
+
+.ick {
+  display: flex;
+  position: absolute;
+  margin-top: -35px;
+  font-size: 12px;
+  color: gray;
+  margin-left: 700px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#questionNotice {
+  display: none;
+  font-size: 13px;
+  padding: 10px;
+  line-height: 1.6;
+  margin-bottom: 6.5px;
+  border: 2px solid silver;
+  border-top: none;
+  border-bottom: 1px solid silver;
+  margin-top: -5px;
+}
+.questionNoticing {
+  padding: 10px;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  color: #0077b6;
+  border-radius: 4px;
+  background-color: #e8f7fc;
+}
+.hashfile {
+  display: flex;
+  float: left;
+}
+.queickdone {
+  display: flex;
+  margin-left: auto;
+}

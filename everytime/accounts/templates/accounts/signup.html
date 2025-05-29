@@ -1,6 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>에브리타임 회원가입 페이지</title>
+  </head>
+  <body>
+    <div class="hugger">
+      <div class="container">
+        <p class="title">에브리타임 회원가입</p>
+        <div class="description">
+          <p>
+            에브리타임 계정으로
+            <b style="color: black">캠퍼스픽, 에브리타임</b> 등
+          </p>
+          <p>다양한 대학생 서비스를 모두 이용하실 수 있습니다.</p>
+        </div>
+        <form method="post" class="suptext" action={% url 'accounts:signup' %}>
+          {% csrf_token %}
+          이름<input
+            type="text"
+            id="id"
+            class="inputtypes"
+            placeholder=" 이름을 입력하세요."
+            name="username"
+          />
+          닉네임
+          <input
+            type="text"
+            id="nickname"
+            class="inputtypes"
+            placeholder=" 닉네임을 입력하세요."
+            name="nickname"
+          />
+          이메일
+          <input
+            type="text"
+            id="email"
+            class="inputtypes"
+            placeholder=" 이메일을 입력하세요."
+            name="email"
+          />
+          비밀번호
+          <input
+            type="password"
+            id="pw"
+            class="inputtypes"
+            placeholder=" 숫자/문자 조합, 최소 8자 이상"
+            name="password1"
+          />
+          비밀번호 재입력
+          <input
+            type="password"
+            id="repw"
+            class="inputtypes"
+            placeholder=" 비밀번호를 재입력하세요."
+            name="password2"
+          />
+          <button type="submit" id="submitbtn" value="회원가입">
+            <a href={% url 'accounts:login' %}>회원가입</a>
+          </button>
+        </form>
+      </div>
+    </div>
+    <script src="{% static 'js/signup.js' %}"></script>
+  </body>
+</html>
+
+
+<!--
 <h2>회원가입</h2>
 <form method='post' action={% url 'accounts:signup' %}>
     {% csrf_token %}
     {{ form.as_p }}
     <button type='submit'>signup</button>
 </form>
+-->

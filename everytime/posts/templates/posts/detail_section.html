@@ -1,0 +1,194 @@
+{% extends './base.html' %}{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/detail.css' %}">{% endblock %}
+{% block body %}
+<div class="container">
+          <section>
+            <div>
+              <a href={% url 'posts:main' %}><h2 class="secret">비밀게시판</h2></a>
+              <div id="detailtext">
+                <ul>
+                  <li class="profile_container">
+                    <div class="profile_ickname">
+                      <img
+                        src="{% static 'img/img/anonymous.profile.png' %}"
+                        alt="익명 프로필"
+                        class="anonymous_profile"
+                      />
+                      <div class="name">
+                        <span class="nickname">익명</span>
+                        <span class="timesago">방금</span>
+                      </div>
+                    </div>
+                    <p class="contentbox_rightinforms">쪽지 신고</p>
+                  </li>
+                  <li class="detail_title">{{ post.title }}</li>
+                  <li class="detail_text">{{ post.content }}</li>
+                  <li class="article_reaction">
+                    <img
+                      src="{% static 'img/img/container.articles.vote.png' %}"
+                      alt="따봉 아이콘"
+                      class="positive"
+                      id="positive"
+                    />
+                    <p class="likes" id="likes">1</p>
+                    <img
+                      src="{%  static 'img/img/container.articles.comment.png' %}"
+                      alt="댓글 아이콘"
+                      class="comment"
+                      id="comment"
+                    />
+                    <p class="mentions" id="comments">1</p>
+                    <img
+                      src="{% static 'img/img/container.articles.scrap.png' %}"
+                      alt="즐겨찾기 아이콘"
+                      class="favorites"
+                    />
+                    <p class="preference" id="preference">0</p>
+                  </li>
+                  <li class="article_reaction">
+                    <p id="likesbox">
+                      <img
+                        src="{% static 'img/img/container.articles.buttons.posvote.png' %}"
+                        alt="따봉 버튼"
+                        class="positive_gray"
+                      />공감
+                    </p>
+                    <p id="scrapbox">
+                      <img
+                        src="{% static 'img/img/container.articles.buttons.scrap.png' %}"
+                        alt="스크랩 버튼"
+                        class="favorites_gray"
+                      />스크랩
+                    </p>
+                  </li>
+                </ul>
+              </div>
+              <div class="commenting">
+                <div>
+                  <ul>
+                    <li class="ick_container">
+                      <img
+                        src="{% static 'img/img/anonymous.profile.png' %}"
+                        alt="익명 프로필"
+                        class="cocoickprofile"
+                      />
+                      <span class="ickname">익명</span>
+                      <p class="commenting_rightinforms">
+                        <span id="cocomment">대댓글</span>
+                        <span>공감</span>
+                        <span>쪽지</span>
+                        <span>신고</span>
+                      </p>
+                    </li>
+                  </ul>
+                  <ul>
+                  <p class="commentcontent">김치찜 어때요</p>
+                  <p class="commentdates">방금</p>
+                  <div class="recomment" id="cocoments">
+                  <div class="ickbtn">
+                    <form name="comments" method="post">
+                      <input
+                        type="text"
+                        class="typeacocomment"
+                        placeholder="대댓글을 입력하세요."
+                        id="cocommentInput"
+                      />
+                      <div class="icksubmitco">
+                        <div class="ickcheckbox">
+                          <input type="checkbox" id="anonymousCheck" />
+                          <span class="ick">익명 </span>
+                        </div>
+                        <img
+                          src="{% static 'img/img/container.articles.write.submit.png' %}"
+                          alt="작성 완료 버튼"
+                          class="submit"
+                          id="submitCocomment"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                  <div class="cocommentedcoment" id="newcoco">
+                    <li class="co_ick_container">
+                      <div>
+                      <img
+                        src="{% static 'img/img/anonymous.profile.png' %}"
+                        alt="익명 프로필"
+                        class="cocoickprofile"
+                      />
+                      <span class="self_ickname">익명(글쓴이)</span>
+                      <p class="commenting_rightinforms">
+                        <span>공감</span>
+                        <span>쪽지</span>
+                        <span>신고</span>
+                      </p></div>
+                    </li>
+                    <p class="commentcontent"><span id="newcocomment"></span>
+                    <p class="commentdates">방금</p></p>
+                  </div>
+                  
+                </ul>
+                </div>
+                
+              </div>
+            </div>
+            <div class="commenting" id="newco">
+                <div>
+                  <ul>
+                    <li class="ick_container">
+                      <img
+                        src="{% static 'img/img/anonymous.profile.png' %}"
+                        alt="익명 프로필"
+                        class="cocoickprofile"
+                      />
+                      <span class="self_ickname">익명(글쓴이)</span>
+                      <p class="commenting_rightinforms">
+                        <span>대댓글</span>
+                        <span>공감</span>
+                        <span>쪽지</span>
+                        <span>신고</span>
+                      </p>
+                    </li>
+                  </ul>
+                  <ul>
+                  <p class="commentcontent" id="newSelfComment"></p>
+                  <p class="commentdates">방금</p>
+                </ul>
+              </div>
+            </div>
+            <div class="ickbtn">
+              <form name="comments" method="post">
+                <input
+                  type="text"
+                  class="typeacomment"
+                  placeholder="댓글을 입력하세요."
+                  id="commentInput"
+                />
+                <div class="icksubmit">
+                  <div class="ickcheckbox">
+                    <input type="checkbox" id="anonymousCheck" />
+                    <span class="ick">익명 </span>
+                  </div>
+                  <img
+                    src="{% static 'img/img/container.articles.write.submit.png' %}"
+                    alt="작성 완료 버튼"
+                    class="submit"
+                    id="submitComment"
+                  />
+                </div>
+              </form>
+            </div>
+            <div class="comment-list" isec="commentList"></div>
+            <a href={% url 'posts:main' %}>
+              <div class="writingsall">
+                <img
+                  src="{% static 'img/img/container.articles.pagination.list.png' %}"
+                  alt="글 목록"
+                />
+                글 목록
+              </div></a
+            >
+          </section>
+        </div>
+        <script src="{% static 'js/detail.js' %}"></script>
+{% endblock %}

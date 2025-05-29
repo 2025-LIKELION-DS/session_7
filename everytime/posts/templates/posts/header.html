@@ -1,0 +1,55 @@
+{% extends './base.html' %}{% load static %} {% block style %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+{% endblock %} {% block body %}
+<div class="headercontainer">
+  <header>
+    <div class="bigscreen">
+      <div class="logo-container">
+        <a href={% url 'posts:main' %}>
+          <img
+            src="{% static 'img/img/nav.logo.png' %}"
+            alt="에브리타임 로고"
+            class="logo"
+        /></a>
+        <div class="name">
+          <span class="sub-text">에브리타임</span>
+          <span class="main-text">덕성여대</span>
+        </div>
+      </div>
+      <ul class="header_nav-links">
+        <li><a href="#" class="place_now">게시판</a></li>
+        <li><a href="#">시간표</a></li>
+        <li><a href="#">강의실</a></li>
+        <li><a href="#">학점계산기</a></li>
+        <li><a href="#">친구</a></li>
+        <li><a href="#">책방</a></li>
+        <li><a href="#">캠퍼스픽</a></li>
+      </ul>
+      <div class="icons">
+        <div class="icon-btnhugger">
+          <img
+            src="{% static 'img/img/icon_communication_chat_filled_gray500_light.svg' %}"
+            alt="채팅"
+            class="icon-btn"
+          />
+        </div>
+        <div class="icon-btnhugger">
+          <img
+            src="{% static 'img/img/icon_account_user_filled_gray500_light.svg' %}"
+            alt="프로필"
+            class="icon-btn"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="smallscreen">
+      <img
+        src="{% static 'img/img/aside.title.hamburger.png' %}"
+        alt="햄버거바"
+        class="hamburgerbar"
+      />
+      <span class="boardname">비밀게시판</span>
+    </div>
+  </header>
+</div>
+{% endblock %}

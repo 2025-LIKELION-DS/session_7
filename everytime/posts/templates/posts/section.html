@@ -1,0 +1,116 @@
+{% extends './base.html' %}{% load static %} {% block style %}<link
+  rel="stylesheet"
+  href="{% static 'css/main.css' %}"
+/>{% endblock %} {% block body %}
+<div class="container">
+  <section>
+    <h2 class="secret">{{ category.name }}</h2>
+    <div class="que_hot">
+      <div class="question_hot">
+        <img
+          src="{% static 'img/img/icn_mcr_board_question_light.png' %}"
+          alt="질문게시판"
+          class="miniicons"
+        />
+        <div class="quebox">
+          <a href="#">멋사 면접 때 뭐 물어봄?</a>
+        </div>
+        <div class="quebox"><a href="#">이 사건을 아는 사람</a></div>
+      </div>
+      <div class="question_hot">
+        <img
+          src="{% static 'img/img/icn_mcr_board_hotarticle_light.png' %}"
+          alt="핫게시물"
+          class="miniicons"
+        />
+        <div class="hotbox">
+          <a href="#">
+            🦁멋사 면접 후기🦁
+            <img
+              src="{% static 'img/img/container.articles.vote.png' %}"
+              alt="따봉아이콘"
+              class="positive"
+            />
+            <p class="likes">86</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="post">
+      <div id="new_post">
+        <p class="new">새 글을 작성해주세요!</p>
+
+        <img
+          src="{% static 'img/img/container.write.background.png' %}"
+          alt="작성 아이콘"
+          id="pen_icon"
+        />
+      </div>
+
+      {% include "./post.html" %}
+    </div>
+    {% for post in posts %} {% if post.anonymity %}
+    <a>
+      <div id="articles">
+        <ul>
+          <li class="article_title">
+            <h2>
+              <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a>
+            </h2>
+          </li>
+          <li class="article_text">{{ post.content }}</li>
+          <li class="article_reaction">
+            <img
+              src="{% static 'img/img/container.articles.vote.png' %}"
+              alt="따봉 아이콘"
+              class="positive"
+            />
+            <p class="likes">1</p>
+            <img
+              src="{% static 'img/img/container.articles.comment.png' %}"
+              alt="댓글 아이콘"
+              class="comment"
+            />
+            <p class="mentions">1</p>
+            | 방금 | 익명
+          </li>
+        </ul>
+      </div>
+    </a>
+    {% else %}
+    <a>
+      <div id="articles">
+        <ul>
+          <li class="article_title">
+            <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a>
+          </li>
+          <li class="article_text">{{ post.content }}</li>
+          <li class="article_reaction">
+            <img
+              src="{% static 'img/img/container.articles.vote.png' %}"
+              alt="따봉 아이콘"
+              class="positive"
+            />
+            <p class="likes">1</p>
+            <img
+              src="{% static 'img/img/container.articles.comment.png' %}"
+              alt="댓글 아이콘"
+              class="comment"
+            />
+            <p class="mentions">1</p>
+            <p></p>
+          </li>
+        </ul>
+      </div>
+    </a>
+    {% endif %}
+    <hr />
+    {% empty %}
+    <h2>글이 없습니다.</h2>
+    {% endfor %}
+  </section>
+</div>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/post.js' %}"></script>
+{% endblock %}
