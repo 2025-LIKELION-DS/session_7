@@ -4,6 +4,7 @@
 />{% endblock %} {% block body %}
 <div class="container">
   <section>
+    {% load humanize %}
     <h2 class="secret">{{ category.name }}</h2>
     <div class="que_hot">
       <div class="question_hot">
@@ -51,14 +52,10 @@
       {% include "./post.html" %}
     </div>
     {% for post in posts %} {% if post.anonymity %}
-    <a>
+    <a href="{% url 'posts:detail' post.id %}">
       <div id="articles">
         <ul>
-          <li class="article_title">
-            <h2>
-              <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a>
-            </h2>
-          </li>
+          <li class="article_title">{{ post.title }}</li>
           <li class="article_text">{{ post.content }}</li>
           <li class="article_reaction">
             <img
@@ -72,19 +69,17 @@
               alt="댓글 아이콘"
               class="comment"
             />
-            <p class="mentions">1</p>
-            | 방금 | 익명
+            <p class="mentions">0</p>
+            <p>| {{ post.created_at | naturaltime }}</p>
           </li>
         </ul>
       </div>
     </a>
     {% else %}
-    <a>
+    <a href="{% url 'posts:detail' post.id %}">
       <div id="articles">
         <ul>
-          <li class="article_title">
-            <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a>
-          </li>
+          <li class="article_title">{{ post.title }}</li>
           <li class="article_text">{{ post.content }}</li>
           <li class="article_reaction">
             <img
@@ -92,21 +87,19 @@
               alt="따봉 아이콘"
               class="positive"
             />
-            <p class="likes">1</p>
+            <p class="likes">0</p>
             <img
               src="{% static 'img/img/container.articles.comment.png' %}"
               alt="댓글 아이콘"
               class="comment"
             />
             <p class="mentions">1</p>
-            <p></p>
+            <p>| {{ post.created_at | naturaltime }}</p>
           </li>
         </ul>
       </div>
     </a>
-    {% endif %}
-    <hr />
-    {% empty %}
+    {% endif %} {% empty %}
     <h2>글이 없습니다.</h2>
     {% endfor %}
   </section>

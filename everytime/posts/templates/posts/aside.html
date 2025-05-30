@@ -1,144 +1,136 @@
-{% extends './base.html' %}{% load static %}
-{% block style %} <link rel="stylesheet" href="{% static 'css/detail.css' %}">{% endblock %}
-{% block body %}
-        <aside>
-          <div class="boxes_first">실시간 인기 글</div>
-          <div id="content_box">
-            <ul>
-              <li class="live_title">🦁멋사 면접 후기🦁</li>
-              <li class="contentbox_text">
-                이렇게 좋은 동아리일 줄은 몰 랐 어
-              </li>
-              <li class="article_reaction">
-                비밀게시판
-                <img
-                  src="{% static 'img/img/container.articles.vote.png' %}"
-                  alt="따봉 아이콘"
-                  class="pos_com_smaller"
-                />
-                <p class="likes">86</p>
-                <img
-                  src="{% static 'img/img/container.articles.comment.png' %}"
-                  alt="댓글 아이콘"
-                  class="pos_com_smaller"
-                />
-                <p class="mentions">3</p>
-              </li>
-            </ul>
-          </div>
-          <div id="content_box">
-            <ul>
-              <li class="live_title">됐다 덕우들!!! 나 됐어!!!</li>
-              <li class="contentbox_text">좆 됐 어</li>
-              <li class="article_reaction">
-                👨‍💻디지털소프트웨···
-                <img
-                  src="{% static 'img/img/container.articles.vote.png' %}"
-                  alt="따봉 아이콘"
-                  class="pos_com_smaller"
-                />
-                <p class="likes">67</p>
-                <img
-                  src="{% static 'img/img/container.articles.comment.png' %}"
-                  alt="댓글 아이콘"
-                  class="pos_com_smaller"
-                />
-                <p class="mentions">8</p>
-              </li>
-            </ul>
-          </div>
+{% extends './base.html' %}{% load static %} {% block style %}
+<link rel="stylesheet" href="{% static 'css/detail.css' %}" />
+{% endblock %} {% block body %}
+<aside>
+  <div class="boxes_first">실시간 인기 글</div>
+  <div id="content_box">
+    <ul>
+      <li class="live_title">🦁멋사 면접 후기🦁</li>
+      <li class="contentbox_text">이렇게 좋은 동아리일 줄은 몰 랐 어</li>
+      <li class="article_reaction">
+        비밀게시판
+        <img
+          src="{% static 'img/img/container.articles.vote.png' %}"
+          alt="따봉 아이콘"
+          class="pos_com_smaller"
+        />
+        <p class="likes">86</p>
+        <img
+          src="{% static 'img/img/container.articles.comment.png' %}"
+          alt="댓글 아이콘"
+          class="pos_com_smaller"
+        />
+        <p class="mentions">3</p>
+      </li>
+    </ul>
+  </div>
+  <div id="content_box">
+    <ul>
+      <li class="live_title">됐다 덕우들!!! 나 됐어!!!</li>
+      <li class="contentbox_text">좆 됐 어</li>
+      <li class="article_reaction">
+        👨‍💻디지털소프트웨···
+        <img
+          src="{% static 'img/img/container.articles.vote.png' %}"
+          alt="따봉 아이콘"
+          class="pos_com_smaller"
+        />
+        <p class="likes">67</p>
+        <img
+          src="{% static 'img/img/container.articles.comment.png' %}"
+          alt="댓글 아이콘"
+          class="pos_com_smaller"
+        />
+        <p class="mentions">8</p>
+      </li>
+    </ul>
+  </div>
 
-          <div class="boxes">
-            HOT 게시물
-            <p class="contentbox_rightinforms">더보기</p>
-          </div>
-          <div id="hot_content_box">
-            멋쟁이🕶
-            <p class="contentbox_rightinforms">03/29 17:44</p>
-          </div>
-          <div id="hot_content_box">
-            사자처럼🦁
-            <p class="contentbox_rightinforms">방금</p>
-          </div>
-          <div id="hot_content_box">
-            세상을🌎
-            <p class="contentbox_rightinforms">19분 전</p>
-          </div>
-          <div id="hot_content_box">
-            누리다💻
-            <p class="contentbox_rightinforms">57분 전</p>
-          </div>
+  <div class="boxes">
+    HOT 게시물
+    <p class="contentbox_rightinforms">더보기</p>
+  </div>
+  <div id="hot_content_box">
+    멋쟁이🕶
+    <p class="contentbox_rightinforms">03/29 17:44</p>
+  </div>
+  <div id="hot_content_box">
+    사자처럼🦁
+    <p class="contentbox_rightinforms">방금</p>
+  </div>
+  <div id="hot_content_box">
+    세상을🌎
+    <p class="contentbox_rightinforms">19분 전</p>
+  </div>
+  <div id="hot_content_box">
+    누리다💻
+    <p class="contentbox_rightinforms">57분 전</p>
+  </div>
 
-          <div>
-            <div class="boxes">
-              BEST 게시판
-              <p class="contentbox_rightinforms">더 보기</p>
-            </div>
-          </div>
+  <div>
+    <div class="boxes">
+      BEST 게시판
+      <p class="contentbox_rightinforms">더 보기</p>
+    </div>
+  </div>
 
-          <div class="boxes">학교 소식</div>
-          <div id="content_box">
-            <ul>
-              <li class="live_title">덕성여대 제 99대 총학생회 멋사</li>
-              <li class="contentbox_text">
-                안녕하세요. 제 99대 총학생회 멋사입니다.···
-              </li>
-              <li class="article_reaction">
-                총학생회
-                <img
-                  src="{% static 'img/img/container.articles.vote.png' %}"
-                  alt="따봉 아이콘"
-                  class="pos_com_smaller"
-                />
-                <p class="likes">17</p>
-                <img
-                  src="{% static 'img/img/container.articles.comment.png' %}"
-                  alt="댓글 아이콘"
-                  class="pos_com_smaller"
-                />
-                <p class="mentions">0</p>
-              </li>
-            </ul>
-          </div>
+  <div class="boxes">학교 소식</div>
+  <div id="content_box">
+    <ul>
+      <li class="live_title">덕성여대 제 99대 총학생회 멋사</li>
+      <li class="contentbox_text">
+        안녕하세요. 제 99대 총학생회 멋사입니다.···
+      </li>
+      <li class="article_reaction">
+        총학생회
+        <img
+          src="{% static 'img/img/container.articles.vote.png' %}"
+          alt="따봉 아이콘"
+          class="pos_com_smaller"
+        />
+        <p class="likes">17</p>
+        <img
+          src="{% static 'img/img/container.articles.comment.png' %}"
+          alt="댓글 아이콘"
+          class="pos_com_smaller"
+        />
+        <p class="mentions">0</p>
+      </li>
+    </ul>
+  </div>
 
-          <div class="boxes">최근 강의평</div>
-          <div id="content_box">
-            <ul>
-              <img
-                src="{% static 'img/img/app.subject.rating.details.star.off.png' %}"
-                alt="별점 5개, 몇점짜리 강의일까요~"
-                class="starscore"
-              />
-              <li class="article_title">프로그래밍과 친해지기 : 이찬수</li>
-              <li class="contentbox_text">진짜 이 세상 최고의 강의</li>
-              <li class="contentbox_text">제인생을 송두리째···</li>
-            </ul>
-          </div>
-          <div id="content_box">
-            <ul>
-              <img
-                src="{% static 'img/img/app.subject.rating.details.star.off.png' %}"
-                alt="별점 5개, 몇점짜리 강의일까요~"
-                class="starscore"
-              />
-              <li class="article_title">프론트엔드 마스터하기 : 김멋사</li>
-              <li class="contentbox_text">
-                친절하게 잘 가르쳐 주십니다. 그러나 뭔···
-              </li>
-            </ul>
-          </div>
-          <div id="content_box">
-            <ul>
-              <img
-                src="{% static 'img/img/app.subject.rating.details.star.off.png' %}"
-                alt="별점 5개, 몇점짜리 강의일까요~"
-                class="starscore"
-              />
-              <li class="article_title">맛있게 밥 먹기 : 이덕성</li>
-              <li class="contentbox_text">
-                교수님이 강의시간에 자꾸 식사하십니다..
-              </li>
-            </ul>
-          </div>
-        </aside>
+  <div class="boxes">최근 강의평</div>
+  <div id="content_box">
+    <ul>
+      <img
+        src="{% static 'img/img/app.subject.rating.details.star.off.png' %}"
+        alt="별점 5개, 몇점짜리 강의일까요~"
+        class="starscore"
+      />
+      <li class="live_title">프로그래밍과 친해지기 : 이찬수</li>
+      <li class="contentbox_text">진짜 이 세상 최고의 강의 제 인생 최···</li>
+  </div>
+  <div id="content_box">
+    <ul>
+      <img
+        src="{% static 'img/img/app.subject.rating.details.star.off.png' %}"
+        alt="별점 5개, 몇점짜리 강의일까요~"
+        class="starscore"
+      />
+      <li class="live_title">프론트엔드 마스터하기 : 김멋사</li>
+      <li class="contentbox_text">친절하게 잘 가르쳐 주십니다. 그러나 뭔···</li>
+    </ul>
+  </div>
+  <div id="content_box">
+    <ul>
+      <img
+        src="{% static 'img/img/app.subject.rating.details.star.off.png' %}"
+        alt="별점 5개, 몇점짜리 강의일까요~"
+        class="starscore"
+      />
+      <li class="live_title">맛있게 밥 먹기 : 이덕성</li>
+      <li class="contentbox_text">교수님이 강의시간에 자꾸 식사하십니다..</li>
+    </ul>
+  </div>
+</aside>
 {% endblock %}

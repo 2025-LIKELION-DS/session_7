@@ -5,7 +5,7 @@ const preference = document.getElementById("preference");
 const comments = document.getElementById("comments");
 
 let c_cnt = 1;
-let l_cnt = 1;
+let l_cnt = 0;
 let p_cnt = 0;
 
 function likesClick() {

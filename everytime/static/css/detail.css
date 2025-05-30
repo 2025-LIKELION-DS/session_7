@@ -326,7 +326,7 @@ aside {
   align-items: center;
   justify-content: center;
   margin-right: 10px;
-  margin-left: 630px;
+  margin-left: 480px;
   margin-top: -10px;
 }
 #detailtext .commenting_rightinforms {
@@ -401,13 +401,18 @@ aside {
   color: rgb(19, 161, 161);
   margin-left: -5px;
 }
-.commentcontent {
-  margin-top: -28px;
-}
 .commentdates {
-  margin-top: -16px;
   font-size: 13px;
   color: silver;
+  margin: 0;
+  margin-bottom: 5px;
+}
+.newcommentdates {
+  font-size: 13px;
+  color: silver;
+  margin: 0;
+  margin-bottom: 5px;
+  margin-top: -20px;
 }
 .commenting_rightinforms {
   font-weight: lighter;
@@ -421,10 +426,9 @@ aside {
   margin-top: -10px;
 }
 #newco .commenting_rightinforms {
-  margin-left: 500px;
+  margin-left: 520px;
 }
 .cocommentedcoment .commentdates {
-  margin-top: -20px;
   font-size: 13px;
   color: silver;
 }
@@ -439,6 +443,7 @@ aside {
   display: flex;
   align-items: center;
   margin-bottom: 7px;
+  height: 30px;
 }
 .detail_title {
   padding: 3px;
@@ -612,17 +617,6 @@ input {
   color: gray;
   width: 30px;
 }
-.submit {
-  background-color: red;
-  width: 50px;
-  border: none;
-  padding: 0;
-  display: flex;
-  margin-left: 12px;
-}
-.submit:hover {
-  cursor: pointer;
-}
 .typeacocomment .submit {
   background-color: red;
   width: 50px;
@@ -635,6 +629,13 @@ input {
   display: flex;
   width: 150px;
   float: left;
+}
+.commentcontent {
+  margin: 0;
+  margin-top: -30px;
+}
+.newcommentcontent {
+  margin-top: -20px;
 }
 @media screen and (max-width: 640px) {
   header {
@@ -733,4 +734,25 @@ input {
 }
 #newco {
   display: none;
+}
+.deletingbtn {
+  margin-right: 10px;
+}
+.btns {
+  margin: 0;
+  border: none;
+  width: 50px;
+  height: 50px;
+}
+.submit {
+  background-color: red;
+  width: 50px;
+  border: none;
+  padding: 0;
+  display: flex;
+  margin-top: -1px;
+  margin-left: -2px;
+}
+.submit:hover {
+  cursor: pointer;
 }

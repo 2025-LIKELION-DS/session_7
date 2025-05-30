@@ -1,12 +1,23 @@
 {% extends './base.html' %}{% load static %}
 {% block style %} <link rel="stylesheet" href="{% static 'css/detail.css' %}">{% endblock %}
 {% block body %}
+    {% load humanize %}
 <div class="container">
           <section>
             <div>
               <a href={% url 'posts:main' %}><h2 class="secret">비밀게시판</h2></a>
               <div id="detailtext">
                 <ul>
+                  {% if post.image %}
+                  <img width="320" height="240" src="{{ post.image.url }}"></img>
+                  {% endif %}
+                  {% if post.video %}
+                  <video width="320" height="240" controls>
+                  <source src="{{ post.video.url }}" type="video/mp4" />
+                  </video>
+                  {% endif %}
+
+                  
                   <li class="profile_container">
                     <div class="profile_ickname">
                       <img
@@ -15,11 +26,20 @@
                         class="anonymous_profile"
                       />
                       <div class="name">
+                        {% if post.is_anonymous %}
                         <span class="nickname">익명</span>
-                        <span class="timesago">방금</span>
+                        {% else %}
+                        <span class="nickname">{{ post.author.nickname }}</span>
+                        {% endif %}
+                        <span class="timesago">{{ post.created_at }}</span>
                       </div>
                     </div>
-                    <p class="contentbox_rightinforms">쪽지 신고</p>
+                    {% if request.user == post.author %}
+                    <p class="contentbox_rightinforms">
+                      <a href="{% url 'posts:delete' post.id %}" class="deletingbtn">삭제 </a> 
+                      <a href="{% url 'posts:update' post.id %}" > 수정</a>
+                    </p>
+                    {% endif %}
                   </li>
                   <li class="detail_title">{{ post.title }}</li>
                   <li class="detail_text">{{ post.content }}</li>
@@ -30,7 +50,7 @@
                       class="positive"
                       id="positive"
                     />
-                    <p class="likes" id="likes">1</p>
+                    <p class="likes" id="likes">{{ post.like.count }}</p>
                     <img
                       src="{%  static 'img/img/container.articles.comment.png' %}"
                       alt="댓글 아이콘"
@@ -43,16 +63,38 @@
                       alt="즐겨찾기 아이콘"
                       class="favorites"
                     />
-                    <p class="preference" id="preference">0</p>
+                    <p class="preference" id="preference">{{ post.scrap.count }}</p>
                   </li>
+                  
                   <li class="article_reaction">
+                    {% if request.user in post.like.all %}
+                    <a href="{% url 'posts:remove-like' post.id %}">
+                    <p id="likesbox">
+                      <img
+                        src="{% static 'img/img/container.articles.buttons.posvote.png' %}"
+                        alt="따봉 버튼"
+                        class="positive_gray"
+                      />공감 취소
+                    </p></a>
+                    {% else %}
+                    <a href="{% url 'posts:add-like' post.id %}">
                     <p id="likesbox">
                       <img
                         src="{% static 'img/img/container.articles.buttons.posvote.png' %}"
                         alt="따봉 버튼"
                         class="positive_gray"
                       />공감
+                    </p></a>
+                    {% endif %}
+
+                    {% if request.user in post.scrap.all %}
+                    <a href="{% url 'posts:remove-scrap' post.id %}">
+                    <p id="scrapbox">
+                      스크랩 취소 <!--에타 보면서 스크랩 한 번 누르면 별표 사라지는 거 따라 작성했습니다-->
                     </p>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'posts:add-scrap' post.id %}">
                     <p id="scrapbox">
                       <img
                         src="{% static 'img/img/container.articles.buttons.scrap.png' %}"
@@ -60,33 +102,46 @@
                         class="favorites_gray"
                       />스크랩
                     </p>
+                    </a>
+                    {% endif %}
                   </li>
                 </ul>
               </div>
-              <div class="commenting">
+
+              <div class="commenting" id="newco">
                 <div>
                   <ul>
+                  {% for comment in post.comments.all %}
                     <li class="ick_container">
                       <img
                         src="{% static 'img/img/anonymous.profile.png' %}"
                         alt="익명 프로필"
                         class="cocoickprofile"
                       />
+                      {% if comment.anonymity %}
                       <span class="ickname">익명</span>
+                      {% else %}
+                      <span class="ickname">{{ comment.author.nickname }}</span>
+                      {% endif %}
                       <p class="commenting_rightinforms">
-                        <span id="cocomment">대댓글</span>
+                        <span>대댓글</span>
                         <span>공감</span>
                         <span>쪽지</span>
-                        <span>신고</span>
+                        {% if request.user == comment.author %}
+                        <span><a href="{% url 'posts:delete-comment' post.id comment.id %}">삭제</a></span>
+                        {% endif %}
                       </p>
+                    <p class="newcommentcontent" id="newSelfComment">{{ comment.content }}</p>
+                    <p class="newcommentdates">{{ comment.created_at }}</p>
                     </li>
-                  </ul>
-                  <ul>
-                  <p class="commentcontent">김치찜 어때요</p>
-                  <p class="commentdates">방금</p>
+                    {% empty %}
+                    <li>댓글이 없습니다</li>
+                  {% endfor %}
+
                   <div class="recomment" id="cocoments">
                   <div class="ickbtn">
-                    <form name="comments" method="post">
+                    <form name="cocomments" method="post">
+                      {% csrf_token %} 
                       <input
                         type="text"
                         class="typeacocomment"
@@ -116,11 +171,11 @@
                         alt="익명 프로필"
                         class="cocoickprofile"
                       />
-                      <span class="self_ickname">익명(글쓴이)</span>
+                      <span class="ickname">익명</span>
                       <p class="commenting_rightinforms">
                         <span>공감</span>
                         <span>쪽지</span>
-                        <span>신고</span>
+                        <span>삭제</span>
                       </p></div>
                     </li>
                     <p class="commentcontent"><span id="newcocomment"></span>
@@ -129,56 +184,38 @@
                   
                 </ul>
                 </div>
-                
               </div>
             </div>
-            <div class="commenting" id="newco">
-                <div>
-                  <ul>
-                    <li class="ick_container">
-                      <img
-                        src="{% static 'img/img/anonymous.profile.png' %}"
-                        alt="익명 프로필"
-                        class="cocoickprofile"
-                      />
-                      <span class="self_ickname">익명(글쓴이)</span>
-                      <p class="commenting_rightinforms">
-                        <span>대댓글</span>
-                        <span>공감</span>
-                        <span>쪽지</span>
-                        <span>신고</span>
-                      </p>
-                    </li>
-                  </ul>
-                  <ul>
-                  <p class="commentcontent" id="newSelfComment"></p>
-                  <p class="commentdates">방금</p>
-                </ul>
-              </div>
-            </div>
+
             <div class="ickbtn">
-              <form name="comments" method="post">
+              <form name="comments"  method="POST" action="{% url 'posts:create-comment' post.id %}">
+                {% csrf_token %} 
                 <input
                   type="text"
                   class="typeacomment"
                   placeholder="댓글을 입력하세요."
-                  id="commentInput"
+                  id="commentInput"  
+                  name="content" 
                 />
                 <div class="icksubmit">
                   <div class="ickcheckbox">
-                    <input type="checkbox" id="anonymousCheck" />
+                    <input type="checkbox" id="anonymousCheck" name="anonymity" value="anonymity_true" />
                     <span class="ick">익명 </span>
                   </div>
-                  <img
+                  <button type="submit" class="btns" value="작성">
+                    <img
                     src="{% static 'img/img/container.articles.write.submit.png' %}"
                     alt="작성 완료 버튼"
                     class="submit"
                     id="submitComment"
-                  />
+                  /></button>
+                  <label for="submitbutton">
+                </label>
                 </div>
               </form>
             </div>
-            <div class="comment-list" isec="commentList"></div>
+
+            <div class="comment-list" id="commentList"></div>
             <a href={% url 'posts:main' %}>
               <div class="writingsall">
                 <img
