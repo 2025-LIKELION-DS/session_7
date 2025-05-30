@@ -477,3 +477,7 @@ aside {
     width: 1185px;
   }
 }
+.post_asi {
+  display: flex;
+  overflow: hidden;
+}

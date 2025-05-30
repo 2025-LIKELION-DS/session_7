@@ -1,0 +1,103 @@
+{% extends './base.html' %}{% load static %} {% block style %}
+<link rel="stylesheet" href="{% static 'css/updatepost.css' %}">
+{% endblock %} {% block body %}
+<body class="body">
+  <div class="name_post">
+  <a href=""><h2 class="secret">비밀게시판</h2></a>
+  <form method="POST" action="{% url 'posts:update' post.id %}" enctype="multipart/form-data" class="updatepost">
+    {% csrf_token %}
+    <input
+      class="writing_title" value="{{ post.title }}" name="title"
+    >
+    <textarea
+      id="writingarea"
+      name="content"
+      >{{ post.content }}</textarea>
+
+      {% if post.image %}
+        <image width="320" height="240" src="{{ post.image.url }}">
+      {% endif %}
+      {% if post.video %}
+            <video width="320" height="240" controls>
+                <source src="{{ post.video.url }}" type="video/mp4">
+            </video>
+      {% endif %}
+
+
+    <div id="questionNotice" class="notice">
+    <div class="questionNoticing">
+        질문 글을 작성하면 게시판 상단에 일정 기간 동안 노출되어, 더욱 빠르게
+        답변을 얻을 수 있게 됩니다.<br />
+        또한, 다른 학우들이 정성껏 작성한 답변을 유지하기 위해, 댓글이 달린
+        이후에는 글을 수정 및 삭제할 수 없습니다.
+      </div>
+    </div>
+    <div class="submitbtn">
+      <div class="hashfile">
+        <input type="file" name="image" id="uploadimg" style="display: none" />
+        <label for="uploadimg">
+          <img
+            src="{% static 'img/img/container.articles.write.hashtag.png' %}"
+            alt="해시태그"
+            class="textdetailsbtn"
+        /></label>
+        <input type="file" name="video" id="videoimg" style="display: none" />
+        <label for="videoimg">
+          <img
+            src="{% static 'img/img/container.articles.write.attach.png' %}"
+            alt="첨부파일"
+            class="textdetailsbtn"
+        /></label>
+      </div>
+      <div class="queickdone">
+        <input type="checkbox" id="que" />
+        <span id="quechecked">질문</span>
+        <input type="checkbox" id="anony" name="is_anonymous"  name="is_anonymous" {% if post.is_anonymous %} checked {% endif %}/>
+        <span id="ickchecked">익명</span>
+        <button type="submit" value="수정하기">
+          <img
+            src="{% static 'img/img/container.articles.write.submit.png' %}"
+            alt="작성 완료 버튼"
+            class="done"
+          />
+        </button>
+      </div>
+    </div>
+  </form>
+  <a href={{ request.META.HTTP_REFERER }}>
+    <span class="cancelupdate">
+        &#60; 글 수정 취소
+    </span>
+  </a>
+  </div>
+  <button
+</body>
+{% endblock %}
+
+
+
+
+
+<body>
+    <h2>글 수정</h2>
+    <form method="POST" action="{% url 'posts:update' post.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        제목 - <input type="text" value="{{ post.title }}" name="title"><br><br>
+        내용 - <textarea name="content">{{ post.content }}</textarea><br><br>
+        
+        {% if post.image %}
+            기존 이미지 - <image width="320" height="240" src="{{ post.image.url }}">
+        {% endif %}
+        <br>이미지 변경 - <input type="file" name="image"><br><br>
+
+        {% if post.video %}
+            기존 비디오 : <video width="320" height="240" controls>
+                <source src="{{ post.video.url }}" type="video/mp4">
+            </video>
+        {% endif %}
+        <br>비디오 변경 - <input type="file" name="video"><br><br>
+        
+        <input type="checkbox" name="is_anonymous" {% if post.is_anonymous %} checked {% endif %}>익명
+        <input type="submit" value="수정하기">
+    </form>
+</body>

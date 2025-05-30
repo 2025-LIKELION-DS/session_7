@@ -73,6 +73,7 @@ ul {
   display: flex;
   border-bottom: 1px solid rgb(201, 201, 201);
   border-top: 1px solid rgb(201, 201, 201);
+  margin-top: -2.5px;
 }
 .contentbox_rightinforms:hover {
   cursor: pointer;
@@ -84,7 +85,6 @@ ul {
   font-weight: normal;
   font-style: normal;
   font-variation-settings: "wdth" 100;
-  color: gray;
   font-size: 17px;
   font-weight: bold;
   height: 60px;
@@ -95,7 +95,7 @@ ul {
   padding: 15px;
   overflow: hidden;
   outline: none;
-  width: 100%;
+  width: 798px;
   box-sizing: border-box;
 }
 #writingarea {
@@ -103,7 +103,6 @@ ul {
   font-optical-sizing: auto;
   font-style: normal;
   font-variation-settings: "wdth" 100;
-  color: gray;
   font-size: 15px;
   font-weight: light;
   height: 400px;
@@ -120,12 +119,13 @@ ul {
   box-sizing: border-box;
 }
 .submitbtn {
-  height: 40px;
+  height: 45px;
   width: 775px;
   border: 2px solid silver;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   border-top: none;
   color: gray;
   font-size: smaller;
@@ -187,8 +187,32 @@ button {
 .hashfile {
   display: flex;
   float: left;
+  padding-top: 10px;
 }
 .queickdone {
   display: flex;
   margin-left: auto;
+  padding-top: 8px;
+}
+.updatepost {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.secret {
+  margin-left: 20px;
+}
+.cancelupdate {
+  height: 15px;
+  border: 1.5px solid red;
+  border-radius: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  color: red;
+  padding: 10px;
+  margin: 5px;
+  margin-left: 20px;
 }

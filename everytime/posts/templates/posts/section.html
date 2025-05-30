@@ -5,7 +5,7 @@
 <div class="container">
   <section>
     {% load humanize %}
-    <h2 class="secret">{{ category.name }}</h2>
+    <a href=""><h2 class="secret">{{ category.name }}</h2></a>
     <div class="que_hot">
       <div class="question_hot">
         <img
@@ -93,7 +93,7 @@
               alt="댓글 아이콘"
               class="comment"
             />
-            <p class="mentions">1</p>
+            <p class="mentions">0</p>
             <p>| {{ post.created_at | naturaltime }}</p>
           </li>
         </ul>

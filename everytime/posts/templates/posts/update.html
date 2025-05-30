@@ -1,23 +1,20 @@
-<body>
-    <h2>글 수정</h2>
-    <form method="POST" action="{% url 'posts:update' post.id %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        제목 - <input type="text" value="{{ post.title }}" name="title"><br><br>
-        내용 - <textarea name="content">{{ post.content }}</textarea><br><br>
-        
-        {% if post.image %}
-            기존 이미지 - <image width="320" height="240" src="{{ post.image.url }}">
-        {% endif %}
-        <br>이미지 변경 - <input type="file" name="image"><br><br>
-
-        {% if post.video %}
-            기존 비디오 : <video width="320" height="240" controls>
-                <source src="{{ post.video.url }}" type="video/mp4">
-            </video>
-        {% endif %}
-        <br>비디오 변경 - <input type="file" name="video"><br><br>
-        
-        <input type="checkbox" name="is_anonymous" {% if post.is_anonymous %} checked {% endif %}>익명
-        <input type="submit" value="수정하기">
-    </form>
-</body>
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <title>에브리타임 비밀게시판 메인페이지</title>
+  </head>
+  <body>
+    {% include "./header.html" %}
+    <hr />
+    {% include "./navigation.html" %}
+    <div class="main_container">
+      <div class="post_asi">
+        {% include "./postupdate.html" %} {% include "./aside.html" %}
+      </div>
+    </div>
+  </body>
+</html>
