@@ -57,7 +57,7 @@
                       class="comment"
                       id="comment"
                     />
-                    <p class="mentions" id="comments">1</p>
+                    <p class="mentions" id="comments">{{ post.comments.count }}</p>
                     <img
                       src="{% static 'img/img/container.articles.scrap.png' %}"
                       alt="즐겨찾기 아이콘"
@@ -108,10 +108,11 @@
                 </ul>
               </div>
 
+              <!--문제였던 부분입니다-->
+              {% for comment in post.comments.all %}
               <div class="commenting" id="newco">
                 <div>
-                  <ul>
-                  {% for comment in post.comments.all %}
+                <ul>
                     <li class="ick_container">
                       <img
                         src="{% static 'img/img/anonymous.profile.png' %}"
@@ -123,20 +124,24 @@
                       {% else %}
                       <span class="ickname">{{ comment.author.nickname }}</span>
                       {% endif %}
-                      <p class="commenting_rightinforms">
-                        <span>대댓글</span>
-                        <span>공감</span>
-                        <span>쪽지</span>
+                      
+                      {% if comment.anonymity %}
+                      <div class="ick_commenting_rightinforms">
+                      {% else %}
+                      <div class="commenting_rightinforms">
+                      {% endif %}
+                        <span><a>대댓글</a></span>
+                        <span><a>공감</a></span>
+                        <span><a>쪽지</a></span>
                         {% if request.user == comment.author %}
                         <span><a href="{% url 'posts:delete-comment' post.id comment.id %}">삭제</a></span>
                         {% endif %}
-                      </p>
-                    <p class="newcommentcontent" id="newSelfComment">{{ comment.content }}</p>
-                    <p class="newcommentdates">{{ comment.created_at }}</p>
+                      </div>
+                      
                     </li>
-                    {% empty %}
-                    <li>댓글이 없습니다</li>
-                  {% endfor %}
+                    <li><div class="newcommentcontent" id="newSelfComment">{{ comment.content }}</div></li>
+                    <li><div class="newcommentdates">{{ comment.created_at }}</div></li>
+                  
 
                   <div class="recomment" id="cocoments">
                   <div class="ickbtn">
@@ -162,7 +167,7 @@
                       </div>
                     </form>
                   </div>
-                </div>
+                  </div>
                   <div class="cocommentedcoment" id="newcoco">
                     <li class="co_ick_container">
                       <div>
@@ -181,11 +186,15 @@
                     <p class="commentcontent"><span id="newcocomment"></span>
                     <p class="commentdates">방금</p></p>
                   </div>
+                    
                   
                 </ul>
                 </div>
               </div>
-            </div>
+                {% empty %}
+                    <div class="nocomments">댓글이 없습니다.</div>
+                {% endfor %}
+              </div>
 
             <div class="ickbtn">
               <form name="comments"  method="POST" action="{% url 'posts:create-comment' post.id %}">

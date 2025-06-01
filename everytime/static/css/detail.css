@@ -370,7 +370,6 @@ aside {
 .commenting {
   height: auto;
   border: 1px solid silver;
-  display: flex;
   padding: 5px;
   padding-left: 17px;
   align-items: center;
@@ -413,22 +412,33 @@ aside {
   font-size: 13px;
   color: silver;
   margin: 0;
-  margin-bottom: 5px;
-  margin-top: -20px;
 }
 .commenting_rightinforms {
   font-weight: lighter;
   font-size: smaller;
   color: silver;
-  display: flex;
   margin-left: 550px;
+}
+.ick_commenting_rightinforms {
+  font-weight: lighter;
+  font-size: smaller;
+  color: silver;
+  margin-left: 540px;
+  display: flex;
+  margin-top: -20px;
+}
+.ick_commenting_rightinforms span {
+  padding-left: 10px;
+  margin-top: -10px;
 }
 .cocommentedcoment .commenting_rightinforms {
   margin-left: 630px;
   margin-top: -10px;
 }
-#newco .commenting_rightinforms {
-  margin-left: 520px;
+.commenting .commenting_rightinforms {
+  margin-left: 510px;
+  margin-top: -20px;
+  display: flex;
 }
 .cocommentedcoment .commentdates {
   font-size: 13px;
@@ -735,9 +745,6 @@ input {
 .co_ick_container {
   margin-bottom: 30px;
 }
-#newco {
-  display: none;
-}
 .deletingbtn {
   margin-right: 10px;
 }
@@ -758,4 +765,17 @@ input {
 }
 .submit:hover {
   cursor: pointer;
+}
+.nocomments {
+  color: silver;
+  height: 40px;
+  border: 1px solid silver;
+  border-top: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 900px;
 }
