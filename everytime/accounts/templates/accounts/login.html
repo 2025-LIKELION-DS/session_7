@@ -1,7 +1,63 @@
-<h2>로그인</h2>
-<form method='post' action={% url 'accounts:login' %}>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">login</button>
-</form>
-<p><a href="{% url 'accounts:signup' %}">회원가입</a></p>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <link rel="icon" href="{% static 'img/nav.logo.png' %}" />
+    <link rel="apple-touch-icon" href="{% static 'img/nav.logo.png' %}" />
+    <script
+      src="https://kit.fontawesome.com/3a193b46ca.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <main>
+      <div class="logo">
+        <img src="{% static 'img/logo.png' %}" alt="에브리타임 로고" />
+      </div>
+      <form method="post" action="{% url 'accounts:login' %}">
+        {% csrf_token %}
+        <input type="text" name="username" class="box input-box" id="id" placeholder="아이디" required/>
+        <div class="pass-box">
+          <input
+            type="password"
+            name="password"
+            class="box input-box"
+            id="password"
+            placeholder="비밀번호"
+            required
+          />
+          <button class="pass-btn">
+            <i class="pass-btn-i fas fa-eye fa-lg"></i>
+          </button>
+        </div>
+        <input
+          type="submit"
+          class="box submit-box"
+          id="login"
+          value="에브리타임 로그인"
+        />
+        <div class="settings">
+          <label for="remain-login">
+            <input type="checkbox" id="remain-login" />
+            로그인 유지</label
+          >
+          <input type="button" id="find" value="아이디/비밀번호 찾기" />
+        </div>
+        <a href="{% url 'accounts:signup' %}">회원가입</a>
+      </form>
+      <footer>
+        <ul>
+          <li>이용약관</li>
+          <li>개인정보처리방침</li>
+          <li>문의하기</li>
+          <li>ⓒ 에브리타임</li>
+        </ul>
+      </footer>
+    </main>
+    <script src="{% static 'js/login.js' %}"></script>
+  </body>
+</html>
