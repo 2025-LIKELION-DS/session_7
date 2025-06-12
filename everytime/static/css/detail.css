@@ -1,0 +1,294 @@
+@import url(./main.css);
+
+button {
+  cursor: pointer;
+}
+
+.detail {
+  margin-bottom: 0;
+}
+
+.detail-hd {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.detail-hd-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.detail-hd-profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.detail-hd-profile-text div:first-child {
+  font-weight: 500;
+}
+
+.detail-hd-profile-text div:last-child {
+  font-size: 12px;
+  color: var(--main-gray);
+}
+
+.detail-hd-message,
+.com-hd-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.detail-hd-message > a,
+.com-hd-message > a {
+  display: flex;
+  font-size: 12px;
+  color: var(--main-gray);
+  cursor: pointer;
+}
+
+.detail-title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.detail-content {
+  margin: 15px 0;
+}
+
+.detail-content,
+.com-content {
+  color: var(--main-lightblack);
+  font-size: 14px;
+}
+
+.detail-content-image {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.detail-content-image img {
+  width: 25%;
+  padding: 2px;
+  box-sizing: border-box;
+}
+
+.detail-reaction {
+  margin: 15px 0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.react-scrap {
+  color: #ffc900;
+}
+
+.detail-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.detail-btns button {
+  background-color: var(--main-whitegray);
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--main-darkgray);
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.detail-btns img {
+  width: 12px;
+  height: 12px;
+  margin-right: 2px;
+}
+
+.comments {
+  margin: 0;
+  padding: 0;
+  border-top: none;
+}
+
+.comment {
+  border-bottom: var(--border);
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+.com {
+  padding: 15px;
+}
+
+.com-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.com-hd-profile {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.com-hd-profile img {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.com-hd-profile-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.com-owner {
+  color: var(--main-mint);
+}
+
+.com-content {
+  margin: 5px 0;
+}
+
+.com-footer {
+  display: flex;
+  font-size: 12px;
+  gap: 5px;
+}
+
+.com-time {
+  color: var(--main-gray);
+}
+
+.com-vote {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.com-vote.hidden {
+  display: none;
+}
+
+.com-com {
+  padding: 10px;
+  border: var(--border);
+  background-color: var(--main-whitegray);
+}
+
+.com-com,
+.com-comment {
+  margin: 0 4px 4px 35px;
+}
+
+.com-comment {
+  padding: 0;
+  border: var(--border);
+}
+
+.detail-comment {
+  padding: 0;
+  margin: 0;
+  border: var(--border);
+  border-top: none;
+}
+
+.detail-comment form,
+.com-comment form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--main-whitegray);
+}
+
+.comment-anonymous {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  color: var(--main-color);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.comment-anonymous input:checked {
+  accent-color: var(--main-red);
+}
+
+.comment-anonymous:has(input:checked) {
+  color: var(--main-red);
+}
+
+#detail-comment-input,
+.com-comment-input {
+  border: none;
+  width: 100%;
+  height: 40px;
+  background-color: var(--main-whitegray);
+  box-sizing: border-box;
+  padding-left: 15px;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+}
+
+.submit-btn {
+  background-color: var(--main-red);
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 5px;
+}
+
+.submit-btn img {
+  width: 40px;
+  height: 40px;
+}
+
+.detail-bottom {
+  border: none;
+  padding: 0;
+  display: flex;
+}
+
+.detail-bottom-list a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--main-red);
+  color: var(--main-red);
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 5px;
+  text-decoration: none;
+}
+
+.detail-bottom img {
+  width: 14px;
+  height: 14px;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .detail-bottom {
+    background-color: var(--main-whitegray);
+    margin-bottom: 0;
+  }
+}

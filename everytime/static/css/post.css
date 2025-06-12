@@ -1,0 +1,166 @@
+@import url(./main.css);
+
+body {
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.postbox {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--main-lightgray);
+  margin-bottom: 0;
+}
+
+.post-title,
+.post-content,
+.q-info-container {
+  padding: 15px;
+}
+
+.post-title {
+  border-bottom: var(--border);
+}
+
+.post-title input {
+  width: 100%;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  outline: none;
+}
+
+.post-content textarea {
+  width: 100%;
+  height: 11rem;
+  border: none;
+  resize: none;
+  overflow: scroll;
+  word-wrap: break-word;
+  letter-spacing: -0.5px;
+  outline: none;
+}
+
+.post-content textarea::placeholder {
+  font-size: 12px;
+}
+
+.post-image {
+  border-top: var(--border);
+  padding: 15px;
+}
+
+.post-image img {
+  border: var(--border);
+  width: 100px;
+  height: 100px;
+}
+
+.q-info-container {
+  border-top: var(--border);
+  display: flex;
+}
+
+.q-info {
+  width: 100%;
+  background-color: var(--main-lightmint);
+  padding: 8px;
+  color: var(--main-mint);
+  font-size: 13px;
+}
+
+.q-info-bold {
+  font-weight: 600;
+}
+
+.post-btns {
+  display: flex;
+  justify-content: space-between;
+  border-top: var(--border);
+  height: 40px;
+}
+
+.post-btns img,
+.post-btns button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-left-btns {
+  display: flex;
+}
+
+.post-left-btns button {
+  background: none;
+}
+
+.hashtag-btn {
+  background-color: white;
+  border: none;
+}
+
+.attach-btn {
+  cursor: pointer;
+}
+
+.post-right-btns {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.post-right-btns li {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.post-right-btns input,
+.post-right-btns label {
+  color: var(--main-color);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#question:checked {
+  accent-color: var(--main-mint);
+}
+
+#question:checked + label {
+  color: var(--main-mint);
+}
+
+#anonymous:checked {
+  accent-color: var(--main-red);
+}
+
+#anonymous:checked + label {
+  color: var(--main-red);
+}
+
+#attach {
+  display: none;
+}
+
+.submit-btn {
+  background-color: var(--main-red);
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
