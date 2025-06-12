@@ -1,0 +1,73 @@
+{% load static %}
+<div class="mini-header">
+  <button class="hamburger">
+    <img
+      src="{% static 'img/aside.title.hamburger.png' %}"
+      alt="햄버거 아이콘"
+    />
+  </button>
+  <div class="mini-side hidden">
+    <a href="{% url 'posts:main' %}">
+      <div class="hd-logo">
+        <img src="{% static 'img/nav.logo.png' %}" alt="에브리타임 로고" />
+        <div class="hd-logo-text">
+          <div>에브리타임</div>
+          <div>덕성여대</div>
+        </div>
+      </div>
+    </a>
+    <ul class="hd-menu">
+      <li class="selected-menu">게시판</li>
+      <li>시간표</li>
+      <li>강의실</li>
+      <li>학점계산기</li>
+      <li>친구</li>
+      <li>책방</li>
+      <li>캠퍼스픽</li>
+    </ul>
+    <div class="hd-btn">
+      <button>
+        <img src="{% static 'img/icn_m_chat_gray800_light.png' %}" alt="쪽지" />
+      </button>
+      <button>
+        <img
+          src="{% static 'img/icn_m_account_gray800_light.png' %}"
+          alt="프로필"
+        />
+      </button>
+    </div>
+  </div>
+  <a href="{% url 'posts:category' slug='secret' %}">비밀게시판</a>
+</div>
+<div class="darken hidden"></div>
+<header>
+  <a href="{% url 'posts:main' %}">
+    <div class="hd-logo">
+      <img src="{% static 'img/nav.logo.png' %}" alt="에브리타임 로고" />
+      <div class="hd-logo-text">
+        <div>에브리타임</div>
+        <div>덕성여대</div>
+      </div>
+    </div>
+  </a>
+  <ul class="hd-menu">
+    <li class="selected-menu">게시판</li>
+    <li>시간표</li>
+    <li>강의실</li>
+    <li>학점계산기</li>
+    <li>친구</li>
+    <li>책방</li>
+    <li>캠퍼스픽</li>
+  </ul>
+  <div class="hd-btn">
+    <button>
+      <img src="{% static 'img/icn_m_chat_gray800_light.png' %}" alt="쪽지" />
+    </button>
+    <button>
+      <img
+        src="{% static 'img/icn_m_account_gray800_light.png' %}"
+        alt="프로필"
+      />
+    </button>
+  </div>
+</header>
