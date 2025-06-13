@@ -394,6 +394,17 @@ aside {
   font-size: 15px;
   font-weight: 500;
   margin-top: -20px;
+  width: 200px;
+}
+.co_ickname {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: -20px;
+  width: 200px;
+  height: 10px;
+}
+.cocommentedcoment .co_ick_container {
+  margin-bottom: 35px;
 }
 .self_ickname {
   font-size: 15px;
@@ -423,7 +434,7 @@ aside {
   font-weight: lighter;
   font-size: smaller;
   color: silver;
-  margin-left: 540px;
+  margin-left: 640px;
   display: flex;
   margin-top: -20px;
 }
@@ -436,10 +447,11 @@ aside {
   margin-top: -10px;
 }
 .commenting .commenting_rightinforms {
-  margin-left: 510px;
+  margin-left: 380px;
   margin-top: -20px;
   display: flex;
 }
+
 .cocommentedcoment .commentdates {
   font-size: 13px;
   color: silver;

@@ -87,13 +87,13 @@
               alt="따봉 아이콘"
               class="positive"
             />
-            <p class="likes">0</p>
+            <p class="likes">{{ post.like.count }}</p>
             <img
               src="{% static 'img/img/container.articles.comment.png' %}"
               alt="댓글 아이콘"
               class="comment"
             />
-            <p class="mentions">0</p>
+            <p class="mentions">{{ post.comments.count }}</p>
             <p>| {{ post.created_at | naturaltime }}</p>
           </li>
         </ul>

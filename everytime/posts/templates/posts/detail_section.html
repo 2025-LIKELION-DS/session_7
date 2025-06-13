@@ -108,7 +108,6 @@
                 </ul>
               </div>
 
-              <!--문제였던 부분입니다-->
               {% for comment in post.comments.all %}
               <div class="commenting" id="newco">
                 <div>
@@ -125,16 +124,14 @@
                       <span class="ickname">{{ comment.author.nickname }}</span>
                       {% endif %}
                       
-                      {% if comment.anonymity %}
-                      <div class="ick_commenting_rightinforms">
-                      {% else %}
                       <div class="commenting_rightinforms">
-                      {% endif %}
-                        <span><a>대댓글</a></span>
+                        <span id="cocomment"><a>대댓글</a></span>
                         <span><a>공감</a></span>
                         <span><a>쪽지</a></span>
                         {% if request.user == comment.author %}
                         <span><a href="{% url 'posts:delete-comment' post.id comment.id %}">삭제</a></span>
+                        {% else %}
+                        <span><a>신고</a></span>
                         {% endif %}
                       </div>
                       
@@ -176,11 +173,19 @@
                         alt="익명 프로필"
                         class="cocoickprofile"
                       />
-                      <span class="ickname">익명</span>
-                      <p class="commenting_rightinforms">
-                        <span>공감</span>
-                        <span>쪽지</span>
-                        <span>삭제</span>
+                      {% if comment.anonymity %}
+                      <span class="co_ickname">익명</span>
+                      {% else %}
+                      <span class="co_ickname">{{ comment.author.nickname }}</span>
+                      {% endif %}
+                      <p class="ick_commenting_rightinforms">
+                        <span><a>공감</a></span>
+                        <span><a>쪽지</a></span>
+                        {% if request.user == comment.author %}
+                        <span><a href="{% url 'posts:delete-comment' post.id comment.id %}">삭제</a></span>
+                        {% else %}
+                        <span><a>신고</a></span>
+                        {% endif %}
                       </p></div>
                     </li>
                     <p class="commentcontent"><span id="newcocomment"></span>
