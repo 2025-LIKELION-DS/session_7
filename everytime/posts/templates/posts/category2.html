@@ -1,0 +1,118 @@
+{% load static %}
+{% load humanize %}
+{% block style %}<link rel="stylesheet" href="{% static 'css/main.css' %}" />{% endblock %}
+{% block body %}
+    </div>
+    <br />
+    <div class="flex">
+      <div class="width" style="flex: 1">
+        <div class="border">
+          <section class="section">
+            <div class="linenone"><h1>&nbsp;비밀게시판</h1></div>
+            <div class="line">
+              <div class="art">
+                <p class="qtxt">
+                  <img
+                    class="qimg"
+                    src="{% static 'img/icn_mcr_board_question_light.png' %}"
+                    alt="질문 아이콘"
+                  />
+                </p>
+                <p class="qtxt box">학생증 수령</p>
+                <p class="qtxt box">동아리</p>
+                <p class="qtxt box">카페말로 메뉴 추천</p>
+                <p class="qtxt box">오메A 후기</p>
+              </div>
+              <div class="art">
+                <p class="qtxt">
+                  <img
+                    class="qimg"
+                    src="{% static 'img/icn_mcr_board_hotarticle_light.png' %}"
+                    alt="불 아이콘"
+                  />
+                </p>
+                <p class="qtxt box fbox">
+                  레전드 맛집 발견
+                  <img
+                    class="fimg"
+                    src="{% static 'img/container.articles.buttons.posvote.png' %}"
+                    alt="따봉"
+                  />&nbsp;122
+                </p>
+                <p class="qtxt box fbox">
+                  고양이 출현!
+                  <img
+                    class="fimg"
+                    src="{% static 'img/container.articles.buttons.posvote.png' %}"
+                    alt="따봉"
+                  />&nbsp;101
+                </p>
+                <br />
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="new">
+          <div>&nbsp;새 글을 작성해주세요!</div>
+          <img
+            id="pimg"
+            src="{% static 'img/container.write.background.png' %}"
+            alt="연필 아이콘"
+          />
+        </div>
+        <div id="postCt" style="display: none;">
+        {% include 'posts/post.html' %}
+        </div>
+        <div id="postContent"></div>
+        <div class="layout">
+          <div class="lartti">
+
+            {% for post in posts %} {% if post.anonymity %}
+            <a href="{% url 'posts:detail' post.id %}">
+            <article class="article">
+              <p class="hd">{{ post.title }}</p>
+              <p class="t">
+                {{ post.content }}</p>
+              <p class="com">{{ post.created_at | naturaltime }} 익명</p>
+                            {% if post.image %} <img style="width:320; height:240; margin: 8px;" src="/media/{{ post.image }}" alt="프리뷰" />
+              {% endif %}
+                            {% if post.video %} <video style="width:320; height:240; margin: 8px;" src="/media/{{ post.video }}" alt="프리뷰 동영상" ></video>
+              {% endif %}
+              <hr id="gry" />
+            </article></a>
+            {% else %}
+            <a href="{% url 'posts:detail' post.id %}">
+            <article class="article">
+              <p class="hd">{{ post.title }}</p>
+              <p class="t">
+                {{ post.content }}</p>
+                <p>                
+                  <img
+                  class="img5"
+                  src="{% static 'img/container.articles.buttons.posvote.png' %}"
+                  alt="따봉"
+                />{{post.like.count}}
+                <img
+                  class="img5"
+                  src="{% static 'img/container.articles.comment.png' %}"
+                  alt="말풍선"
+                />{{post.scrap.count}}</p>
+              <p class="com">{{ post.created_at | naturaltime }} | {{ post.author_display_name }}</p>
+              {% if post.image %} <img style="width:320; height:240; margin: 8px;"  src="/media/{{ post.image }}" alt="프리뷰" />
+              {% endif %}
+              {% if post.video %} <video style="width:320; height:240; margin: 8px" src="/media/{{ post.video }}" alt="프리뷰 동영상" ></video>
+              {% endif %}
+              <hr id="gry" />
+
+            </article></a>
+
+            {% endif %}
+            <hr/>
+            {% empty %} <h2>글이 없습니다.</h2> {% endfor %}
+
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

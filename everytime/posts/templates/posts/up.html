@@ -1,0 +1,82 @@
+{% load static %}
+{% block style %}<link rel="stylesheet" href="{% static 'css/up.css' %}"/>{% endblock %}
+{% block body %}
+
+   <input type="text" id="uptitle" name="title" value="글 수정">
+   <div id="upbody">
+   <form method="POST" action="{% url 'posts:update' post.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input id="upT" type="text" value="{{ post.title }}" name="title"><br><br>
+        <div id="uptexta">
+        <textarea id="texta" name="content">{{ post.content }}</textarea><br><br>
+        </div>
+        {% if post.image %}
+            <image style="margin-left:8px" width="220" height="140" src="{{ post.image.url }}">
+        {% endif %}
+        <label>
+            <input type="file" name="image" accept="image/*" style="display: none;">
+            <span class="chgiv">이미지 변경</span>
+            </label>
+
+        {% if post.video %}
+            <video style="margin-left:8px" width="220" height="140" controls>
+                <source src="{{ post.video.url }}" type="video/mp4">
+            </video>
+        {% endif %}
+        <label>
+            <input type="file" name="video" accept="video/*" style="display: none;">
+            <span class="chgiv">비디오 변경</span>
+          </label>
+
+        <div id="pG">
+          <div id="gM">
+            질문 글을 작성하면 게시판 상단에 일정 기간 동안 노출되어, 더욱
+            빠르게 답변을 얻을 수 있게 됩니다.<br />
+            또한, 다른 학우들이 정상적으로 작성한 답변을 유지하기 위해, 댓글이
+            달린 이후에는
+            <span style="font-weight: bold"
+              >글을 수정 및 삭제할 수 없습니다.</span
+            >
+          </div>
+        </div>
+
+          <div id="upfooter">
+        <div id="contents">
+            <label>
+            <input type="file" name="image" accept="image/*" style="display: none;">
+            <img
+              class="MVtag"
+              src="{% static 'img/container.articles.write.hashtag.png'%}"
+              alt="hashtag"
+            /></label>
+            <label>
+            <input type="file" name="video" accept="video/*" style="display: none;">
+            <img
+              class="MVtag"
+              src="{% static 'img/container.articles.write.attach.png' %}"
+              alt="link"
+            /></label>
+          </div>
+
+        <div id="tags">
+          <span>
+            <input id="qC" type="checkbox" />
+            <p class="checkdeoption">질문</p>
+            </span>
+            <span>
+            <input type="checkbox" name="is_anonymous" {% if post.is_anonymous %} checked {% endif %}/>
+            <p class="checkdeoption">익명</p>
+            </span>
+            <span>
+            <label>
+              <input type="submit" value="수정하기" style="display: none;">
+            <img
+              id="subbox"
+              src="{% static 'img/container.articles.write.submit.png' %}"
+              alt="pen"
+            /></label>
+            </span>
+            </div>   
+            </div>
+            <script src="{% static 'js/up.js' %}"></script>
+{% endblock %}

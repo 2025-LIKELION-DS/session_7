@@ -1,0 +1,174 @@
+{% load static %}
+{% block style %}<link rel="stylesheet" href="{% static 'css/detail.css' %}"/>{% endblock %}
+
+{% block body %}
+<div id="horiz">
+  <div id="container">
+    <section class="section">
+      <div class="none">
+        <div class="line">
+          <p class="schd">비밀게시판</p>
+        </div>
+      </div>
+      <div class="line">
+        <div class="sectop">
+          <div class="정렬">
+            <img
+              class="main1"
+              src="{% static 'img/anonymous.profile.png' %}"
+              alt="익명"
+            />
+            <div class="padding15">
+              {% if post.is_anonymous %}
+              <p class="p1">익명</p>
+              {% else %}
+              {{ post.author.nickname }}{% endif %}
+              <p class="p2">{{ post.created_at }}</p>
+                  
+            </div>
+          </div>
+          <div class="정렬">
+            {% if request.user == post.author %}
+            <a href="{% url 'posts:update' post.id %}"><p class="p3">수정</p></a>
+            <a href="{% url 'posts:delete' post.id %}"><p class="p3">삭제</p></a>
+            {% else %}
+            <p class="p3">쪽지</p>
+            <p class="p3">신고</p>
+            {% endif %}
+          </div>
+        </div>
+        <p class="sectitle">{{ post.title }}</p>
+        <p class="secmaintx">
+          {{ post.content }}
+        </p>
+    {% if post.image %}
+        <image width="320" height="240" src="{{ post.image.url }}"></image>
+    {% endif %}
+    {% if post.video %}
+        <video width="320" height="240" controls>
+            <source src="{{ post.video.url }}" type="video/mp4" />
+        </video>
+    {% endif %}
+        <p class="maingood">
+          <img
+            id="goodLike"
+            src="{% static 'img/container.articles.vote.png' %}"
+            alt="따봉"
+          /><span id="likeCount">{{ post.like.count }}</span>
+          <img
+            id="comment"
+            src="{% static 'img/container.articles.comment.png' %}"
+            alt="말풍선"
+          /><span id="commentCount">1</span>
+          <img
+            id="star"
+            src="{% static 'img/container.articles.scrap.png' %}"
+            alt="별"
+          />
+          <span id="starCount">{{ post.scrap.count }}</span>
+        </p>
+        <div id="goodScr">
+              {% if request.user in post.like.all %}
+    <a href="{% url 'posts:remove-like' post.id %}"><input type="button" value="공감 취소" /></a>
+    {% else %}
+    <a href="{% url 'posts:add-like' post.id %}"><input type="button" value="공감" /></a>
+    {% endif %}
+              {% if request.user in post.scrap.all %}
+    <a href="{% url 'posts:remove-scrap' post.id %}"><input type="button" value="스크랩 취소" /></a>
+    {% else %}
+    <a href="{% url 'posts:add-scrap' post.id %}"><input type="button" value="스크랩" /></a>
+    {% endif %}
+        </div>
+      </div>
+
+      {% for comment in post.comments.all %}
+      <div class="line">
+        <div class="정렬">
+          <img
+            class="익명"
+            src="{% static 'img/anonymous.profile.png' %}"
+            alt="익명"
+          />
+          <p class="retop">{% if comment.anonymity %} 익명 {% else %} {{ comment.author.nickname }} {% endif %}</p>
+          <div id="reCo">대댓글</div>
+              {% if request.user == comment.author %}
+        <a id="reCo" href="{% url 'posts:delete-comment' post.id comment.id %}">삭제하기</a>
+    {% endif%}
+        </div>
+
+        <p class="retxt">{{ comment.content }}</p>
+        <p class="retxt1">
+        {{ comment.created_at }}
+          <img
+            class="good"
+            src="{% static 'img/container.articles.vote.png' %}"
+            alt="따봉"
+          />
+        </p>
+
+        <!--대댓글 부분
+        {% for comment in post.comments.all %}
+          <div class="입력창"></div>
+          <div id="recomment">
+            <div class="정렬">
+              <img
+                class="익명"
+                src="{% static 'img/anonymous.profile.png' %}"
+                alt="익명"
+              />
+              <p class="retop">{% if comment.anonymity %} 익명: {% else %} {{ comment.author.nickname }}: {% endif %}</p>
+              <div class="reCoco">공감</div>
+            </div>
+            <p class="retxt">{{ comment.content }}</p>
+            <p class="retxt1">{{ comment.created_at }}</p>
+          </div>
+
+        <div id="reline">
+          <div id="reline정렬">
+            <form method="POST" action="{% url 'posts:create-comment' post.id %}">
+            <input id="reinputText" placeholder="대댓글을 입력하세요" />
+            <div class="정렬">
+              </form>
+              <input type="checkbox" />
+              <p class="ret">익명</p>
+              <div id="boxred">
+                <img
+                  id="repen"
+                  src="{% static 'img/container.articles.write.submit.png' %}"
+                />
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        -->
+      </div>
+        {% empty %}
+        <p>댓글이 없습니다</p>
+        {% endfor %}
+
+      <div class="line2">
+          <form method="POST" action="{% url 'posts:create-comment' post.id %}">
+            {% csrf_token %}
+                    <div class="정렬2">
+          <input id="inputText" name="content" placeholder="댓글을 입력하세요" />
+          <div class="정렬">
+              <label class="ret">
+                <input type="checkbox" name="anonymity" value="anonymity_true" />
+                익명
+              </label>
+            <div class="boxred">
+              <button type="submit" value="작성" style="border:none">
+              <img style="width:50px; height: 50px; background-color: red;" src="{% static 'img/container.articles.write.submit.png' %}"/>
+              </button>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </section>
+  </div>
+  <script src="{% static 'js/detail.js' %}"></script>
+</div>
+
+{% endblock %}

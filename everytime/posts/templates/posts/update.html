@@ -1,3 +1,18 @@
+{% load static %}
+{% block style %}<link rel="stylesheet" href="{% static 'css/detail.css' %}"/>{% endblock %}
+{% block body %}
+{% load static %}
+    <!--헤더-->
+    {% include 'posts/header.html' %}
+    <!--nav-->
+{% include 'posts/nav.html' %}
+
+    <div style="display: flex; max-width: 1000px; margin: 18px auto;">
+  <div style="flex: 3;">
+    {% include 'posts/up.html' %}
+  </div>
+
+  <!--
 <body>
     <h2>글 수정</h2>
     <form method="POST" action="{% url 'posts:update' post.id %}" enctype="multipart/form-data">
@@ -21,3 +36,11 @@
         <input type="submit" value="수정하기">
     </form>
 </body>
+-->
+
+      <div style="flex: 1; margin-left: 20px;">
+    {% include 'posts/aside.html' %}
+  </div>
+
+    </div>
+    {% endblock %}

@@ -1,0 +1,436 @@
+.header {
+  background-color: #ffffff;
+  width: 1180px;
+  height: 80px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #a6a6a6;
+  max-width: 1180px;
+}
+
+.img {
+  width: 45px;
+  display: flex;
+  align-items: center;
+}
+
+.img1 {
+  width: 40px;
+}
+
+.name {
+  width: 400;
+  height: 500;
+}
+
+.new {
+  padding: 1px;
+  background-color: #f4f1f1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #a6a6a6;
+  height: 50px;
+  color: #666;
+}
+
+.board {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*
+.nav {
+  padding: 15px;
+  width: 100%;
+  height: 215.2px;
+  background-color: #e3e3e3;
+  margin: 0px;
+  border: 0px;
+  border-bottom: 1px solid #a6a6a6;
+  display: flex;
+  justify-content: center;
+}
+*/
+
+.nav {
+  padding: 15px;
+  background-color: #e3e3e3;
+  border: 0px;
+  border-bottom: 1px solid #a6a6a6;
+  display: flex;
+  justify-content: center;
+}
+
+.wd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+p {
+  margin: 12px;
+  border: 4px;
+}
+
+#by{
+  margin: 0 5px;
+  padding: 0;
+  font-size: 20px;
+}
+
+#et {
+  color: #f91f15;
+  width: 83px;
+  height: 15px;
+  font-size: 12px;
+  padding: 0px;
+  margin: 5px;
+  line-height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #666;
+}
+
+#dy {
+  font-size: 22px;
+  line-height: 25px;
+  margin-top: 0p;
+}
+
+#tople {
+  text-align: right;
+}
+
+#mess1 {
+  position: relative;
+  display: inline-block;
+  margin-left: 40px;
+  box-sizing: border-box;
+  border: 1px solid #a6a6a6;
+  border-radius: 12px;
+  vertical-align: top;
+}
+
+#mess {
+  position: relative;
+  display: inline-block;
+  margin-left: 0px;
+  box-sizing: border-box;
+  border: 1px solid #a6a6a6;
+  border-radius: 12px;
+  vertical-align: top;
+}
+
+.nav1 {
+  font-size: 13px;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.left,
+.right,
+.middle1,
+.middle2,
+.middle3,
+.middle4,
+.middle5 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.divider {
+  width: 1px;
+  height: 210px;
+  background-color: #cdcdcd;
+  margin: 0 -25px 0 20px;
+}
+
+.navtx,
+.navtx1,
+.navtx2,
+.navtx3,
+.navtx4,
+.navtx5,
+.navtx6 {
+  margin: 0;
+  font-size: 13.8px;
+  color: #444;
+  white-space: nowrap;
+}
+
+.red {
+  font-weight: bold;
+  color: #f91f15;
+}
+
+border {
+  border: 2px solid #a6a6a6;
+}
+
+.qimg {
+  width: 24px;
+  margin-top: 10px;
+  margin-right: -15px;
+}
+
+.qtxt {
+  display: inline-block;
+  font-size: 12px;
+}
+
+.art {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #edfffe;
+  border-radius: 14px;
+  width: auto;
+  height: 20px;
+  background-color: #edfffe;
+  padding: 12px 7px 12px 7px;
+  color: #666;
+}
+
+.fbox {
+  border: 1px solid #fff1f1;
+  background-color: #fff1f1;
+}
+
+.fimg {
+  width: 13px;
+  height: auto;
+  margin: 0px 0px 0px 8px;
+  padding: 0px 0px 0px 5px;
+  color: #f91f15;
+}
+
+.line {
+  border: 2px solid #a6a6a6;
+  margin-bottom: 5px;
+}
+
+#pimg {
+  width: 50px;
+}
+
+.border {
+  display: flex;
+  flex-direction: column;
+}
+
+.article {
+  display: block;
+}
+
+.rline {
+  border: 1.8px solid #d1d1d1;
+  margin-bottom: 5px;
+  width: 323.4px;
+  background-color: #f8f7f7;
+}
+
+.flex {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.rbor {
+  width: 323.4px;
+}
+
+.lartti {
+  border: 1.8px solid #cdcdcd;
+  margin-bottom: 5px;
+  width: 782.5px;
+  margin-top: 6px;
+}
+
+.hd {
+  margin: 15px 0px 10px 10px;
+  font-weight: bold;
+}
+
+.t {
+  margin: 10px 0px 10px 10px;
+}
+
+.com {
+  font-size: 12px;
+  color: #a6a6a6;
+}
+
+.hd1 {
+  font-weight: 900;
+  font-size: 16px;
+  color: #056ab5;
+}
+
+.hd2 {
+  font-size: 15px;
+  color: #444;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.cattx {
+  font-size: 14px;
+  margin-left: 15px;
+  color: #646464;
+}
+
+.co {
+  font-size: 13px;
+  margin-right: 10px;
+  margin-left: 15px;
+  color: #959595;
+  font-weight: bold;
+}
+
+.img5 {
+  height: 14px;
+  margin: 0px 5px 0px 0px;
+  padding: 0px 0px 0px 15px;
+}
+
+.linenone {
+  border: 2px solid #a6a6a6;
+  margin-bottom: 5px;
+}
+
+.ham {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .nav {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: 10px 0;
+    box-sizing: border-box;
+  }
+
+  .nav1 {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 24px;
+    width: max-content;
+  }
+
+  .left,
+  .right,
+  .middle1,
+  .middle2,
+  .middle3,
+  .middle4,
+  .middle5 {
+    flex-shrink: 0;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    background-color: #e3e3e3;
+    padding: 8px;
+    border-radius: 6px;
+  }
+
+  .divider,
+  .header,
+  aside,
+  .linenone {
+    display: none;
+  }
+
+  .navtx,
+  .navtx1,
+  .navtx2,
+  .navtx3,
+  .navtx4,
+  .navtx5,
+  .navtx6 {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .ham {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+  }
+  .hambar {
+    width: 30px;
+    height: 30px;
+  }
+
+  .hamtxt {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .flex {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .lartti,
+  .rbor {
+    width: 100% !important; /*강제변경*/
+    box-sizing: border-box;
+  }
+
+  .rline {
+    width: 100% !important;
+  }
+}
+
+#modal{
+  border:1.5px solid #c0c0c0;
+  background-color: #fdfdfd;
+  margin-top: 10px;
+  padding: 0 10px;
+  border-radius: 25px;
+  height: auto;
+  width: auto;
+  display: none;
+}
+#del{
+text-align: right;
+margin: 3px;
+padding: 0;
+font-size: 17px;
+font-weight: bolder;
+}
+#inid{
+margin: 5px;
+padding: 0;
+font-size: 14px;
+}
+.log{
+  margin: 0px 8px 1px 8px;
+  font-size: 14px;
+}
