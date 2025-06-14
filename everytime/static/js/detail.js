@@ -1,45 +1,6 @@
-const vote = document.querySelector(".dt-react-vote");
-const voteBtn = document.getElementById("vote-btn");
-const scrap = document.querySelector(".react-scrap");
-const scrapBtn = document.getElementById("scrap-btn");
-const scrapBtnIcon = document.querySelector(".scrap-btn-icon");
-const scrapBtnText = document.querySelector(".scrap-btn-text");
 const comments = document.querySelector(".comments");
-const dtCommentSubmit = document.getElementById("detail-comment-submit");
-const dtCommentInput = document.getElementById("detail-comment-input");
-
-function clickVote() {
-  vote.textContent = Number(vote.textContent) + 1;
-}
-
-function clickScrap() {
-  if (scrapBtnText.innerText === "스크랩 취소") {
-    scrap.textContent = Number(scrap.textContent) - 1;
-    scrapBtnIcon.style.display = "inline";
-    scrapBtnText.innerText = "스크랩";
-  } else {
-    scrap.textContent = Number(scrap.textContent) + 1;
-    scrapBtnIcon.style.display = "none";
-    scrapBtnText.innerText = "스크랩 취소";
-  }
-}
-
-function submitDetailComment(e) {
-  e.preventDefault();
-  const value = dtCommentInput.value;
-  if (value) {
-    alert(value.trim());
-    dtCommentInput.value = "";
-  } else {
-    alert("내용을 입력해 주세요.");
-  }
-}
-
-voteBtn.addEventListener("click", clickVote);
-scrapBtn.addEventListener("click", clickScrap);
-dtCommentSubmit.addEventListener("click", submitDetailComment);
-
 let openComComment = null;
+
 comments.addEventListener("click", (e) => {
   const comComBtn = e.target.closest(".com-com-btn");
   if (comComBtn) {
