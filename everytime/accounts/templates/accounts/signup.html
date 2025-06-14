@@ -1,6 +1,53 @@
-<h2>회원가입</h2>
-<form method='post' action={% url 'accounts:signup' %}>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type='submit'>signup</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}"/>
+  </head>
+  <body>
+    <div class="main">
+      <div class="title">
+        <b>에브리타임 회원가입</b>
+        <p>에브리타임 계정으로 <b>캠퍼스픽, 에브리타임</b> 등</p>
+        <p>다양한 대학생 서비스를 모두 이용하실 수 있습니다.</p>
+      </div>
+      <form method='post' action={% url 'accounts:signup' %}>
+        {% csrf_token %}
+        <div class="option">
+          <div class="opt_title">이름</div>
+          <input type="text" placeholder="이름을 입력하세요." name="username" id="id" />
+        </div>
+        <div class="option">
+          <div class="opt_title">닉네임</div>
+          <input type="text" placeholder="닉네임을 입력하세요." name="nickname" id="nickname" />
+        </div>
+        <div class="option">
+          <div class="opt_title">이메일</div>
+          <input type="email" placeholder="이메일을 입력하세요." name="email" id="email" />
+        </div>
+        <div class="option">
+          <div class="opt_title">비밀번호</div>
+          <input
+            type="password"
+            placeholder="비밀번호를 입력하세요."
+            id="password"
+            name="password1"
+          />
+        </div>
+        <div class="option">
+          <div class="opt_title">비밀번호 재입력</div>
+          <input
+            type="password"
+            placeholder="비밀번호를 재입력하세요."
+            id="repassword"
+            name="password2"
+          />
+        </div>
+        <button class="ok_button" type="button" id="ok_btn">회원가입</button>
+      </form>
+    </div>
+  </body>
+  <script src="{% static 'js/signup.js' %}"></script>
+</html>

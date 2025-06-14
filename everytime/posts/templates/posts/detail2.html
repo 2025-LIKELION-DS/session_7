@@ -1,0 +1,163 @@
+{% load static %}
+{% load humanize %}
+
+<article>
+  <div id="title">
+    <b style="font-size: 21px; margin-bottom: 0px; margin-left: 15px">비밀게시판</b>
+  </div>
+
+  <div class="detail">
+    <div style="display:flex;  justify-content:space-between;">
+      <div class="det-header"  style="display:flex; align-items:center;">
+        <img src="{% static 'img/anonymous.profile.png' %}" />
+        <div class="dht">
+          <b style="font-size: 14px">
+            {% if post.is_anonymous %}
+              <h5 style="margin:0;">익명</h5>
+            {% else %}
+              <h5 style="margin:0;">{{ post.author.nickname }}</h5>
+            {% endif %}
+          </b>
+          <p style="font-size: 12px; color: gray">{{ post.created_at }}</p>
+        </div>
+      </div>
+      <span class="prf" style="font-size:12px; display:flex; align-items:center; gap:15px; ">
+        {% if request.user == post.author %}
+          <a href="{% url 'posts:update' post.id %}" style="text-decoration: none; color:lightgray;">수정하기</a>
+          <a href="{% url 'posts:delete' post.id %}" style="text-decoration: none; color:lightgray;">삭제하기</a>
+        {% else %}
+          쪽지  신고
+        {% endif %}
+      </span>
+    </div>
+
+    <div class="post-tit">
+      <b style="font-size: 22px">{{ post.title }}</b>
+    </div>
+
+    <div class="cont">
+      <p>{{ post.content }}</p>
+    </div>
+
+    <div class="post-img">
+      {% if post.image %}
+        <img width="320" height="240" src="{{ post.image.url }}" />
+      {% endif %}
+      {% if post.video %}
+        <video width="320" height="240" controls>
+          <source src="{{ post.video.url }}" type="video/mp4" />
+        </video>
+      {% endif %}
+    </div>
+
+    <div class="post-last">
+      <img src="{% static 'img/container.articles.vote.png' %}" width="12px" height="12px" />
+      <p id="posnum" style="font-size: 12px; margin: 0; color: red">{{ post.like.count }}</p>
+      <img src="{% static 'img/container.articles.comment.png' %}" width="12px" height="12px" />
+      <p style="font-size: 12px; margin: 0; color: rgb(0, 189, 189)">1</p>
+      <img src="{% static 'img/container.articles.scrap.png' %}" width="12px" height="12px" />
+      <p id="scrapnum" style="font-size: 12px; margin: 0; color: #ffc900">{{ post.scrap.count }}</p>
+    </div>
+
+    <div class="button" style="display:flex; align-items:center;">
+      {% if request.user in post.like.all %}
+        <a href="{% url 'posts:remove-like' post.id %}" id="posvote" style="display: flex; align-items: center; text-decoration: none;" >
+          <img src="{% static 'img/container.articles.buttons.posvote.png' %}" width="12px" height="12px" />
+          <input type="button" style="margin-left: 5px; font-weight: bold; border:none; " value="공감 취소" />
+        </a>
+      {% else %}
+        <a href="{% url 'posts:add-like' post.id %}" id="posvote" style="display: flex; align-items: center; text-decoration: none;" >
+          <img src="{% static 'img/container.articles.buttons.posvote.png' %}" width="12px" height="12px" />
+          <input type="button" style="margin-left: 5px; font-weight: bold; border:none; " value="공감" />
+        </a>
+      {% endif %}
+
+      {% if request.user in post.scrap.all %}
+        <a href="{% url 'posts:remove-scrap' post.id %}" id="scrap" style="display: flex; align-items: center; text-decoration: none;" >
+          <img src="{% static 'img/container.articles.buttons.scrap.png' %}" width="12px" height="12px" />
+          <input type="button" style="margin-left: 5px; font-weight: bold; border:none; " value="스크랩 취소" />
+        </a>
+      {% else %}
+        <a href="{% url 'posts:add-scrap' post.id %}" id="scrap" style="display: flex; align-items: center; text-decoration: none;" >
+          <img src="{% static 'img/container.articles.buttons.scrap.png' %}" width="12px" height="12px" />
+          <input type="button" style="margin-left: 5px; font-weight: bold; border:none;"  value="스크랩" />
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% for comment in post.comments.all %}
+    <div class="com">
+      <div class="com-header">
+        <div class="person">
+          <img src="{% static 'img/anonymous.profile.png' %}" />
+          {% if comment.anonymity %}
+            <div class="dht"><b style="font-size: 12px">익명1</b></div>
+          {% else %}
+            <div class="dht"><b style="font-size: 12px">{{ comment.author.nickname }}</b></div>
+          {% endif %}
+        </div>
+
+        <div class="per-option">
+          <button id="reply">대댓글</button>
+          <span>공감</span>
+          <span>쪽지</span>
+          <span>신고</span>
+          {% if request.user == comment.author %}
+            <a href="{% url 'posts:delete-comment' post.id comment.id %}" style="text-decoration: none; font-size:12px; color:lightgray; " >삭제하기</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="com-con">
+        <p style="font-size: 14px; margin: 7px 0">{{comment.content}}</p>
+        <p style="font-size: 12px; color: gray; margin: 7px 0">{{comment.created_at}}</p>
+      </div>
+
+      <div id="com_reply_write" style="display: none">
+        <form>
+          <div class="com_plus_btn">
+            <div class="in_ch">
+              <input id="text_input2" type="text" placeholder="대댓글을 입력하세요." />
+              <div class="checkbox" style="gap: 5px">
+                <input type="checkbox" name="anonymity" />
+                <span>익명</span>
+              </div>
+            </div>
+            <button class="com-write-button">
+              <img src="{% static 'img/container.articles.write.submit.png' %}" />
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  {% empty %}
+    <p style="margin-left:140px;;">댓글이 없습니다</p>
+  {% endfor %}
+
+  <div class="com-write">
+    <form method="POST" action="{% url 'posts:create-comment' post.id %}">
+      {% csrf_token %}
+      <div class="com_plus_btn">
+        <div class="in_ch">
+          <input id="text_input" type="text" name="content" placeholder="댓글을 입력하세요." />
+          <div class="checkbox" style="gap: 5px">
+            <input type="checkbox" name="anonymity" />
+            <span>익명</span>
+          </div>
+        </div>
+        <button class="com-write-button1">
+          <input type="submit" style="border:0; background-color:red;" value=""/>
+          <img src="{% static 'img/container.articles.write.submit.png' %}" />
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <button class="write-menu">
+    <img src="{% static 'img/container.articles.pagination.list.png' %}" />
+    <b>글 목록</b>
+  </button>
+</article>
+
+<script src="{% static 'js/detail.js' %}"></script>

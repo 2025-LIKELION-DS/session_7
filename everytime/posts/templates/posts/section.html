@@ -1,0 +1,142 @@
+{% load static %}{% load humanize %}
+<article>
+        <div id="title">
+          <b style="font-size: 21px; margin-bottom: 0px; margin-left: 15px"
+            >{{ category.name }}</b
+          >
+        </div>
+        <div id="hot-qa">
+          <div id="hotqa-img">
+            <div class="qazip">
+              <img src="{% static 'img/icn_mcr_board_question_light.png' %}" width="5%" />
+              <div class="qa-keyword">
+                <span>강아지가 편식하면 어떡해?</span
+                ><span>가현융 야작팟 있어?</span
+                ><span>중간 개강 언제할거야?</span>
+              </div>
+            </div>
+            <div class="hotzip">
+              <img src="{% static 'img/icn_mcr_board_hotarticle_light.png' %}" width="5%" />
+              <div class="hot-keyword">
+                <span>멋사</span><span>중간고사</span><span>오늘의 메뉴</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="new-write">
+          <p
+            style="
+              color: lightgrey;
+              font-size: 14px;
+              margin-left: 10px;
+              white-space: nowrap;
+            "
+          >
+            새 글을 작성해주세요!
+          </p>
+          <button
+            id="new_write_btn"
+            aria-label="post_btn"
+            style="
+              width: 50px;
+              height: 50px;
+              background: none;
+              border: none;
+              cursor: pointer;
+            "
+          >
+            <img
+              src="{% static 'img/container.articles.write.submit.png' %}"
+              width="45px"
+            />
+          </button>
+        </div>
+        <div id="poststyle">
+        {% include 'posts/post.html' %}
+        </div>
+        <div id="write-box" style="margin-top: 10px"></div>
+        {% for post in posts %}
+        {% if post.anonymity %}
+        <a href="{% url 'posts:detail' post.id %}">
+          <div class="write-box">
+            <div class="write-class">
+              <b style="font-size: 16px">{{ post.title }}</b>
+              <p style="font-size: 15px; margin: 8px 0px">{{ post.content }}</p>
+              <div class="write-last">
+                <img
+                  src="{% static 'img/container.articles.vote.png' %}"
+                  width="12px"
+                  height="12px"
+                />
+                <p style="font-size: 12px; margin: 0; color: red">{{ post.like.count }}</p>
+                <img
+                  src="{% static 'img/container.articles.comment.png' %}"
+                  width="12px"
+                  height="12px"
+                />
+                <p style="font-size: 12px; margin: 0; color: rgb(0, 189, 189)">
+                  {{ post.comments.count }}
+                </p>
+                <p
+                  style="
+                    font-size: 12px;
+                    margin: 0;
+                    border-left: 1px solid lightgray;
+                  "
+                >
+                  | {{ post.created_at | naturaltime }} | {{ post.is_anonymous }}
+                </p>
+              </div>
+            </div>
+            <img src="/media/{{post.img}}" style="margin: 10px 5px" />
+          </div>
+        </a>
+        {% else %}
+        {% if post.author_display_name %}
+        <a href="{% url 'posts:detail' post.id %}">
+        <div class="write-box">
+          <div class="write-class">
+            <b style="font-size: 16px">{{ post.title }}</b>
+            <p style="font-size: 15px; margin: 8px 0px">{{ post.content }}</p>
+            <div class="write-last">
+              <img
+                src="{% static 'img/container.articles.vote.png' %}"
+                width="12px"
+                height="12px"
+              />
+              <p style="font-size: 12px; margin: 0; color: red">{{ post.like.count }}</p>
+              <img
+                src="{% static 'img/container.articles.comment.png' %}"
+                width="12px"
+                height="12px"
+              />
+              <p style="font-size: 12px; margin: 0; color: rgb(0, 189, 189)">
+                {{ post.comments.count }}
+              </p>
+              <p
+                style="
+                  font-size: 12px;
+                  margin: 0;
+                "
+              >
+                | {{ post.created_at | naturaltime }} | {{ post.author_display_name }}
+              </p>
+            </div>
+          </div>
+          {% if post.image %}
+          <img class="previewimg" src="/media/{{post.image}}" />
+          {% else %}
+          {% if post.video %}
+          <video class="previewvid" src="/media/{{post.video}}" >
+          <source src={{ post.video.url }} type="video/mp4" />
+        </video>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+      </div>
+      </a>
+        {% endif %}
+        {% empty %}
+        <h2>글이 없습니다.</h2>
+        {% endfor %}
+      </article>

@@ -1,23 +1,69 @@
-<body>
-    <h2>글 수정</h2>
-    <form method="POST" action="{% url 'posts:update' post.id %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        제목 - <input type="text" value="{{ post.title }}" name="title"><br><br>
-        내용 - <textarea name="content">{{ post.content }}</textarea><br><br>
-        
-        {% if post.image %}
-            기존 이미지 - <image width="320" height="240" src="{{ post.image.url }}">
-        {% endif %}
-        <br>이미지 변경 - <input type="file" name="image"><br><br>
+{% load static %}
+{% load humanize %}
 
-        {% if post.video %}
-            기존 비디오 : <video width="320" height="240" controls>
-                <source src="{{ post.video.url }}" type="video/mp4">
-            </video>
-        {% endif %}
-        <br>비디오 변경 - <input type="file" name="video"><br><br>
+{% block content %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/post.css' %}">
+{% endblock %}
+    {% include 'posts/header.html' %}
+    {% include 'posts/navigation.html' %}
+    <div class="positionbox" style="display:flex;">
+        <div class="section">
+            <div id="title" style="margin-bottom:10px">
+                <b style="font-size: 21px; margin-bottom: 0px; margin-left: 15px">비밀게시판</b>
+            </div>
+            <form method="POST" action="{% url 'posts:update' post.id %}" enctype="multipart/form-data" style="margin:-2px 0 0 135px;">
+            {% csrf_token %}
+                <div class="write">
+                    <input class="write-header" type="text" value="{{ post.title }}" name="title">
+                    <div class="write-sec" style="height:auto; padding:10px 5px;">
+                        <textarea name="content">{{ post.content }}</textarea>
         
-        <input type="checkbox" name="is_anonymous" {% if post.is_anonymous %} checked {% endif %}>익명
-        <input type="submit" value="수정하기">
-    </form>
-</body>
+                        {% if post.image %}
+                            <image width="320" height="240" src="{{ post.image.url }}">
+                        {% endif %}
+                            
+
+                        {% if post.video %}
+                            <video width="320" height="240" controls>
+                                <source src="{{ post.video.url }}" type="video/mp4">
+                                </video>
+                        {% endif %}
+                            
+        
+                            
+                            
+                    </div>
+                </div>
+                <div class="write-opt" style="margin-top:-1px; border:1px solid lightgray; height: 42px;">
+                    <div class="position-ch1">
+                        <div class="snc">
+                            <div class="hashinput">
+                                <input id="vid_btn" type="file" name="video" accept="video/*">
+                                <img id="hash" src="{% static 'img/container.articles.write.hashtag.png' %}" />
+                            </div>
+                            <div class="attachimage">
+                                <input id="img_btn" type="file" name="image">
+                                <img id="attach" src="{% static 'img/container.articles.write.attach.png' %}" />
+                            </div>
+                        </div>
+                        <input class="content" type="text" placeholder=" "/>
+                        <div class="class">
+                            <div class="qa">
+                                <input type="checkbox" name="question" id="question"/><b id="quest">질문</b>
+                                <input type="checkbox"  id="anonymity" name="is_anonymous" {% if post.is_anonymous %} checked {% endif %} /><b id="anony">익명</b>
+                            </div>
+                            <div class="com-write-button">
+                                <input id="upload_btn" type="submit" value="수정하기">
+                                <img id="write_btn" style="margin: 1px 0 0 1px;" src="{% static 'img/container.articles.write.submit.png' %}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {% include 'posts/aside.html' %}
+    </div>
+    <script src="{% static 'js/update.js' %}"></script>
+{% endblock %}

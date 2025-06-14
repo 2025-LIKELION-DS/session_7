@@ -1,0 +1,538 @@
+body {
+  margin: 0;
+}
+#header {
+  position: fixed;
+  height: 75px;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-font {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  line-height: 17px;
+}
+
+.logo-font p {
+  margin: 2px 0;
+  white-space: nowrap;
+}
+
+.logo-part {
+  display: flex;
+  align-items: center;
+  margin-left: 130px;
+}
+
+.header-font {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 448px;
+  gap: 20px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.header-font b {
+  flex-grow: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.header-img {
+  align-items: center;
+  margin-bottom: 8px;
+  margin-right: 140px;
+  white-space: nowrap;
+}
+
+#modal {
+  display: none;
+  z-index: 999;
+  width:130px;
+  height: auto;
+  overflow: auto;
+  background-color: #f1f1f1;
+  border: 1px solid lightgrey;
+  padding: 5px 5px 10px 8px;
+  border-radius: 15px;
+  font-size: 13px;
+}
+
+#nav {
+  height: 300px;
+  width: auto;
+  background-color: #f1f1f1;
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  align-items: flex-end;
+}
+
+section {
+  display: flex;
+}
+
+#notice {
+  height: 195px;
+  width: 143px;
+  background-color: #f1f1f1;
+  margin-left: 150px;
+  margin-bottom: 10px;
+  border-left: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 0 0 10px 15px;
+}
+
+
+#notice p,#notice b {
+  width: 143px;
+  font-size: 13px;
+  text-align: start;
+  margin: 0;
+  white-space: nowrap;
+}
+
+#notice1 p {
+  width: 143px;
+  font-size: 13px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+#notice2 p,
+#notice3 p,
+#notice4 p,
+#notice5 p,
+#notice6 p,
+#notice3 b,
+#notice4 b,
+#notice6 b {
+  width: 143px;
+  font-size: 13px;
+  text-align: start;
+  margin: 0;
+  white-space: nowrap;
+}
+
+
+#notice1,
+#notice2,
+#notice3,
+#notice4 {
+  height: 195px;
+  width: 143px;
+  background-color: #f1f1f1;
+  margin-bottom: 10px;
+  border-right: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 0 15px 10px 15px;
+  
+}
+
+#notice5 {
+  height: 195px;
+  width: 147px;
+  background-color: #f1f1f1;
+  padding: 0 15px 10px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+#notice6 {
+  height: 195px;
+  width: 147px;
+  background-color: #f1f1f1;
+  margin-right:140px; 
+  margin-bottom: 10px;
+  padding: 0 15px 10px 15px;
+  border-right: 1px solid lightgray;
+  gap: 7px;
+  display: flex;
+  flex-direction: column;
+}
+
+#title {
+  height: 55px;
+  
+  border: 1px solid lightgray;
+  margin-top: 27px;
+  margin-left: 135px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.detail {
+  border: 1px solid lightgray;
+  margin-top: 10px;
+  margin-left: 135px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.det-header {
+  width: 750px;
+  height: 50px;
+  display: flex;
+  gap: 15px;
+}
+
+.com-header {
+  width: 100%;
+  height: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.det-header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.com-header img {
+  margin: 0 10px 15px 0;
+  width: 25px;
+  height: 25px;
+  border-radius: 4px;
+}
+
+.dht p {
+  margin: 0;
+}
+
+.post-tit {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+#live-pop {
+  height: 40px;
+  width: 315px;
+  background-color: #f1f1f1;
+  border: 1px solid lightgray;
+  margin: 27px 0px 0px 30px;
+  display: flex;
+  align-items: center;
+}
+
+.pop,
+.school-news,
+.review {
+  height: 95px;
+  width: 315px;
+  background-color: #f1f1f1;
+  border: 1px solid lightgray;
+  margin: -1px 0px 0px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pop-last,
+.school-last {
+  width: 315px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: baseline;
+}
+
+#hot,
+#best,
+#school-news,
+#review-title {
+  height: 40px;
+  width: 315px;
+  background-color: #f1f1f1;
+  border: 1px solid lightgray;
+  margin: 5px 0px 0px 30px;
+  display: flex;
+  align-items: center;
+}
+
+.pop-class {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pop-class,
+.school-class,
+.review-class {
+  margin: 3px 0px 0px 8px;
+  gap: 0;
+}
+
+.hot-write {
+  height: 40px;
+  width: 315px;
+  background-color: #f1f1f1;
+  border: 1px solid lightgray;
+  margin: -1px 0px 0px 30px;
+  display: flex;
+  align-items: center;
+}
+
+.post-img img {
+  width: 179px;
+}
+
+.post-last {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-top: 15px;
+}
+
+#posvote,
+#scrap {
+  font-size: 12px;
+  height: 23px;
+  width: auto;
+  padding: 5px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 7px;
+  justify-content: center;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  margin-top: 15px;
+}
+
+.com {
+  height: auto;
+
+  border: 1px solid lightgray;
+  margin: -1px auto auto 135px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 15px 15px 10px 15px;
+  box-sizing: border-box;
+}
+
+
+.com-write {
+  margin: -1px 1px auto 135px;
+  
+}
+
+#text_input {
+  height: 47px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid lightgray;
+  background-color: #f1f1f1;
+  padding-left: 10px;
+  outline: none;
+}
+
+#text_input2 {
+  height: 45px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid lightgray;
+  background-color: #f1f1f1;
+  padding-left: 10px;
+  outline: none;
+  flex: 1;
+}
+
+.com_plus_btn {
+  display: flex;
+  
+}
+
+#com_reply_write,
+#com_reply_write form{
+  width: 100%;
+  flex-direction: row-reverse;
+}
+
+.checkbox {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  align-items: center;
+  display: flex;
+  font-size: 12px;
+  color: lightgray;
+}
+
+.in_ch {
+  position: relative;
+  width: 100%;
+}
+
+.com-write-button,
+.com-write-button1 {
+  height: 45px;
+  width: 45px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+}
+
+.com_reply_write {
+  width: 97%;
+  height: 42px;
+  margin-left: 4%;
+}
+
+.com_reply_write form {
+  display: flex;
+}
+
+#reply {
+  background-color: white;
+  font-size: 12px;
+  color: lightgray;
+  border: none;
+}
+
+.com-write-button img,
+.com-write-button1 img {
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+}
+
+.person {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.per-option span {
+  font-size: 12px;
+  color: lightgrey;
+  margin-left: 5px;
+}
+
+.write-menu {
+  font-size: 14px;
+  color: red;
+  height: 35px;
+  width: 90px;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 7px;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0 0 135px;
+}
+
+.write-menu img {
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}
+
+.header-media {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+}
+
+article {
+  width: 73%;
+}
+
+@media (max-width: 640px) {
+  #live-pop,
+  .pop,
+  #hot,
+  .hot-write,
+  #best,
+  #school-news,
+  .school-news,
+  #review-title,
+  .review,
+  #title {
+    display: none;
+  }
+
+  #notice3,
+  #notice4,
+  #notice5,
+  #notice6 {
+    display: none;
+  }
+
+  .header-font,
+  .header-img,
+  .logo-font,
+  #header img {
+    display: none;
+  }
+
+  #notice,
+  .detail,
+  .com,
+  .com-write {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .write-menu {
+    margin-left: 0;
+  }
+
+  #notice,
+  #notice1,
+  #notice2 {
+    width: 200px;
+  }
+
+  .header-media {
+    display: block;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+  }
+  .header-media b {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+
+  .hamburger {
+    display: block;
+    width: 32px;
+    height: auto;
+    display: block !important;
+  }
+
+  article {
+    width: 100%;
+  }
+}

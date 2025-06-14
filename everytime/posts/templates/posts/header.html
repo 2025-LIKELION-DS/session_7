@@ -1,0 +1,44 @@
+{% load static %}
+    <header>
+      <div id="header">
+        <div class="header-media">
+          <img class="hamburger" src="{% static 'img/aside.title.hamburger.png' %}" />
+          <b>비밀 게시판</b>
+        </div>
+        <div class="logo-part">
+          <img src="{% static 'img/nav.logo.png' %}" width="40px" height="40px" />
+          <div class="logo-font">
+            <b style="font-size: 12px; color: red">에브리타임</b>
+            <p style="font-size: 22px; margin-bottom: 5px">덕성여대</p>
+          </div>
+        </div>
+        <div class="header-font">
+          <b style="color: red">게시판</b>
+          <b>시간표</b>
+          <b>강의실</b>
+          <b>학점계산기</b>
+          <b>친구</b>
+          <b>책방</b>
+          <b>캠퍼스픽</b>
+        </div>
+        <div class="header-img">
+          <img
+            src="{% static 'img/icn_m_chat_gray800_light.png' %}"
+            width="37px"
+            style="border: 2px solid lightgray; border-radius: 14px"
+          />
+          <img
+            src="{% static 'img/icn_m_account_gray800_light.png' %}"
+            id="account"
+            width="37px"
+            style="border: 2px solid lightgray; border-radius: 14px"
+          />
+          <div id="modal">
+              <span class="close" style="display:flex; flex-direction:row-reverse; margin-right:5px;">&times;</span>
+              <div>nickname : {{ user.nickname }}</div>
+              <a href="{% url 'accounts:logout' %}" style="color:red; display:flex; align-items:center;">로그아웃</a>
+            
+          </div>
+        </div>
+      </div>
+    </header>
