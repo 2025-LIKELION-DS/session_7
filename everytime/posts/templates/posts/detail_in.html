@@ -1,0 +1,137 @@
+{% extends './base.html' %}{% load static %} {% load humanize %}
+
+{% block style %} 
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+<script src="{% static 'js/detail.js' %}" defer></script>
+{% endblock %}
+
+{% block body %}
+<section>  
+    <div class="main-title">
+        <h1>
+            <a href="{% url 'posts:main' %}">비밀게시판</a>
+        </h1> 
+    </div>
+
+    <article>
+        <div class="box11">
+            <div class="box-title">
+                <div class="main_profile">
+                    <img src="{% static 'img/anonymous.profile.png' %}" alt="profile">
+
+                    <div class="profile">
+                        {% if post.is_anonymous %}
+                        <p class="name">익명</p>
+                        {% else %}
+                        <p class="name">{{ post.author.nickname }}</p>
+                        {% endif %}
+                        <p class="time">{{ post.created_at|naturaltime }}</p>
+                    </div>
+                </div>
+                <ul class="etc">
+                    <li><a href="{% url 'posts:delete' post.id %}">삭제</a></li>
+                    <li><a href="{% url 'posts:update' post.id %}">수정</a></li>
+                </ul>
+            </div>
+            
+            <div class="article_title"><h2>{{ post.title }}</h2></div>
+            <br>
+            <p class="article_content">{{ post.content }}</p>
+
+            <ul class="info">
+                <li><img src="{% static 'img/container.articles.vote.png' %}" alt="vote"><span class="vote_count">{{ post.like.count }}</span></li>
+                <li><img src="{% static 'img/container.articles.comment.png' %}" alt="comment"><span class="comment_count">0</span></li>
+                <li><img src="{% static 'img/container.articles.scrap.png' %}" alt="star"><span class="star_count">{{ post.scrap.count }}</span></li>
+            </ul>
+            <div class="buttons">
+                <button type="submit" id="vote_button">
+                    <img src="{% static 'img/container.articles.buttons.posvote.png' %}" alt="vote" class="vote"><span class="vote_text">공감</span>
+                </button>
+                <button type="submit" id="star_button">
+                    <img src="{% static 'img/container.articles.buttons.scrap.png' %}" alt="star" class="star"><span class="star_text">스크랩</span>
+                </button>
+            </div>
+        </div>       
+
+<!-- 댓글 입력 창 -->
+    <div id="comment_area"></div>
+        <!-- 댓글 템플릿 -->
+        <template id="comment_template">
+            <div class="comment_box">
+                <div class="comment_title">
+                    <div class="comment_profile">
+                        <img src="{% static 'img/anonymous.profile.png' %}" alt="profile">
+                        <p class="comment_name">익명</p>
+                    </div>
+                    <ul class="comment_etc">
+                        <li><a href="#" class="new_comment">대댓글</a></li>
+                        <li><a href="#">공감</a></li>
+                        <li><a href="#">쪽지</a></li>
+                        <li><a href="#">신고</a></li>
+                    </ul>
+                </div>
+                <p class="comment_content"></p>
+                <div class="time">방금 전</div>
+            </div>
+        </template>
+
+        <!-- 대댓글 입력창 템플릿 -->
+        <template id="reply_input_template">
+            <form class="recomment_area">
+                <input type="text" placeholder=" 대댓글을 입력하세요" class="recomment_input">
+                    <ul class="right">
+                        <li class="no_name">
+                            <input type="checkbox" id="recomment_anonymous">
+                            <label for="recomment_anonymous">익명</label>
+                        </li>
+                    <button type="button" class="recomment_submit">
+                        <img src="{% static 'img/container.articles.write.submit.png' %}" alt="입력">
+                    </button>
+                </ul>
+            </form>
+        </template>
+
+        <!-- 대댓글 출력 템플릿 -->
+        <template id="rerecomment_template">
+            <div class="rerecomment_box">
+                <div class="rerecomment_title">
+                    <div class="rerecomment_profile">
+                        <img src="{% static 'img/anonymous.profile.png' %}" alt="profile">
+                        <p class="rerecomment_name">익명</p>
+                    </div>
+                    <ul class="comment_etc">
+                        <li><a href="#">공감</a></li>
+                        <li><a href="#">쪽지</a></li>
+                        <li><a href="#">신고</a></li>
+                    </ul>
+                </div>
+                <p class="rerecomment_content"></p>
+                <div class="time">방금 전</div>
+            </div>
+        </template>
+
+
+        <div class="box2">
+            <form class="write">
+                <input type="text" placeholder=" 댓글을 입력하세요" class="comment_input">
+                <ul class="right">
+                    <li class="no_name">
+                        <input type="checkbox" id="anonymous" />
+                        <label for="anonymous">익명</label>
+                    </li>
+                    <button type="button" id="submit_comment"><img src="{% static 'img/container.articles.write.submit.png' %}" alt="입력"></button>
+                </ul>
+            </form>
+        </div>           
+    </article>
+
+    <div class="content_list">
+        <a href={% url 'posts:category' 'secret' %}>
+            <button type="submit">
+                <img src="{% static 'img/container.articles.pagination.list.png' %}" alt="목록"><span>글 목록</span>
+            </button>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

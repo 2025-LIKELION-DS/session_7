@@ -1,0 +1,74 @@
+{% extends './base.html' %}{% load static %} {% load humanize %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+<script src="{% static 'js/main.js' %}" defer></script>
+{% endblock %}
+
+{% block body %}
+<section>  
+    <div class="main-title">
+        <h1>
+            <a href="#">비밀게시판</a>
+        </h1> 
+    </div>
+    <div class="notification">
+        <div class="noti_question">
+            <img src="{% static 'img/icn_mcr_board_question_light.png' %}" alt="qestion"/>
+            <div class="options">
+            <div class="option">
+                <a href="#"><span>파이썬</span></a>
+            </div>
+            <div class="option">
+                <a href="#"><span>c언어</span></a>
+            </div>
+            <div class="option">
+                <a href="#"><span>HTML&CSS</span></a>
+            </div>
+            <div class="option">
+                <a href="#"><span>JAVA</span></a>
+            </div>
+            </div>
+        </div>
+        <div class="noti_hot">
+            <img src="{% static 'img/icn_mcr_board_hotarticle_light.png' %}" alt="hotarticle"/>
+            <div class="options">
+            <div class="option">
+                <a href="#"><span>🌸봄 기다려라🌸</span></a>
+                <!-- <ul class="info">
+                <li><img src="/everytime/img/container.articles.vote.png" alt="vote"><span class="vote">32</span></li>
+                </ul>  -->
+            </div>
+        </div>
+        </div>  
+    </div>
+
+    <div id="input-write">
+        <a>새 글을 작성해주세요!</a>
+        <img src="{% static 'img/container.write.background.png' %}" id ="pencil" alt="연필">
+    </div>
+
+    
+    {% include "./post.html" %}
+    
+    <article>
+        {% for post in posts %} 
+            <a class="box" href="{% url 'posts:detail' post.id %}">
+                <div class="box-in">
+                    <h2 class="title">{{ post.title }}</h2>
+                    <p class="content">{{ post.content }}</p>
+                    <ul class="info">
+                        <li><img src="{% static 'img/container.articles.vote.png' %}" alt="vote"><span class="vote_count">{{ post.like.count }}</span></li>
+                        <li><img src="{% static 'img/container.articles.comment.png' %}" alt="comment"><span class="comment_count">0</span></li> 
+                        <div class="small-line"></div>
+                        <li class="gray">{{ post.created_at | naturaltime }}</li>
+                        <div class="small-line"></div>
+                        <li class="gray">익명</li>
+                    </ul>
+                </div>
+            </a>
+        {% endfor %}            
+    </article>
+</section>
+
+{% endblock %}

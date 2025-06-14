@@ -1,0 +1,40 @@
+{% extends './base.html' %}{% load static %} {% block style %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}" /> {% endblock %}
+
+
+{% block body %}
+<div id="head-container">
+    <div class="hamburger">
+        <img src="{% static 'img/aside.title.hamburger.png' %}" alt="menu-hamburger" />
+    </div>
+    <p class="now_menu">비밀게시판</p>
+    <div class="logo1">
+        <a href="{% url 'posts:main' %}">
+        <img src="{% static 'img/nav.logo.png' %}" alt="everytime_logo" />
+        </a>
+        <p>
+        <span class="everytime">에브리타임</span>
+        <span class="school">덕성여대</span>
+        </p>
+    </div>
+    <div id="menu">
+        <p class="now">게시판</p>
+        <p>시간표</p>
+        <p>강의실</p>
+        <p>학점계산기</p>
+        <p>친구</p>
+        <p>책방</p>
+        <p>캠퍼스픽</p>
+    </div>
+    <div class="logo2">
+        <img
+        src="{% static 'img/icn_m_chat_gray800_light.png' %}"
+        alt="chat"
+        />
+        <img
+        src="{% static 'img/icn_m_account_gray800_light.png' %}"
+        alt="account"
+        />
+    </div>
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-<body>
+<!-- <body>
     <h2>글 수정</h2>
     <form method="POST" action="{% url 'posts:update' post.id %}" enctype="multipart/form-data">
         {% csrf_token %}
@@ -21,3 +21,26 @@
         <input type="submit" value="수정하기">
     </form>
 </body>
+-->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+        <title>에브리타임 비밀게시판 메인페이지</title>
+    </head>
+
+    <body>
+        {% include "./header.html" %}
+        <hr />
+        {% include "./navigation.html" %}
+
+        <div class="container">
+            {% include './post_update.html' %}
+            {% include "./aside.html" %}
+        </div>
+    </body>
+</html>
