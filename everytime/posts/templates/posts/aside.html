@@ -1,0 +1,66 @@
+{% load static %}
+{% block style %}<link rel="stylesheet" href="{% static 'css/main.css' %}"/>{% endblock %}
+{% block body %}
+<div class="rbor">
+  <div class="border">
+    <aside class="aside">
+      <div class="rline">
+        <p class="hd1">실시간 인기글</p>
+        <hr />
+        <p class="hd2">덕성의 봄 소식</p>
+        <p class="cattx">우리학교 벚꽃사진 보고가~</p>
+        <p class="co">
+          홍보게시판 /
+          <img
+            class="img5"
+            src="{% static 'img/container.articles.buttons.posvote.png' %}"
+            alt="따봉"
+          />60
+          <img
+            class="img5"
+            src="{% static 'img/container.articles.comment.png' %}"
+            alt="말풍선"
+          />2
+        </p>
+        <hr />
+        <p class="hd2">오늘 영근터에서 치맥할사람!</p>
+        <p class="cattx">날씨가 너무 좋아서 치맥 못참겠우...</p>
+        <p class="co">
+          자유게시판 /
+          <img
+            class="img5"
+            src="{% static 'img/container.articles.buttons.posvote.png' %}"
+            alt="따봉"
+          />45
+          <img
+            class="img5"
+            src="{% static 'img/container.articles.comment.png' %}"
+            alt="말풍선"
+          />5
+        </p>
+      </div>
+
+      <div class="rline">
+        <p class="hd1">HOT 게시물</p>
+        <hr />
+        <p class="cattx">우리집 고양이 사진 보고가 / 03/27</p>
+        <p class="cattx">&lt;총학생회 부원 모집&gt; / 03/23</p>
+        <p class="cattx">북한산 정기 받으러 갈사람 / 03/25</p>
+        <p class="cattx">오늘 우이천에서 수달봤다! / 03/10</p>
+        <br />
+      </div>
+
+      <div class="rline">
+        <p class="hd1">BEST 게시판</p>
+        <hr />
+        <p class="cattx">교수님 종강을 주세요 ... 더 보기</p>
+      </div>
+      <div class="rline">
+        <p class="hd1">학교 소식</p>
+        <hr />
+        <p class="cattx">&lt;행사&gt; 덕성 봄 맞이 벚꼿 사진관 open!</p>
+      </div>
+    </aside>
+  </div>
+</div>
+{% endblock %}

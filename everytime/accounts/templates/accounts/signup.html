@@ -1,6 +1,80 @@
-<h2>회원가입</h2>
-<form method='post' action={% url 'accounts:signup' %}>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type='submit'>signup</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{% static 'css/signup.css' %}" rel="stylesheet" />
+    <title>에브리타임 회원가입 페이지</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p class="title">에브리타임 회원가입</p>
+        <p class="content">
+          에브리타임 계정으로 <span>캠퍼스픽, 에브리타임</span> 등 <br />다양한
+          대학생 서비스를 모두 이용하실 수 있습니다.
+        </p>
+      </header>
+      <form method="post" action="{% url 'accounts:signup' %}">
+        {% csrf_token %}
+        <article>
+          <p class="text">이름</p>
+          <input
+            id="nam"
+            type="text"
+            value=""
+            name="username"
+            placeholder="이름을 입력하세요."
+          />
+        </article>
+        <article>
+          <p class="text">닉네임</p>
+          <input
+            id="nick"
+            type="text"
+            value=""
+            name="nickname"
+            placeholder="닉네임을 입력하세요."
+          />
+        </article>
+        <article>
+          <p class="text">이메일</p>
+          <input
+            id="ema"
+            type="email"
+            value=""
+            name="email"
+            placeholder="이메일을 입력하세요."
+          />
+        </article>
+        <article>
+          <p class="text">비밀번호</p>
+          <input
+            id="pw"
+            type="password"
+            value=""
+            name="password1"
+            placeholder="숫자/문자 조합, 최소 8자 이상"
+          />
+        </article>
+        <article>
+          <p class="text">비밀번호 재입력</p>
+          <input
+            id="repw"
+            type="password"
+            value=""
+            name="password2"
+            placeholder="비밀번호를 재입력하세요."
+          />
+        </article>
+        <footer>
+          <!--<a href="{% url 'accounts:login' %}">-->
+            <input id="signup" type="submit" value="회원가입" />
+          <!--</a>-->
+        </footer>
+      </form>
+    </div>
+    <script src="{% static 'js/signup.js' %}"></script>
+  </body>
+</html>

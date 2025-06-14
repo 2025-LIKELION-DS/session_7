@@ -1,0 +1,101 @@
+*{
+padding: 0;
+margin: 0;
+}
+
+#tags {
+    display: flex;
+  align-items: center;
+  gap: 12px;
+}
+#tags span{
+    display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.checkdeoption {
+  font-size: 14px;
+  color: #acacac;
+  margin: 5px;
+}
+
+#subbox {
+  width: 100%;
+  height: 50px;
+  background-color: red;
+}
+.contents {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.MVtag {
+  width: 40px;
+  height: 40px;
+}
+
+#uptitle {
+border:2px solid #b2b2b2;
+width: 790px;
+height: 60px;
+font-size: 20px;
+font-weight: bolder;
+margin-bottom: 4px;
+padding-left:13px ;
+}
+
+#upbody{
+  border:2px solid #b2b2b2;
+  width: 790px;
+}
+#upT{
+  border-bottom:1px solid #ff0404;
+  height: 31px;
+  width: 100%;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 13px 0 0 13px;
+}
+#texta{
+  width:100%;
+  height: 350px;
+  border:none;
+}
+#uptexta{
+  border-top:1px solid #d9d9d9;
+  border-bottom:1.5px solid  #d9d9d9;
+  margin-bottom: 5px;
+}
+.chgiv{
+  font-size: 13px;
+  color: #8b8b8b;
+  font-weight: 500;
+}
+
+#upfooter{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1.5px solid #d9d9d9;
+}
+
+#pG{
+  padding: 8px 0;
+  border-top: 1px solid #d6d6d6;
+  display: none; /* 안 보이게 설정 */
+}
+
+#gM{
+  display: none;
+  background-color: #edfffe;
+  padding: 10px;
+  color: #05bcbc;
+  border-radius: 5px;
+  font-size: 0.9em;
+  width: 90%;
+  border-radius: 8px;
+  margin: 0 auto;
+  font-size: 12px;
+}
