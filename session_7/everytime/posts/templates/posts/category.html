@@ -1,0 +1,82 @@
+{% load static %} {% load humanize %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/navigation.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/section.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/aside.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/post.css' %}" />
+
+  <style>
+    .page-container {
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+      margin: 0 auto;
+      padding: 25px;
+      max-width: 1180px;
+      gap: 20px;
+    }
+
+    .main-content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      margin: 0 0 5px;
+    }
+
+    .secret-board {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .right-content-wrapper {
+      width: 325px;
+      padding: 20px;
+      flex-direction: column;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="{% static 'js/main.js' %}" defer></script>
+
+  {% include 'page/header.html' %} {% include 'page/navigation.html' %}
+
+  <div class="page-container">
+    <div class="main-content-wrapper">{% include 'page/section.html' %}</div>
+    <div class="right-content-wrapper">{% include 'page/aside.html' %}</div>
+
+    <br /><br />
+
+    <hr />
+
+    <form
+      method="POST"
+      action="{% url 'posts:create' category.slug %}"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <input type="text" placeholder="제목 입력" name="title" /><br />
+      <textarea name="content" placeholder="본문 입력"></textarea><br /><br />
+      <div class="file">
+        <input type="file" name="image" />
+        <input type="file" name="video" />
+      </div>
+      <br />
+      <input type="checkbox" name="is_anonymous" />익명
+      <input type="submit" value="작성 완료" />
+    </form>
+
+    <a href="{% url 'posts:main' %}">메인페이지로 돌아가기</a><br /><br />
+
+    {% if request.user.is_authenticated %}
+    <p>nickname : {{ user }}</p>
+    <a href="{% url 'accounts:logout' %}">로그아웃</a>
+    {% else %}
+    <a href="{% url 'accounts:login' %}">로그인</a>
+    {% endif %}
+  </div>
+</body>

@@ -1,0 +1,117 @@
+body {
+  background-color: white;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.center-login {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.top-logo img {
+  display: flex;
+  justify-content: center;
+  height: 56px;
+  width: 210px;
+  margin: 0 auto 40px;
+}
+
+.login-set {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.login-id {
+  font-size: 16px;
+  border-radius: 12px;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+  border: none;
+  padding: 10px;
+  margin-top: 4px;
+  height: 44px;
+  width: 360px;
+}
+
+.login-password {
+  font-size: 16px;
+  border-radius: 12px;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+  border: none;
+  padding: 10px;
+  margin-top: 4px;
+  height: 44px;
+  width: 360px;
+}
+
+.login-complete {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #737373;
+  border-radius: 12px;
+  box-sizing: border-box;
+  border: none;
+  padding: 10px;
+  margin-top: 4px;
+  cursor: pointer;
+  height: 44px;
+  width: 360px;
+}
+
+.login-complete-text {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.new-member {
+  color: #737373;
+  font-size: 14px;
+  margin-top: 16px;
+  text-decoration-line: underline;
+}
+
+.claim-detail {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.claim-line {
+  font-size: 12px;
+  list-style-type: none;
+  color: #737373;
+  line-height: 18px;
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .top-logo img {
+    width: 210px;
+    height: auto;
+    margin-bottom: 24px;
+  }
+
+  .claim-line {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+}

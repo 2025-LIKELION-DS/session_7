@@ -1,0 +1,32 @@
+{% load static %}
+
+<header class="header">
+    <div class="logo">
+        <span class="logo-smile">
+            <img src="{% static 'img/nav_logo.png' %}" alt="로고" />
+        </span>
+        <span class="logo-text">
+            <span class="everytime-title">에브리타임</span><br><span class="everytime-name">덕성여대</span>
+    </div>
+
+    <nav class="header-menu">
+        <ul>
+            <li><a href="">게시판</a></li>
+            <li><a href="">시간표</a></li>
+            <li><a href="">강의실</a></li>
+            <li><a href="">학점계산기</a></li>
+            <li><a href="">친구</a></li>
+            <li><a href="">책방</a></li>
+            <li><a href="">캠퍼스픽</a></li>
+        </ul>
+    </nav>
+
+    <div class="user-icon">
+        <a>
+            <img src="{% static 'img/icn_m_chat_gray800_light.png' %}" alt="채팅" />
+        </a>
+        <a>
+            <img src="{% static 'img/icn_m_account_gray800_light.png' %}" alt="사용자" />
+        </a>
+    </div>
+</header>

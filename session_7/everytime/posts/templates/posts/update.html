@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>글 수정</title>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navigation.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/aside.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/post.css' %}" />
+
+    <style>
+      .full-main {
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+        margin: 0 auto;
+        padding: 25px;
+        max-width: 1180px;
+        gap: 20px;
+      }
+
+      .main-title {
+        margin-bottom: 5px;
+        box-sizing: border-box;
+        padding: 15px;
+        border: 1px solid #d6d6d6;
+      }
+
+      .plus-info {
+        display: flex;
+        align-items: center;
+      }
+
+      .footer-flex {
+        height: 40px;
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include "page/header.html" %} {% include "page/navigation.html" %}
+
+    <div class="full-main">
+      <div class="main-contents">
+        <div class="secret-board">
+          <h1 class="main-title">비밀게시판</h1>
+        </div>
+
+        <form
+          method="POST"
+          action="{% url 'posts:update' post.id %}"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <div class="write-box">
+            <div class="title-box">
+              <input
+                type="text"
+                class="titlewriter"
+                name="title"
+                value="{{ post.title }}"
+              />
+            </div>
+
+            <div>
+              <textarea class="contentswriter" name="content">
+{{ post.content }}</textarea
+              >
+            </div>
+
+            <div class="footer-flex">
+              <div class="plus-info">
+                {% if post.image %}
+                <p style="margin-left: 10px">기존 이미지:</p>
+                <img src="{{ post.image.url }}" style="height: 40px" /><br />
+                {% endif %}
+                <input type="file" name="image" />
+
+                {% if post.video %}
+                <p>기존 비디오:</p>
+                <video width="160" controls>
+                  <source src="{{ post.video.url }}" type="video/mp4" /></video
+                ><br />
+                {% endif %}
+                <input type="file" name="video" />
+              </div>
+
+              <div class="plus-info-personal">
+                <label class="checkbox-personal">
+                  <input
+                    type="checkbox"
+                    name="is_anonymous"
+                    {%
+                    if
+                    post.is_anonymous
+                    %}checked{%
+                    endif
+                    %}
+                  />
+                  익명
+                </label>
+                <button type="submit" class="complete-write">
+                  <img
+                    src="{% static 'img/container_write_white.png' %}"
+                    alt="수정 완료"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      {% include "page/aside.html" %}
+    </div>
+  </body>
+</html>

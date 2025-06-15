@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
+</head>
+<body>
+    <form method="POST" action="{% url 'accounts:signup' %}">
+        {% csrf_token %}
+        <div class="signup-set">
+            <div class="signup-top">
+                <h1 class="signup-title">에브리타임 회원가입</h1>
+                <p class="signup-explain">에브리타임 계정으로 <strong>캠퍼스픽, 에브리타임</strong> 등 <br>다양한 대학생 서비스를 모두 이용하실 수 있습니다.</strong></p>
+            </div>
+            <div class="personal-input">
+                <div class="input-guide">
+                <p class="guide-title">이름</p>
+                <input type="text" name="username" class="personal-name" placeholder="이름을 입력하세요.">
+            </div>
+            <div class="input-guide">
+                <p class="guide-title">닉네임</p>
+                <input type="text" name="nickname" class="personal-nickname" placeholder="닉네임을 입력하세요.">
+            </div>
+            <div class="input-guide">
+                <p class="guide-title">이메일</p>
+                <input type="text" name="email" class="personal-email" placeholder="이메일을 입력하세요.">
+            </div>
+            <div class="input-guide">
+                <p class="guide-title">비밀번호</p>
+                <input type="password" name="password1" class="personal-password" placeholder="숫자/문자 조합, 최소 8자 이상">
+            </div>
+            <div class="input-guide">
+                <p class="guide-title">비밀번호 재입력</p>
+                <input type="password2" name="password2" class="personal-repassword" placeholder="비밀번호를 재입력하세요.">
+            </div>
+            </div>
+            <div class="signupComplete">
+                <button type="submit" class="completeBtn">회원가입</button>
+            </div>
+        </div>
+    </form>    
+</body>
+<script src="{% static '/js/signup.js' %}"></script>
+
+</html>

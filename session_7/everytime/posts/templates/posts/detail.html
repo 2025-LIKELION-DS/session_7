@@ -1,0 +1,197 @@
+{% load static %} {% load humanize %}
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navigation.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/aside.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/post.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}" />
+    <script src="{% static 'js/detail.js' %}" defer></script>
+  </head>
+  <body>
+    {% include 'page/header.html' %} {% include 'page/navigation.html' %}
+
+    <div class="full-main">
+      <div class="main-contents">
+        <div class="secret-board">
+          <h1 class="main-title">비밀게시판</h1>
+        </div>
+
+        <div class="full-contents detail-post" style="position: relative">
+          <div class="writer">
+            <img src="https://cf-fpi.everytime.kr/0.png" alt="작성자" />
+            <div class="writer-info">
+              <span class="writer-name"
+                >{% if post.is_anonymous %}익명{% else %}{{ post.author.nickname
+                }}{% endif %}</span
+              >
+              <span class="writer-date"
+                >{{ post.created_at|date:"Y년 n월 j일 G:i" }}</span
+              >
+            </div>
+            <div class="post-action">
+              <span>쪽지</span>
+              <span>신고</span>
+            </div>
+          </div>
+
+          <div class="contents-title">
+            <p>{{ post.title }}</p>
+          </div>
+
+          <div class="contents-text">
+            <p>{{ post.content|linebreaksbr }}</p>
+          </div>
+
+          {% if post.image %}
+          <div class="contents-image">
+            <img
+              src="{{ post.image.url }}"
+              alt="게시물 사진"
+              style="width: 300px"
+            />
+          </div>
+          {% endif %} {% if post.video %}
+          <div class="contents-image">
+            <video width="320" height="240" controls>
+              <source src="{{ post.video.url }}" type="video/mp4" />
+            </video>
+          </div>
+          {% endif %}
+
+          <div class="contents-detail">
+            <img
+              src="{% static 'img/container_articles_vote.png' %}"
+              alt="좋아요"
+            />
+            <a class="likes">{{ post.like.count }}</a>
+            <img
+              src="{% static 'img/container_articles_comment.png' %}"
+              alt="댓글"
+            />
+            <a class="comments">{{ post.comments.count }}</a>
+            <img
+              src="{% static 'img/container_articles_scrap.png' %}"
+              alt="스크랩"
+            />
+            <a class="scrap">{{ post.scrap.count }}</a>
+          </div>
+
+          {% if request.user == post.author %}
+          <div class="post-action-links">
+            <a href="{% url 'posts:update' post.id %}">수정하기</a>
+            <a href="{% url 'posts:delete' post.id %}">삭제하기</a>
+          </div>
+          {% endif %}
+
+          <div class="Btnset">
+            <div class="agreeBtn">
+              <img
+                class="agree-img"
+                src="{% static 'img/container_articles_buttons_posvote.png' %}"
+                alt="공감"
+              />
+              <div class="agree">공감</div>
+            </div>
+
+            <div class="scrapBtn">
+              <img
+                class="scrap-img"
+                src="{% static 'img/container_articles_buttons_scrap.png' %}"
+                alt="스크랩"
+              />
+              <div class="scrap-box">스크랩</div>
+            </div>
+          </div>
+        </div>
+
+        {% for comment in post.comments.all %}
+        <div class="user-comments">
+          <div class="comment-top">
+            <div class="comment-author-content">
+              <span class="comment-author">
+                {% if comment.anonymity %}익명{% else %}{{
+                comment.author.nickname }}{% endif %}
+              </span>
+              <span class="comment-content">{{ comment.content }}</span>
+            </div>
+            <div class="user-comments-detail">
+              <a>대댓글</a>
+              <a>공감</a>
+              <a>쪽지</a>
+              <a
+                href="{% url 'posts:delete-comment' post.id comment.id %}"
+                class="delete"
+                >삭제</a
+              >
+            </div>
+          </div>
+
+          <div class="tail-comments" style="display: none">
+            <input
+              type="text"
+              class="textwriter"
+              placeholder="대댓글을 입력하세요."
+            />
+            <img
+              class="complete-write"
+              src="{% static 'img/container_write_white.png' %}"
+              alt="작성 완료"
+            />
+          </div>
+        </div>
+        {% empty %}
+        <p>댓글이 없습니다.</p>
+        {% endfor %}
+
+        <form
+          method="POST"
+          action="{% url 'posts:create-comment' post.id %}"
+          class="list-comments"
+        >
+          {% csrf_token %}
+          <div class="textwriter">
+            <input
+              type="text"
+              name="content"
+              class="mini-textbox"
+              placeholder="댓글을 입력하세요."
+            />
+
+            <label class="anonymous-check">
+              <input type="checkbox" name="anonymity" value="anonymity_true" />
+              익명
+            </label>
+          </div>
+
+          <button type="submit" class="complete-write">
+            <img
+              src="{% static 'img/container_write_white.png' %}"
+              alt="작성 완료"
+            />
+          </button>
+        </form>
+
+        <div class="back-to-list">
+          <button type="button" class="back-button">
+            <img
+              src="{% static 'img/post_list.png' %}"
+              alt="글 목록"
+              class="back-icon"
+            />
+            {% comment %}
+            <a href="{% url 'posts:category' post.category.first.slug %}">
+              {% endcomment %} 글 목록 {% comment %}
+            </a>
+            {% endcomment %}
+          </button>
+        </div>
+      </div>
+      {% include 'page/aside.html' %}
+    </div>
+  </body>
+</html>

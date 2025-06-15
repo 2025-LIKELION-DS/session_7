@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+  </head>
+  <body>
+    <div class="center-login">
+      <div class="top-logo">
+        <img src="{% static 'img/logo_light.png' %}" alt="중앙로고" />
+      </div>
+
+      <div class="login-set">
+        <form method="post" action={% url 'accounts:login' %}>
+        {% csrf_token %}
+          <div><input type="text" name="username" class="login-id" placeholder="아이디" /></div>
+          <div><input type="password" name="password" class="login-password" placeholder="비밀번호" /></div>
+          <div>
+            <button type="submit" class="login-complete">
+              <span class= "login-complete-text"> 에브리타임 로그인</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="new-member">
+        <a href="{% url 'accounts:signup' %}">회원가입</a>
+      </div>
+    </div>
+
+    <div class="claim-detail">
+      <ul class="claim-line">
+        <li>이용약관</li>
+        <li><strong>개인정보처리방침</strong></li>
+        <li>문의하기</li>
+        <li><strong>© 에브리타임</strong></li>
+      </ul>
+    </div>
+  </body>
+
+  <script src="{% static 'js/login.js' %}"></script>
+</html>

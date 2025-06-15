@@ -1,0 +1,126 @@
+.nav {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 20px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  color: #444;
+  font-size: 13px;
+}
+
+.nav-group {
+  width: 180px;
+  border-right: 1px solid #ccc;
+  padding-right: 20px;
+  box-sizing: border-box;
+  margin-left: 20px;
+}
+
+.nav-group:first-child {
+  border-left: 1px solid #ccc;
+  padding-left: 20px;
+}
+
+.nav-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-group li {
+  margin-bottom: 6px;
+  line-height: 1.4;
+  width: 100px;
+}
+
+.nav-group li a {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  text-decoration: none;
+  color: #222;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .reaction-set {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+
+  .reaction-menu {
+    display: flex;
+    justify-content: flex-start;
+    height: 25px;
+    width: auto;
+    margin: 12px 0 0 12px;
+  }
+
+  .reaction-header {
+    display: block;
+    text-align: left;
+    color: black;
+    margin-top: 10px;
+  }
+
+  .header,
+  .right-article,
+  .secret-title {
+    display: none;
+  }
+
+  .everytime-text,
+  .secret-board,
+  .write-box,
+  .secret-text,
+  .post-title,
+  .post-text {
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .doublesecret-box {
+    box-sizing: border-box;
+    display: block;
+    margin: -20px 0 5px;
+    width: 100%;
+    border: none;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    padding: 0;
+  }
+
+  .secret-text {
+    width: 100%;
+    flex-wrap: wrap;
+    border: none;
+    border-bottom: 1px solid #e3e3e3;
+  }
+
+  .write-box {
+    margin-left: -10px;
+  }
+  .secret-text {
+    border: none;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    text-align: left;
+  }
+
+  .post-title,
+  .post-text {
+    margin-left: -5px;
+  }
+}

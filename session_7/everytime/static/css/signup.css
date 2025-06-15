@@ -1,0 +1,174 @@
+body {
+  background-color: white;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.signup-set {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #f2f2f2;
+  width: 500px;
+  margin: 50px auto;
+  padding: 40px 40px 30px 40px;
+  border-radius: 8px;
+}
+
+.signup-top {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  align-items: flex-start;
+  margin-top: -30px;
+  margin-left: -15px;
+}
+
+.signup-title {
+  text-align: left;
+}
+
+.signup-explain {
+  font-size: 14px;
+  text-align: left;
+}
+
+.personal-input {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.guide-title {
+  font-size: 12px;
+  text-align: left;
+}
+
+.personal-name {
+  font-size: 13px;
+  border-radius: 12px;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+  border: none;
+  padding: 10px;
+  text-align: left;
+  margin-top: 4px;
+  height: 44px;
+  width: 520px;
+}
+
+.personal-nickname {
+  font-size: 13px;
+  border-radius: 12px;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+  border: none;
+  padding: 10px;
+  margin-top: 4px;
+  text-align: left;
+  height: 44px;
+  width: 520px;
+}
+
+.personal-email {
+  font-size: 13px;
+  border-radius: 12px;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+  border: none;
+  padding: 10px;
+  text-align: left;
+  margin-top: 4px;
+  height: 44px;
+  width: 520px;
+}
+
+.personal-password {
+  font-size: 13px;
+  border-radius: 12px;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+  border: none;
+  padding: 10px;
+  text-align: left;
+  margin-top: 4px;
+  height: 44px;
+  width: 520px;
+}
+
+.personal-repassword {
+  font-size: 13px;
+  border-radius: 12px;
+  background-color: #f2f2f2;
+  box-sizing: border-box;
+  border: none;
+  padding: 10px;
+  margin-top: 4px;
+  height: 44px;
+  width: 520px;
+}
+
+.signupComplete {
+  cursor: pointer;
+  gap: 20px;
+  justify-items: center;
+  align-items: center;
+}
+
+.completeBtn {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #737373;
+  border-radius: 12px;
+  box-sizing: border-box;
+  border: none;
+  padding: 10px;
+  margin-top: 50px;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 520px;
+  height: 44px;
+}
+
+@media (max-width: 640px) {
+  .signup-set {
+    width: 70%;
+  }
+
+  .personal-input {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .guide-title {
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .personal-name,
+  .personal-nickname,
+  .personal-email,
+  .personal-password,
+  .personal-repassword {
+    background-color: #f2f2f2;
+    box-sizing: border-box;
+    height: 44px;
+    width: 360px;
+  }
+
+  .completeBtn {
+    box-sizing: border-box;
+    height: 44px;
+    width: 360px;
+  }
+}
