@@ -1,0 +1,99 @@
+{% load static %}
+{% load humanize %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+
+
+{% endblock %}
+<section>
+  <a href=""><h2 class="secret">{{ category.name }}</h2></a>
+
+  <!--핫게랑 질문글-->
+  <div class="sec_menu">
+    <div class="post_hot">
+      <img
+        id="img_hot"
+        src="{% static 'img/icn_mcr_board_question_light.png' %}"
+        alt="질문 글 이미지"
+      />
+      <span class="sec_hot">아기사자 되는 법 아르켜줄게</span>
+    </div>
+    <div class="post_que">
+      <img
+        id="img_que"
+        src="{% static 'img/icn_mcr_board_hotarticle_light.png' %}"
+        alt="핫게 글 이미지"
+      />
+      <span class="sec_que">
+        멋사 13기 합격 썰 푼다ㅎㅎ
+        <img
+          id="img_vote"
+          src="{% static 'img/container.articles.vote.png' %}"
+          alt="따봉 이미지"
+        />
+        <span style="color: red">13</span>
+      </span>
+    </div>
+  </div>
+
+  <!--새글 작성 부분-->
+  <div class="new_post">
+    <button class="new_post_button">
+      <span>새 글을 작성해주세요!</span>
+      <img
+        class="new_post_img"
+        src="{% static 'img/container.write.background.png' %}"
+        alt="연필 이미지"
+        id="postButton"
+      />
+    </button>
+    {% include "./post.html" %}
+  </div>
+  <div id="postContainer" style="display: none;"></div>
+
+  <!--아티클 작성 부분-->
+  {% for post in posts %}
+    <a href="{% url 'posts:detail' post.id %}">
+      <div class="article">
+        <span>
+          <h4>{{ post.title }}</h4>
+          <span class="article_1">{{ post.content }}</span>
+          <br />
+          <p class="article_bottom">
+            <img class="bottom_1" src="{% static 'img/container.articles.vote.png' %}" alt="따봉봉" />
+            <span style="color: red;">{{ post.like.count }}</span>
+            <img class="bottom_2" src="{% static 'img/container.articles.comment.png' %}" alt="댓글" />
+            <span style="color: #05bcbc;">{{ post.comments.count }}</span>
+            ㅣ{{ post.created_at | naturaltime }} |
+            {% if post.anonymity %}
+              {{ post.is_anonymous }}
+            {% else %}
+              {{ post.author_display_name }}
+            {% endif %}
+          </p>
+        </span>
+
+        {% if post.image %}
+          <img
+            style="width: 100px; height: 100px; border-radius: 10px;"
+            class="art_img"
+            src="/media/{{ post.image }}"
+            alt="프리뷰 이미지"
+          />
+        {% elif post.video %}
+          <video
+            style="width: 100px; height: 100px; border-radius: 10px;"
+            class="art_img"
+            controls
+          >
+            <source src="/media/{{ post.video }}" type="video/mp4" />
+          </video> <!-- 수정됨: video 태그 구조 정리 -->
+        {% endif %}
+      </div>
+    </a> <!-- 수정됨: 닫히지 않은 a 태그 정리 -->
+  {% empty %}
+    <h2>글이 없습니다.</h2>
+  {% endfor %}
+</section>
+
+<script src="{% static 'js/post.js' %}"></script>

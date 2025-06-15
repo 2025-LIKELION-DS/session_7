@@ -1,45 +1,46 @@
 {% load static %}
-<body>
-    {% load humanize %}
-    <a href={% url 'posts:main' %}>메인페이지로 돌아가기</a><br><br>
-    {% if request.user.is_authenticated %}
-        <p>nickname : {{ user }}</p>
-        <a href="{% url 'accounts:logout' %}">로그아웃</a>
-    {% else %}
-        <a href="{% url 'accounts:login' %}">로그인</a>
-    {% endif %}
-    <hr>
+{% load humanize %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+<link rel="stylesheet" href="{% static 'css/post.css' %}" />
+<link rel="stylesheet" href="{% static 'css/category.css' %}" />
+
+{% endblock %}
+
+{% block body %}
+<!-- 헤더 부분 (header.html에서 가져옴) -->
+{% include 'posts/header.html' %}
+
+<!-- 네비게이션 부분 (navigation.html에서 가져옴) -->
+{% include 'posts/navigation.html' %}
+
+<!-- 모바일 네비게이션 -->
+
+<!-- 메인 컨텐츠 영역 -->
+<div class="container">  <!-- [UNCLOSED DIV - NEEDS CLOSING TAG] -->
+  <!-- 사이드바 (aside.html에서 가져옴) -->
+  {% include 'posts/aside.html' %}
+
+  <!-- 섹션 부분 (section.html에서 가져옴) -->
+  {% include 'posts/section.html' %}
+  
+</div>  <!-- [ADDED MISSING CLOSING DIV] -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const postButton = document.getElementById("postButton");
+    const postForm = document.getElementById("post");
     
+    if (postButton && postForm) {
+        postButton.addEventListener("click", function(e) {
+            e.preventDefault();
+            // 폼 표시 상태 토글
+            postForm.style.display = postForm.style.display === "none" ? "block" : "none";
+        });
+    }
+});
+</script>
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/post.js' %}"></script>
+{% endblock %}
 
-    <h1>{{ category.name }}</h1>
-    
-    <form method="POST" action="{% url 'posts:create' category.slug %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" placeholder="제목 입력" name="title"><br>
-        <textarea name="content" placeholder="본문 입력"></textarea><br><br>
-        <div class="file">
-            <input type="file" name="image">
-            <input type="file" name="video">
-        </div>
-        <br>
-        <input type="checkbox" name="is_anonymous">익명
-        <input type="submit" value="작성 완료">
-    </form>
-
-    <hr>
-
-    {% for post in posts %}
-
-    {% if post.anonymity %}
-        <h2><a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a></h2>
-        <p>{{ post.content }}</p>
-        <p>{{ post.created_at | naturaltime }}</p>
-    {% else %}
-        <h2><a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a></h2>
-        <p>{{ post.content }}</p>
-        <p>{{ post.created_at | naturaltime }}</p>
-    {% endif %}
-    <hr>
-    {% empty %} <h2>글이 없습니다.</h2> {% endfor %}
-
-</body>

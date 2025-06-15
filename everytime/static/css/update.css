@@ -1,0 +1,76 @@
+/*
+  update.html 페이지의 레이아웃과 폼 오버플로우 문제를 해결하는 핵심 CSS입니다.
+*/
+
+/* 1. 전체 레이아웃 컨테이너: section과 aside를 가로로 배치 */
+.container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px; /* 콘텐츠 최대 너비 */
+  margin: 25px auto; /* 중앙 정렬 */
+}
+
+/* 2. 메인 콘텐츠(section)와 사이드바(aside) 크기 및 위치 지정 */
+.container section {
+  width: 780px;
+  flex-shrink: 0; /* 줄어들지 않도록 고정 */
+}
+
+.container aside {
+  width: 350px;
+  margin-left: 40px; /* 왼쪽 콘텐츠와의 간격 */
+  flex-shrink: 0;
+}
+
+
+/* 3. 글쓰기 폼(.write)의 크기를 고정하고, 내부를 flexbox로 제어 */
+.write {
+  width: 780px; /* 요청하신 너비 */
+  height: 470px; /* 요청하신 높이 */
+  border: 2px solid lightgray;
+  box-sizing: border-box;
+  
+  /* 내부 요소를 (header - body - bottom) 수직으로 쌓기 위함 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 4. [핵심] 스크롤이 될 중간 영역(.write-body) 설정 */
+.write-body {
+  flex-grow: 1; /* header와 bottom을 제외한 모든 남은 공간을 차지 */
+  overflow-y: auto; /* 내용이 길어지면 세로 스크롤 자동 생성 */
+  min-height: 0; /* flex 자식요소의 overflow를 위해 필요 */
+  padding: 15px;
+}
+
+/* 5. write-body 내부의 textarea와 기존 미디어 스타일 */
+.write-body textarea {
+    width: 100%;
+    min-height: 200px; /* 최소 높이 지정 */
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+.existing-media {
+    padding: 10px 0;
+    border-top: 1px solid #f0f0f0;
+    margin-top: 10px;
+}
+
+.existing-media p {
+    font-weight: bold;
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.existing-media img,
+.existing-media video {
+    max-width: 320px; /* 기존 크기 유지 */
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid #e3e3e3;
+    margin-top: 5px;
+    display: block;
+}
