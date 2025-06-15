@@ -1,7 +1,28 @@
-<h2>로그인</h2>
-<form method='post' action={% url 'accounts:login' %}>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>에타 로그인 페이지 만들기</title>
+    <link rel="stylesheet" href="{% static 'css/login.css'%}" />
+  </head>
+  <body>
+    <img class="logo" src="{% static 'img/logo.png' %}" alt="에타 로고 이미지" />
+
+    <form form method='post' action="{% url 'accounts:login' %}">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">login</button>
-</form>
-<p><a href="{% url 'accounts:signup' %}">회원가입</a></p>
+      <input id="login_id" type="text" placeholder="아이디" name="username"/>
+      <input id="login_password" type="password" placeholder="비밀번호" name="password" />
+      <input type="submit" id="login" class="login" value="에브리타임 로그인"></input>
+      <a href="{% url 'accounts:signup' %}" id="club">회원가입</a>
+    </form>
+    <div class="bottom">
+      <div>이용 약관</div>
+      <div><b>개인정보처리방침</b></div>
+      <div>문의하기</div>
+      <div><b>에브리타임</b></div>
+    </div>
+  </body>
+  <script src="{% static 'js/login.js'%}"></script>
+</html>

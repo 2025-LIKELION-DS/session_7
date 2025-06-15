@@ -1,0 +1,89 @@
+{% extends './base.html' %}{% load static %} 
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+{% endblock %} 
+
+{% block body %}
+    <div class="mobile-header">
+      <div id="hamburger-menu">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="header_media">비밀게시판</div>
+    </div>
+    <header>
+      <div class="header_wrap">
+        <div style="display: flex;">
+            <a href="{% url 'posts:main' %}">
+            <img id="logo" src="{% static 'img/nav.logo.png' %}" alt="에타 아이콘" /></a>
+            <p>
+            <span class="header_evr"><b>에브리타임</b></span>
+            <span class="header_school">덕성여대</span>
+            </p>
+        </div>
+      
+        <div class="header_text">
+            <span style="color: red"><b>게시판</b></span>
+            <b>시간표</b>
+            <b>강의실</b>
+            <b>학점계산기</b>
+            <b>친구</b>
+            <b>책방</b>
+            <b>캠퍼스픽</b>
+        </div>
+
+        <div class="header_img">
+            <img
+              id="chat"
+              src="{% static 'img/icn_m_chat_gray800_light.png' %}"
+              alt="채팅 아이콘"
+            />
+            <img
+              id="people"
+              src="{% static 'img/icn_m_account_gray800_light.png' %}"
+              alt="사람 아이콘"
+            />
+            
+            <div id="login_modal" class="modal-container" style="display: none;">
+                {% if user.is_authenticated %}
+                    <div class="modal_content">
+                        <p><strong>닉네임 :</strong> {{ user.nickname }}</p>
+                        <a href="{% url 'accounts:logout' %}">Logout</a>
+                    </div>
+                {% else %}
+                    <div class="modal_content">
+                        <p>에브리타임 계정으로<br>로그인해 주세요.</p>
+                        <a href="{% url 'accounts:login' %}">로그인</a>
+                        <hr>
+                        <a href="{% url 'accounts:signup' %}">회원가입</a>
+                    </div>
+                {% endif %}
+            </div>
+            </div>
+      </div>
+    </header>
+{% endblock %}
+
+{% block script %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const peopleIcon = document.getElementById('people');
+    const loginModal = document.getElementById('login_modal');
+
+    // 사람 아이콘 클릭 시 모달 토글
+    peopleIcon.addEventListener('click', function(event) {
+        event.stopPropagation(); // 이벤트 전파 중단
+        const isHidden = loginModal.style.display === 'none' || loginModal.style.display === '';
+        loginModal.style.display = isHidden ? 'block' : 'none';
+    });
+
+    // 모달 창 바깥 영역 클릭 시 모달 닫기
+    window.addEventListener('click', function(e) {
+        if (!loginModal.contains(e.target) && e.target !== peopleIcon) {
+            loginModal.style.display = 'none';
+        }
+    });
+});
+</script>
+{% endblock %}

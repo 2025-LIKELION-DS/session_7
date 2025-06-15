@@ -1,0 +1,65 @@
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+
+
+{% endblock %}
+<aside>
+  <div class="sidebar_1">
+    <h3>실시간 인기글</h3>
+    <div class="sidebar_hot">
+      <p>멋사 13기 합격 썰 푼다 ㅎㅎ</p>
+      <span class="sidebar_header">비밀게시판</span>
+      <div>
+        <img
+          id="img_side_hot"
+          src="{% static 'img/container.articles.vote.png' %}"
+          alt="따봉 이미지"
+        />
+        <span class="hot_num">13</span>
+        <img
+          id="img_comment"
+          src="{% static 'img/container.articles.comment.png' %}"
+          alt="댓글 이미지"
+        />
+        <span class="comment_num">10</span>
+      </div>
+    </div>
+    <div class="sidebar_hot">
+      <p>여자들이 질투하는 여자</p>
+      <span class="sidebar_header">비밀게시판</span>
+      <div>
+        <img
+          id="img_side_hot"
+          src="{% static 'img/container.articles.vote.png' %}"
+          alt="따봉 이미지"
+        />
+        <span class="hot_num">25</span>
+        <img
+          id="img_comment"
+          src="{% static 'img/container.articles.comment.png' %}"
+          alt="댓글 이미지"
+        />
+        <span class="comment_num">10</span>
+      </div>
+    </div>
+  </div>
+
+  <!--핫게 사이드바-->
+  <div class="sidebar_hot_section">
+    <div class="sidebar_hot_header">
+      <h3>HOT 게시물 <span class="sidebar_bottom">더 보기</span></h3>
+    </div>
+    <div class="sidebar_hot_item">
+      <p>
+        멋사 나 안아.... <span class="sidebar_date">03/30 14:59</span>
+      </p>
+    </div>
+    <div class="sidebar_hot_item_2">
+      <p>
+        개강을 아는 사람? 너무 무서워
+        <span class="sidebar_date">03/29 15:13</span>
+      </p>
+    </div>
+  </div>
+</aside>

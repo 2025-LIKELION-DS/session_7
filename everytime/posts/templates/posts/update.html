@@ -1,23 +1,171 @@
-<body>
-    <h2>글 수정</h2>
-    <form method="POST" action="{% url 'posts:update' post.id %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        제목 - <input type="text" value="{{ post.title }}" name="title"><br><br>
-        내용 - <textarea name="content">{{ post.content }}</textarea><br><br>
-        
-        {% if post.image %}
-            기존 이미지 - <image width="320" height="240" src="{{ post.image.url }}">
-        {% endif %}
-        <br>이미지 변경 - <input type="file" name="image"><br><br>
+{% extends './base.html' %}
+{% load static %}
 
-        {% if post.video %}
-            기존 비디오 : <video width="320" height="240" controls>
-                <source src="{{ post.video.url }}" type="video/mp4">
-            </video>
-        {% endif %}
-        <br>비디오 변경 - <input type="file" name="video"><br><br>
+{% block style %}
+
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/post.css' %}">
+
+    <style>
+     
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 25px auto;
+            flex-direction: row !important; 
+        }
+       
+
+        .container section {
+            width: 780px;
+            flex-shrink: 0;
+        }
+
+        .container aside {
+            width: 350px;
+            margin-left: 40px;
+            flex-shrink: 0;
+        }
+
+        .write {
+            width: 780px;
+            height: 470px; 
+            border: 2px solid #e3e3e3;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .write-body {
+            flex-grow: 1; 
+            overflow-y: auto; 
+            padding: 15px;
+        }
         
-        <input type="checkbox" name="is_anonymous" {% if post.is_anonymous %} checked {% endif %}>익명
-        <input type="submit" value="수정하기">
-    </form>
-</body>
+     
+        .write-body textarea {
+            width: 100%;
+            min-height: 150px;
+            border: none;
+            outline: none;
+            resize: none;
+        }
+     
+        .write_bottom {
+            height: 50px;
+            padding: 0 10px;
+            border-top: 2px solid #e3e3e3;
+            background-color: #f8f8f8;
+            flex-shrink: 0;
+            display: flex; 
+            justify-content: space-between;
+            align-items: center;
+        }
+        .text_bottom{
+            background-color: #f8f8f8 ;
+        }
+        #check {
+            width: 72px;
+            height: 72px;
+        }
+        .write_bottom .write_img img {
+            height: 28px;
+            width: auto;
+        }
+     
+        .write_bottom #check {
+            height: 36px;
+            width: 36px;
+        }
+
+        .write_check {
+            font-size: 13px;
+        }
+
+        .existing-media {
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+            margin-top: 15px;
+        }
+        .existing-media p {
+            font-weight: bold;
+            font-size: 14px;
+            color: #555;
+            margin: 0 0 10px 0;
+        }
+        .existing-media img,
+        .existing-media video {
+            max-width: 320px;
+            height: auto;
+            border-radius: 5px;
+            border: 1px solid #e3e3e3;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% include 'posts/header.html' %}
+    {% include 'posts/navigation.html' %}
+    
+    <div class="container">
+        
+        <section>
+            {# 폼과 나머지 내용은 그대로 유지 #}
+            <div class="sec_title">
+                <h1>글 수정하기</h1>
+            </div>
+
+            <form class="write" method="POST" action="{% url 'posts:update' post.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <input type="text" class="write_header" name="title" value="{{ post.title }}">
+                
+                <div class="write-body">
+                    <textarea name="content">{{ post.content }}</textarea>
+
+                    <div class="existing-media">
+                        {% if post.image %}
+                            <p>기존 이미지</p>
+                            <img src="{{ post.image.url }}" alt="기존 이미지">
+                        {% endif %}
+                        {% if post.video %}
+                            <p>기존 비디오</p>
+                            <video controls>
+                                <source src="{{ post.video.url }}" type="video/mp4">
+                            </video>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="write_bottom">
+                    <div class="write_img">
+                        <label for="uploadimg" title="이미지 변경">
+                            <img src="{% static 'img/container.articles.write.hashtag.png' %}" alt="이미지 변경"/>
+                        </label>
+                        <input type="file" name="image" id="uploadimg" style="display: none" />
+                        
+                        <label for="videoimg" title="비디오 변경">
+                            <img src="{% static 'img/container.articles.write.attach.png' %}" alt="비디오 변경"/>
+                        </label>
+                        <input type="file" name="video" id="videoimg" style="display: none" />
+                    </div>
+                    
+                    <input type="text" class="text_bottom" />
+                    
+                    <div class="write_check">
+                        <input type="checkbox" id="questionCheckbox" disabled /><span id="queLabel" >질문</span>
+                        <input type="checkbox" name="is_anonymous" id="anonymity" {% if post.is_anonymous %} checked {% endif %} /><label for="anonymity" style="cursor:pointer;">익명</label>
+                        <button type="submit" title="글 수정 취소">
+                            <img id="check" src="{% static 'img/container.articles.write.submit.png' %}" alt="수정하기" />
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <aside>
+            {% include 'posts/aside.html' %}
+        </aside>
+
+    </div>
+{% endblock %}
