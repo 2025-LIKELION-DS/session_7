@@ -1,0 +1,65 @@
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/post.css' %}"/>
+{% endblock %}{% block body %}
+
+<form method="POST" action="{% url 'posts:update' post.id %}" enctype="multipart/form-data" class="new_post_border">
+  {% csrf_token %}
+  <div class="post_start">
+    <input name="title" id="text_title" type="text" value="{{ post.title }}" >
+  </div>
+  <textarea class="new_post_cannot" name="content" >{{ post.content }}</textarea>
+  
+
+  <div class="warnning_in_writing">
+    <div id="warnningText">
+      질문 글을 작성하면 게시판 상단에 일정기간동안 노출되어, 더욱 빠르게 답변을 얻을 수 있게 됩니다. <br>
+      또한, 다른 학우들이 정성껏 작성한 답변을 유지하기 위해, 댓글이 달린 이후에는 글을 수정 및 삭제할 수 없습니다.
+    </div>
+  </div>
+
+  <div class="newpost_add">
+    <div>
+      <img src="{% static 'img/container.articles.write.hashtag.png' %}" alt="해시태그" class="post_img" />
+      <img src="{% static 'img/container.articles.write.attach.png' %}" alt="클립" class="post_img" />
+    </div>
+
+    <div class="check">
+      <div id="checkbox_padding">
+        <input class="check1" type="checkbox" title="질문">
+        <span>질문</span>
+      </div>
+      <div id="checkbox_padding">
+        <input type="checkbox" name="is_anonymous" {% if post.is_anonymous %} checked {% endif %}"익명">
+        <span>익명</span>
+      </div>
+      <button type="submit" class="submit" type="submit">
+        <img
+          src="{% static 'img/container.articles.write.submit.png' %}"
+          alt="제출"
+          class="post_img"
+        />
+      </button>
+    </div>
+  </div>
+</form>
+
+<hr>
+<h4>댓글</h4>
+<br>
+{% for comment in post.comments.all %} {% if comment.anonymity %} 익명: {% else %} {{ comment.author.nickname }}: {% endif %}
+{{ comment.content }} - {{ comment.created_at }}
+{% if request.user == comment.author %}
+    <a href="{% url 'posts:delete-comment' post.id comment.id %}">삭제하기</a>
+{% endif%}
+<br>
+<br>
+{% empty %} 댓글이 없습니다 {% endfor %}
+
+<form method="POST" action="{% url 'posts:create-comment' post.id %}">
+    {% csrf_token %} 댓글 <input type="text" name="content" /><input type="submit" value="작성" />
+    <input type="checkbox" name="anonymity" value="anonymity_true" />익명
+</form>
+
+{% endblock %}

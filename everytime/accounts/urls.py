@@ -10,4 +10,4 @@ urlpatterns = [
     path('mypage/', mypage, name = "mypage"),
     path('myscrap/', myscrap, name = "myscrap"),
     path('user-info/', user_info, name = "user-info"),
-]
+]  

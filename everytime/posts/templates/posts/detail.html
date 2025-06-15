@@ -1,17 +1,28 @@
-<body>
-    <a href={% url 'posts:main' %}>메인페이지로 돌아가기</a><br><br>
-    {% if request.user.is_authenticated %}
-        <p>nickname : {{ user }}</p>
-        <a href="{% url 'accounts:logout' %}">로그아웃</a>
-    {% else %}
-        <a href="{% url 'accounts:login' %}">로그인</a>
-    {% endif %}
-    <hr>
+{% load static %} {% load humanize %}{% block title %}{% endblock %}
+{% block style %}<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+<link rel="stylesheet" href="{%static 'css/detail.css' %}"/>
+<link rel="stylesheet" href="{%static 'css/post.css'%}" />{%endblock%}
+{% block body %}
 
-    <h2>{{ post.title }}</h2><br>
+  
+
+    {% include "./header.html" %}
+    {% include "./navigation.html" %}
+    <div class="sec_aside">
+
+        {%include "./detail2.html"%}
+      {%include "./aside.html" %}
+      </div>    
+  <script src="{% static 'js/detail.js' %}"></script>
+
+
+{% endblock %}
+
+
+<h2>{{ post.title }}</h2><br>
     <h3>{{ post.content }}</h3><br>
 
-    {% if post.image %}
+    {% if post.image %} 
         <image width="320" height="240" src="{{ post.image.url }}"></image>
     {% endif %}
     {% if post.video %}
@@ -21,7 +32,7 @@
     {% endif %}
 
     <h3>{{ post.created_at }}</h3>
-    {% if post.is_anonymous %}
+    {% if post.is_anonymous %} 
         <h5>익명</h5>
     {% else %}
         <h5>{{ post.author.nickname }}</h5>

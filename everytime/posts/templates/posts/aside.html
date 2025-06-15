@@ -1,0 +1,152 @@
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/detail.css' %}" />
+{% endblock %}{% block body %}
+<aside class="width2">
+    <div class="aside_display">
+      <span class="aside_span_display_first">실시간 인기 글</span>
+      <div class="aside_span_topline">
+        <span class="aside_title">아 여기 개인 맞춤 맛집 추천 게시판</span>
+        <span class="aside_content">아닙니다 후기 올리는 곳입니다</span>
+        <div class="aside_comment_display_last">
+          <span class="aside_comment">덕성여대~수유역 맛집</span>
+          <div class="item">
+          <img
+            src="{% static 'img/container.articles.vote.png' %}"
+            alt="투표"
+  class="reactions"
+          />
+          <span class="aside_vote_content">60</span>
+          <img
+            src="{% static 'img/container.articles.comment.png' %}"
+            alt="코멘트"
+            class="reactions"
+
+          />
+          <span class="article_comment_content">1</span>
+        </div></div>
+      </div>
+      <div class="aside_span_topline">
+        <span class="aside_title">저 오늘 생일인데</span>
+        <span class="aside_content">지나가다가 한번씩만 축하해 주세요</span>
+        <div class="aside_comment_display_last">
+          <span class="aside_comment">비밀게시판</span>
+          <img
+            src="{% static 'img/container.articles.vote.png' %}"
+            alt="투표"
+            class="reactions"
+
+          />
+          <span class="aside_vote_content">57</span>
+          <img
+            src="{% static 'img/container.articles.comment.png'%}"
+            alt="코멘트"
+            class="reactions"
+/>
+          <span class="article_comment_content">14</span>
+        </div>
+      </div>
+    </div>
+    <div class="aside_display">
+      <div class="title_row">
+        <span class="aside_span_display_first">HOT 게시물</span>
+        <span class="more">더 보기</span>
+      </div>
+      <div class="aside_span_HOT">
+        <span class="aside_HOT_title">덕성의 최고 아웃풋이 될 덕우들</span>
+        <span class="date">03/27 23:46</span>
+      </div>
+      <div class="aside_span_HOT">
+        <span class="aside_HOT_title">룸메랑 뭘까?</span>
+        <span class="date">03/27 23:26</span>
+      </div>
+      <div class="aside_span_HOT">
+        <span class="aside_HOT_title">파도 포차 추천 후기</span>
+        <span class="date">03/27 20:15</span>
+      </div>
+      <div class="aside_span_HOT">
+        <span class="aside_HOT_title">저 쓰레기 단체로 먹은 거면</span>
+        <span class="date">03/27 23:02</span>
+      </div>
+    </div>
+    <div class="aside_display">
+      <div class="title_row">
+        <span class="aside_span_display_first">BEST 게시판</span>
+        <span class="more">더 보기</span>
+      </div>
+    </div>
+    <div class="aside_display">
+      <span class="aside_span_display_first">학교 소식</span>
+      <div class="aside_span_topline">
+        <span class="aside_title">공기업 톺아보기 - 공기업 소개편(1)</span>
+        <span class="aside_content"
+          >안녕하세요.#커리어서포터즈 입니다.</span
+        >
+        <div class="aside_comment_display_last">
+          <span class="aside_comment">대학일자리본부</span>
+          <img
+          class="reactions"
+            src="{% static 'img/container.articles.vote.png'%}"
+            alt="투표"
+           
+          />
+          <span class="aside_vote_content">11</span>
+          <img
+          class="reactions"
+            src="{% static 'img/container.articles.comment.png' %}"
+            alt="코멘트"
+      
+          />
+          <span class="article_comment_content">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="aside_display">
+      <div class="title_row">
+        <span class="aside_span_display_first">최근 강의평</span>
+        <span class="more">더 보기</span>
+      </div>
+      <div class="aside_span_topline">
+        <img
+          class="star_img"
+          src="{% static 'img/app.subject.rating.details.star.off.png'%}"
+          alt="별"
+      
+        />
+        <span class="aside_title">사회학개론 : 김종길</span>
+        <span class="aside_content_lecture"
+          >중간 레포트는 쉽고 기말 시험 하나만 봅니다<br />
+          솔직히 양이 많긴 한데 그만큼 포기하는 사람이 정말 많아</span
+        >
+      </div>
+      <div class="aside_span_topline">
+        <img
+          class="star_img"
+          src="{% static 'img/app.subject.rating.details.star.off.png'%}"
+          alt="별"
+       
+        />
+        <span class="aside_title">컴퓨팅 사고:정혜진</span>
+        <span class="aside_content_lecture"
+          >열정이 많으신 교수님입니다. 해당 수업시간 땡 되자마자<br />
+          호명출석하시구요.조별활동 있으면 와서 꼭 들여다보고</span
+        >
+      </div>
+      <div class="aside_span_topline">
+        <img
+          class="star_img"
+          src="{% static 'img/app.subject.rating.details.star.off.png'%}"
+          alt="별"
+   
+        />
+        <span class="aside_title">컴퓨터과학개론:강지헌</span>
+        <span class="aside_content_lecture">
+          자전거손놓고타고싶어지는수업이에요...<br />교수님의 개인 역량은
+          좋으신 것 같은데 학생들에게 생소한
+        </span>
+      </div>
+    </div>
+  </aside>
+
+{% endblock %}

@@ -1,19 +1,26 @@
 {% load static %}
 <body>
-    {% load humanize %}
-    <a href={% url 'posts:main' %}>메인페이지로 돌아가기</a><br><br>
+    {% load humanize %}{% block style %}<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{%static 'css/detail.css' %}"/>
+    <link rel="stylesheet" href="{%static 'css/post.css'%}" />{%endblock%}
+    {% block body %}
+    <br><br>
     {% if request.user.is_authenticated %}
-        <p>nickname : {{ user }}</p>
+      <!--  <p>nickname : {{ user }}</p>
         <a href="{% url 'accounts:logout' %}">로그아웃</a>
     {% else %}
         <a href="{% url 'accounts:login' %}">로그인</a>
     {% endif %}
     <hr>
-    
+    -->
 
-    <h1>{{ category.name }}</h1>
-    
-    <form method="POST" action="{% url 'posts:create' category.slug %}" enctype="multipart/form-data">
+    {% include "./header.html" %}
+{% include "./navigation.html" %}
+<div class="sec_aside">
+  {%include "./section.html"%}
+{%include "./aside.html" %}
+</div>  
+ <form method="POST" action="{% url 'posts:create' category.slug %}" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="text" placeholder="제목 입력" name="title"><br>
         <textarea name="content" placeholder="본문 입력"></textarea><br><br>
@@ -41,5 +48,6 @@
     {% endif %}
     <hr>
     {% empty %} <h2>글이 없습니다.</h2> {% endfor %}
-
+    {% endblock %}
+    <script src="{% static 'js/main.js' %}"></script>
 </body>

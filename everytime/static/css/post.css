@@ -1,0 +1,61 @@
+.post_start {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px 0 15px 20px;
+
+  color: grey;
+}
+.new_post_border {
+  display: flex;
+  flex-direction: column;
+  width: 775px;
+  border:1px solid rgba(0, 0, 0, 0.247);
+}
+.new_post_cannot {
+  padding: 10px;
+  border: none;
+  color: grey;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 15px;
+  height: 300px;
+  width: 755px;
+  margin-bottom: 0px;
+  outline: none;
+  resize: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.247);
+}
+.newpost_add {
+  border-top: 1px solid rgba(0, 0, 0, 0.247);
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0;
+}
+.submit {
+  background-color: red;
+  border-color: red;
+}
+.check {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: gray;
+}
+#checkbox_padding {
+  padding-right: 10px;
+}
+.warnning_in_writing {
+  width: 775px;
+  display: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.247);
+}
+#warnningText {
+  color: #05bcbc;
+  font-size: 15px;
+  background-color: #edfffe;
+  display: flex;
+  width: 750px;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 10px;
+}

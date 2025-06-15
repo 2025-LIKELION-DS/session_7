@@ -1,6 +1,72 @@
-<h2>회원가입</h2>
-<form method='post' action={% url 'accounts:signup' %}>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type='submit'>signup</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/signup.css'%}" />
+    <title>signup page</title>
+  </head>
+  <body>
+    <div id="body">
+      <div class="head_text">
+        <span id="head_bold">에브리타임 회원가입</span>
+        <div class="head_normal">
+          에브리타임 계정으로
+          <span id="span_bold">캠퍼스픽, 에브리타임</span> 등
+        </div>
+        <div class="head_normal">
+          다양한 대학생 서비스를 모두 이용하실 수 있습니다.
+        </div>
+      </div>
+    </div>
+
+    <form class="signup_form" method='post' action={% url 'accounts:signup' %}>
+        {% csrf_token %}
+        <div class="formtag_total">
+        <div>이름</div>
+        <input name="username" id="inputplace1" type="text" placeholder="이름을 입력하세요." />
+      </div>
+      <div class="formtag_total">
+        <span>닉네임</span>
+        <input name = "nickname"
+          id="inputplace2"
+          type="text"
+          placeholder="닉네임을 입력하세요."
+        />
+      </div>
+      <div class="formtag_total">
+        <span>이메일</span>
+        <input
+          id="inputplace3"
+          name ="email"
+          type="text"
+          placeholder="이메일을 입력하세요."
+        />
+      </div>
+      <div class="formtag_total">
+        <span>비밀번호</span>
+        <input name ="password1"
+          id="inputplace4"
+          type="password"
+          placeholder="숫자/문자 조합, 최소 8자 이상"
+        />
+      </div>
+      <div class="formtag_total">
+        <span>비밀번호 재입력</span>
+        <input name ="password2"
+          id="inputplace5"
+          type="password"
+          placeholder="비밀번호를 재입력하세요."
+        />
+        
+<input type="submit" id="signup_button" value="회원가입"/>
+
+</div>
+      </div>
+    </form>
+
+    <script src="{% static 'js/signup.js' %}"></script>
+  </body>
+</html>
+
