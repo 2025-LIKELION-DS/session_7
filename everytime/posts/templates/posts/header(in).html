@@ -1,0 +1,33 @@
+{% load static %} {% load humanize %}
+<header>
+    <div class = "title">
+        <a href ="{% url 'posts:main' %}" class = "M" style= "text-decoration: none;">
+            <div class ="logo"></div>
+            <div class =" text-container">
+                <p class = "p1">에브리타임</p>
+                <p class = "p2">덕성여대</p>
+            </div>
+        </a>
+        <div class = "manu">
+            <p>게시판</p>
+            <p>시간표</p>
+            <p>강의실</p>
+            <p>학점계산기</p>
+            <p>친구</p>
+            <p>책방</p>
+            <p>캠퍼스픽</p>
+        </div>
+        <div class = "side">
+            <div class = "message"></div>
+            <div class = "info">
+                <div class = "info_box">
+                    {% if request.user.is_authenticated %}
+                        <p>nickname :{{ user }}</p>
+                        <a href="{% url 'accounts:logout' %}" class = "logbtn" style: "color: red " >LogOut</a>
+                        {% else %}
+                            <a href="{% url 'accounts:login' %}" class = "logbtn" style:"color:blue; ">LogIn</a>
+                    {% endif %}
+                </div>
+        </div>
+    </div>
+</header>

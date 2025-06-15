@@ -1,0 +1,33 @@
+
+.plus{
+    border: 2px solid red;
+    color: red;
+    background-color: white;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    width: 150px;
+    white-space: nowrap;
+    margin-top:50px;
+    margin-left:50px; 
+}
+
+.plusimg{
+    background-image:url(../img/img/container.articles.pagination.next.png) ;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.plust{
+    width: 20px;
+    height: auto;
+    color: red;
+}

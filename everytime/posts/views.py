@@ -43,7 +43,7 @@ def create_post(request, slug):
 
         return redirect('posts:category', slug)
     return render(request, 'posts/main.html', {'category': category})
- 
+
 @login_required
 def update_post(request, id):
     post = get_object_or_404(Post, id=id)
@@ -79,8 +79,10 @@ def delete_post(request, id):
 @login_required
 def detail_post(request, id):
     post = get_object_or_404(Post, id=id)
+    category = post.category.first()
 
-    return render(request, 'posts/detail.html', {'post': post})
+
+    return render(request, 'posts/detail.html', {'post': post, 'category': category})
 
 @login_required
 def create_comment(request, post_id):
@@ -126,3 +128,7 @@ def remove_scrap(request, post_id):
     post = get_object_or_404(Post, id = post_id)
     post.scrap.remove(request.user)
     return redirect('posts:detail', post_id)
+
+def post(request,slug):
+    category = Category.objects.get(slug=slug)
+    return render(request, 'posts/post.html', {'category': category })

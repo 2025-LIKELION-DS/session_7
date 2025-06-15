@@ -18,4 +18,5 @@ urlpatterns = [
     path('remove-like/<int:post_id>/', remove_like, name = "remove-like"),
     path('add-scrap/<int:post_id>/', add_scrap, name = "add-scrap"),
     path('remove-scrap/<int:post_id>/', remove_scrap, name = "remove-scrap"),
+    path('post/<slug:slug>/', post, name='post')
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

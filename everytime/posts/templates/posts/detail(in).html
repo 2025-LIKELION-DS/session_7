@@ -1,0 +1,138 @@
+{% load static %} {% load humanize %}
+<div class = "bbody">
+    <section class = "sec">
+        <div class ="ST">
+            <h2> {{ category.name}} </h2>
+        </div>
+        <div class = "cmain">
+            <div class="noncon">
+                <div class="nonconimg"></div>
+                <div class="noncond">
+                    <div class="noncont">
+                        {% if post.is_anonymous %}
+                            익명
+                        {% else %}
+                            {{ post.author.nickname }}
+                        {% endif %}
+                    </div>
+                    <div class="noncons">{{ post.created_at}}</div>
+                </div>
+                <div class="noncon-side">
+                    {% if request.user == post.author %}
+                        <a href="{% url 'posts:update' post.id %}"style= "text-decoration: none; color:black">수정하기</a>
+                        <a href="{% url 'posts:delete' post.id %}"style= "text-decoration: none;  color:black">삭제하기</a>
+                    {% else %}
+                        <div class="noncon-side1">쪽지</div>
+                        <div class="noncon-side2">신고</div>
+                    {% endif %} 
+                </div>
+            </div>
+            <p class = "conT">{{ post.title }}</p>
+            <p class = "con-de">{{ post.content}} </p>
+            
+            {% if post.image %}
+                <image width="320" height="240" src="{{ post.image.url }}"></image>
+            {% endif %}
+            {% if post.video %}
+                <video width="320" height="240" controls>
+                    <source src="{{ post.video.url }}" type="video/mp4" />
+                </video>
+            {% endif %}
+            <div class = "coment">
+                <div class = "likeimg"></div>
+                <div class = "likenum">{{ post.like.count }}</div>
+                <div class = "chatimg"></div>
+                <div class = "chatnum">{{ post.comments.count }}</div>
+                <div class = "starimg"></div>
+                <div class = "starnum">{{ post.scrap.count }}</div>
+            </div>
+            <div class = "buttons">
+                <div class = "posvot">
+                    <div class = "posvotn">    
+                        {% if request.user in post.like.all %}
+                        <div class = "posvotimg"></div>
+                        <a href="{% url 'posts:remove-like' post.id %}"><input type="button" value="공감 취소" class="btn"/></a>
+                        {% else %}
+                        <div class = "posvotimg"></div>
+                        <a href="{% url 'posts:add-like' post.id %}"><input type="button" value="공감" class = "btn" /></a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class = "scrap">
+                    <div class = "scrapn">
+                        {% if request.user in post.scrap.all %}
+                        <div class = "scrapimg"></div>
+                        <a href="{% url 'posts:remove-scrap' post.id %}"><input type="button" value="스크랩 취소" class = "btn" /></a>
+                        {% else %}
+                        <div class = "scrapimg"></div>
+                        <a href="{% url 'posts:add-scrap' post.id %}"><input type="button" value="스크랩" class = "btn" /></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <form method="POST" action="{% url 'posts:create-comment' post.id %}">
+                {% csrf_token %}
+                <div class ="cwrite">
+                    <div class = "cwrite-c">
+                        <textarea name= "content" class = "cwrite-c" placeholder="댓글을 입력하세요"></textarea>
+                    </div>
+                    <div class = "cwfr">                                   
+                        <div class = "cc">
+                            <input type="checkbox" name="anonymity" value="anonymity_true" id="anonym-comment-1" class="anonym-check">
+                            <label for="anonym-comment-1" class="anonym-coment">익명</label>
+                        </div>
+                        
+                            <input type="submit"  value="" class="pen" style="border-style:none;">
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        {% for comment in post.comments.all %} 
+            <div class = "ttext">
+                <div class="noncon " style="border: 1px solid #ddd; height: 100px; display: block;">
+                    <div class ="comentbox">
+                        <div class="nonconimg1" style = " margin-bottom: 50px ;"></div>
+                        <div class="noncond">
+                            <div class="noncont" style = "margin-top: 5px">
+                                {% if comment.anonymity %} 
+                                    익명: 
+                                {% else %} 
+                                    {{ comment.author.nickname }}: 
+                                {% endif %}
+                            </div>
+                            <div class="noncons" style="font-size: 16px; color: black; margin-bottom: 5px;">{{ comment.content }}</div>
+                            <div class=" noncons"> {{ comment.created_at }} </div>
+                        </div>
+                        <div class="noncon-side" style = " margin-bottom: 50px ;">
+                            <div class="noncon-side1">대댓글</div>
+                            <div class="noncon-side1">공감</div>
+                            <div class="noncon-side1">쪽지</div>
+                            <div class="noncon-side2">신고</div>
+                            {% if request.user == comment.author %}
+                                <a href="{% url 'posts:delete-comment' post.id comment.id %}" style= "text-decoration: none;color:black; font-size:12px; color: #888">삭제하기</a>
+                            {% endif%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}            
+            <div class ="cwrite-coment">
+                <div class = "cwrite-c-coment">
+                    <textarea class = "cwrite-c-coment" placeholder="댓글을 입력하세요"></textarea>
+                </div>
+                <div class = "cwfr-coment">
+                    <div class = "cc-coment">
+                        <input type="checkbox" id="anonym-comment-2" class="anonym-check">
+                        <label for="anonym-comment-2" class="anonym-coment">익명</label>
+                    </div>
+                    <div class = "pen"></div>
+                </div>
+            </div>
+            <a href ="{% url 'posts:category' slug=category.slug  %}"style= "text-decoration: none; " class = "plus">
+            <div class = "plusimg"></div>
+            <div class = "plust">글 목록</div>
+        </a>
+    </section>
+</div>

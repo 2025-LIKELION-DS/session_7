@@ -1,0 +1,94 @@
+{% load static %} {% load humanize %}
+<section>
+  <div class="bbody">
+    <section class="sec">
+      <div class="ST">
+        <h2>{{ category.name }}</h2>
+      </div>
+      <div class="RB">
+        <div class="Q">
+          <div class="Qimg"></div>
+          <p id="first">봉제 관련</p>
+          <p id="second">학교 cu 제로페이 나만 안돼?</p>
+          <p id="third">윤리란 무엇인가 1주차 필기 혹은 녹음</p>
+        </div>
+        <div class="F">
+          <div class="Fimg"></div>
+          <div class="FText">
+            <p class="first1">졸업생입니다</p>
+            <div class="like"></div>
+            <div class="Flikenum">221</div>
+          </div>
+        </div>
+      </div>
+      <div class="write">
+        <div id="new">새 글을 작성해 주세요!</div>
+        <div class="pen" style="cursor: pointer"></div>
+      </div>
+      <div id="writeContainer" style="display: none">
+        <form
+          method="POST"
+          action="{% url 'posts:create' category.slug %}"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <input type="text" placeholder="제목 입력" name="title" /><br />
+          <textarea name="content" placeholder="본문 입력"></textarea
+          ><br /><br />
+          <div class="file">
+            <input type="file" name="image" />
+            <input type="file" name="video" />
+          </div>
+          <br />
+          <input type="checkbox" name="is_anonymous" />익명
+          <input type="submit" value="작성 완료" />
+        </form>
+      </div>
+
+      {% for post in posts %} 
+      {% if post.is_anonymity %}
+        <a a href="{% url 'posts:detail' post.id %}" id="article1" style="text-decoration:none">
+            <h3 id="p"style=" color:black">{{ post.title }}</h3>
+            <p id="c"style=" color:black">{{ post.content }}</p>
+            <div id="case">
+            <div class="like"></div>
+            <div class="Alikenum"> {{ post.like.count }}</div>
+            <div class="comment"></div>
+            <div class="commentnum">{{ post.scrap }}</div>
+            <div class="time">{{ post.created_at | naturaltime }}</div>
+            <div class="non">익명</div>
+            {% if post.image %}
+            <img src="/media/{{post.image}}" alt="프리뷰" />
+            {% endif %}
+            </div>
+        </a>
+      {%else%}
+        <a href="{% url 'posts:detail' post.id %}" id="article1" style="text-decoration: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center;gap:590px">  
+              <div class="comment_box"  >
+                  <h3 id="p" style=" color:black" >{{ post.title }}</h3>
+                  <p id="c" style=" color:black">{{ post.content }}</p>
+              </div>
+              {% if post.image %}
+                  <img src="/media/{{ post.image }}" alt="프리뷰" style="height: 80px; width: auto;" />
+              {% endif %}
+          </div>
+
+          <div id="case">
+              <div class="like"></div>
+              <div class="Alikenum">{{ post.like.count }}</div>
+              <div class="comment"></div>
+              <div class="commentnum">{{ post.scrap.count }}</div>
+              <div class="time">{{ post.created_at | naturaltime }}</div>
+              <div class="non">{{ post.author_display_name }}</div>
+          </div>
+</a>
+
+      {% endif %}
+      <hr />
+      {% empty %}
+      <h2>글이 없습니다.</h2>
+      {% endfor %}
+    </section>
+  </div>
+</section>
