@@ -1,12 +1,11 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/post.css' %}">
-</head>
-<body>
-    <div class="container">
+<div id="write">
+    <form id="writeForm">
+        <input type="text" name="name" placeholder="새 글을 작성해주세요!" id="text-input">
+        <img src="{% static 'img/container.write.background.png' %}" alt="연필아이콘" id="writeIcon">
+    </form>           
+</div>
+    <div class="post-container">
         <div class="post-form">
             <div class="title-box">
                 <input type="text" id="title" name="title" class="title-input" placeholder="글 제목">
@@ -75,7 +74,4 @@
                 </div>
             </div>
         </form>
-    </div>
-    <script src="{% static 'js/post.js' %}"></script>
-</body>
-</html>
+    </div> 

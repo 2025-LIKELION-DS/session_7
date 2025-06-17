@@ -1,45 +1,88 @@
 {% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everytime_main</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post.css' %}">
 <body>
-    {% load humanize %}
-    <a href={% url 'posts:main' %}>메인페이지로 돌아가기</a><br><br>
-    {% if request.user.is_authenticated %}
-        <p>nickname : {{ user }}</p>
-        <a href="{% url 'accounts:logout' %}">로그아웃</a>
-    {% else %}
-        <a href="{% url 'accounts:login' %}">로그인</a>
-    {% endif %}
-    <hr>
-    
+    {% include './header.html' %}
+    {% include './nav.html' %}
 
-    <h1>{{ category.name }}</h1>
-    
-    <form method="POST" action="{% url 'posts:create' category.slug %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" placeholder="제목 입력" name="title"><br>
-        <textarea name="content" placeholder="본문 입력"></textarea><br><br>
-        <div class="file">
-            <input type="file" name="image">
-            <input type="file" name="video">
+    <main>
+    <section>
+        <div class="title">
+            <h1>
+                <a href="/">비밀게시판</a>
+            </h1>
+            
+
         </div>
-        <br>
-        <input type="checkbox" name="is_anonymous">익명
-        <input type="submit" value="작성 완료">
-    </form>
+        <div class="question1">
+            <div class="question2">
+                <img src="{% static 'img/icn_mcr_board_question_light.png' %}" alt="">
+                <div class="item">
+                    <a href="/"><span>13기 멋쟁이사자</span></a>
+                </div>
+                <div class="item">
+                    <a href="/"><span>멋사 최고</span></a>
+                </div>
+                <div class="item">
+                    <a href="/"><span>프론트엔드 개발 역량</span></a>
+                </div>
+                <div class="item">
+                    <a href="/"><span>화이팅!!</span></a>
+                </div>
+            </div>
+            <div class="question3">
+                <img src="{% static 'img/icn_mcr_board_hotarticle_light.png' %}" alt="">
+                <div class="item">
+                    <a href="/"><span>🪄 2025 덕성여자대학교 근화제 [여운: 끝없이 이어지는 우리의 이야기</span></a>
+                    <span class="item-vote">
+                        <img src="{% static 'img/container.articles.vote.png' %}" alt="">156
+                    </span>                    
+                </div>
+            </div>
+        </div>
+        {% include './post.html' %}
+        <div class="article-list"> 
+            {% for post in posts %}
+                {% if post.anonymity %}
+                {% else %}
+                <a href="{% url 'posts:detail' post.id %}">
+                    <div class="article">
+                        <strong class="title1">{{ post.title }}</strong>
+                        <p class="excerpt">{{ post.content }}</p>
+                        <div class="meta">
+                            <span class="like">
+                                    <img src="{% static 'img/container.articles.vote.png' %}" alt="좋아요">{{ post.like.count }}
+                            </span>
+                            <span class="comment">
+                                <img src="{% static 'img/container.articles.comment.png' %}" alt="댓글">{{ post.comment.count }}
+                            </span>
+                            <span class="time">{{ post.created_at | naturaltime }}</span>
+                            <span class="author">{{ post.uthor_display_name }}</span>
+                        </div>
+                        {% if post.image %}
+                        <div class="post_img">
+                            <img src="/media/{{ post.image }}" />
+                        </div>
+                        {% endif %}
+                    </div>
+                </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
 
-    <hr>
-
-    {% for post in posts %}
-
-    {% if post.anonymity %}
-        <h2><a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a></h2>
-        <p>{{ post.content }}</p>
-        <p>{{ post.created_at | naturaltime }}</p>
-    {% else %}
-        <h2><a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a></h2>
-        <p>{{ post.content }}</p>
-        <p>{{ post.created_at | naturaltime }}</p>
-    {% endif %}
-    <hr>
-    {% empty %} <h2>글이 없습니다.</h2> {% endfor %}
+    {% include './aside.html' %}
+    </main>
+    {% include './footer.html' %}
 
 </body>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/post.js' %}"></script>
+</html>

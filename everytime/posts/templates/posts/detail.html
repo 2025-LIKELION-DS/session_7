@@ -1,68 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everytime_detail</title>
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+</head>
 <body>
-    <a href={% url 'posts:main' %}>메인페이지로 돌아가기</a><br><br>
-    {% if request.user.is_authenticated %}
-        <p>nickname : {{ user }}</p>
-        <a href="{% url 'accounts:logout' %}">로그아웃</a>
-    {% else %}
-        <a href="{% url 'accounts:login' %}">로그인</a>
-    {% endif %}
-    <hr>
+    {% include './header.html' %}
 
-    <h2>{{ post.title }}</h2><br>
-    <h3>{{ post.content }}</h3><br>
+    {% include './nav.html' %}
+    <main>          
+    <section>    
+        <div class="title-write">
+            <h1>
+                <a href="/">비밀게시판</a>
+            </h1>
+        </div>
+        <div class="write">
+            <div class="post">
+                <div class="profile-list">
+                    <div class="profile">
+                        <img src="{% static 'img/anonymous.profile.png' %}" alt="익명" class="profile-img">
+                        <div class="profile-info">
+                            <h3 class="username">익명</h3>
+                            <time class="timestamp">방금</time>
+                        </div>
+                        <div class="profile-status">
+                            <div class="messagesend">쪽지</div>
+                            <div class="abuse">신고</div>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="post-title">점심 메뉴</h2>
+                <p class="post-content">점심 뭐 먹을지 추천해주세요<br>
+                    야식 먹을까.<br><br>
+                    그러면 야식 추천 받아요<br>
+                </p>
+                <div class="mini-actions">
+                    <div class="mini-like">
+                        <img src="{% static 'img/container.articles.vote.png' %}" alt="">                    
+                    </div>
+                    <div class="mini-likenum">0</div>
+                    
+                    <div class="mini-write">
+                        <img src="{% static 'img/container.articles.comment.png' %}" alt="">
+                    </div>
+                    <div class="mini-writenum">1</div>
+                    <div class="mini-scrap">
+                        <img src="{% static 'img/container.articles.scrap.png' %}" alt="">
+                    </div>
+                    <div class="mini-scrapnum">2</div>
+                </div>
+                <div class="post-actions">                    
+                    <button class="like">
+                        <div><img src="{% static 'img/container.articles.buttons.posvote.png' %}" alt=""></div>
+                        <div>
+                            공감
+                        </div>
+                    </button>
+                    <button class="scrap">
+                        <div><img src="{% static 'img/container.articles.buttons.scrap.png' %}" alt=""></div>
+                        <div>
+                            스크랩
+                        </div>
+                    </button>
+                </div>
+                
+            </div>
+            <div class="article1">
+                <div class="profile-list">
+                    <div class="profile1">
+                        <img src="{% static 'img/anonymous.profile.png' %}" alt="익명" class="profile-img">
+                        <div class="profile-info">
+                            <h3 class="username1">익명</h3>
+                        </div>
+                        <div class="profile-status">
+                            <div class="answer">대댓글</div>
+                            <div class="emotion">공감</div>
+                            <div class="messagesend">쪽지</div>
+                            <div class="abuse">신고</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="article1-content">공동 구매 하실 분 계실까요?</p>
+                <div class="meta">
+                    <span class="time">05/06 19:48</span>
+                </div>
+                
 
-    {% if post.image %}
-        <image width="320" height="240" src="{{ post.image.url }}"></image>
-    {% endif %}
-    {% if post.video %}
-        <video width="320" height="240" controls>
-            <source src="{{ post.video.url }}" type="video/mp4" />
-        </video>
-    {% endif %}
+                <div class="reply-container">                    
+                    <div class="replies">
+                        <div class="reprofile">
+                            <img src="{% static 'img/anonymous.profile.png' %}" alt="익명" class="profile-img">
+                            <div class="reprofile-info">
+                                <h3 class="reusername">익명</h3>
+                            </div>
+                            
+                            <div class="reprofile-status">
+                                <div class="reemotion">공감</div>
+                                <div class="remessagesend">쪽지</div>
+                                <div class="reabuse">신고</div>    
+                            </div>    
+                        </div>
+                        <div class="reply-text"></div>
+                        <div class="retime">
+                            <span class="retimes">2분전</span>
+                        </div>
+                    </div>
+                </div>
+                    <form class="reply-form">
+                        <div class="reply-section">
+                            <input type="text" class="reply-input" placeholder="대댓글을 입력하세요.">
+                            <input type="checkbox" id="anonymous" name="anonymous">
+                            <label for="anonymous"> 익명</label>
+                        </div>   
+                        <button class="submit-reply">
+                            <div>
+                                <img src="{% static 'img/container.articles.write.submit.png' %}" alt="">
+                            </div>
+                        </button> 
+                    </form>  
+                    
+            
+            </div>
+            <form>
+                <div class="comment-section">
+                    <input type="text" class="comment-input" placeholder="댓글을 입력하세요.">
+                    <input type="checkbox" id="anonymous" name="anonymous">
+                    <label for="anonymous"> 익명</label>
+                </div>
+                <button class="submit-comment">
+                    <div>
+                        <img src="{% static 'img/container.articles.write.submit.png' %}" alt="">
+                    </div>
+                </button>
+            </form>
+        </div>
+            <a href="{% url 'posts:main' %}" class="styled-list-button">
+                <img src="{% static 'img/container.articles.pagination.list.png' %}" alt="목록 아이콘" class="list-icon" />
+                <span>글 목록</span>
+            </a>
+        
+    </section> 
 
-    <h3>{{ post.created_at }}</h3>
-    {% if post.is_anonymous %}
-        <h5>익명</h5>
-    {% else %}
-        <h5>{{ post.author.nickname }}</h5>
-    {% endif %}
 
-    {% if request.user == post.author %}
-        <a href="{% url 'posts:update' post.id %}">수정하기</a>
-        <a href="{% url 'posts:delete' post.id %}">삭제하기</a>
-    {% endif %}
-
-    <p>공감 {{ post.like.count }}개 스크랩 {{ post.scrap.count }}개</p>
-
-    {% if request.user in post.like.all %}
-    <a href="{% url 'posts:remove-like' post.id %}"><input type="button" value="공감 취소" /></a>
-    {% else %}
-    <a href="{% url 'posts:add-like' post.id %}"><input type="button" value="공감" /></a>
-    {% endif %}
-
-
-    {% if request.user in post.scrap.all %}
-    <a href="{% url 'posts:remove-scrap' post.id %}"><input type="button" value="스크랩 취소" /></a>
-    {% else %}
-    <a href="{% url 'posts:add-scrap' post.id %}"><input type="button" value="스크랩" /></a>
-    {% endif %}
-
-    <hr>
-    <h4>댓글</h4>
-    <br>
-    {% for comment in post.comments.all %} {% if comment.anonymity %} 익명: {% else %} {{ comment.author.nickname }}: {% endif %}
-    {{ comment.content }} - {{ comment.created_at }}
-    {% if request.user == comment.author %}
-        <a href="{% url 'posts:delete-comment' post.id comment.id %}">삭제하기</a>
-    {% endif%}
-    <br>
-    <br>
-    {% empty %} 댓글이 없습니다 {% endfor %}
-
-    <form method="POST" action="{% url 'posts:create-comment' post.id %}">
-        {% csrf_token %} 댓글 <input type="text" name="content" /><input type="submit" value="작성" />
-        <input type="checkbox" name="anonymity" value="anonymity_true" />익명
-    </form>
-    <hr>
-    <br>
+    {% include './aside.html' %}
+        
+    </main>
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="company">비누랩스 주식회사</div>
+            <div class="info">
+                서울특별시 마포구 양화로 113, 5층 |
+                사업자등록번호 : 407-88-00024 |
+                직업정보제공사업 신고번호 : J1204020230008
+            </div>
+            <div class="links">
+                <a href="#">이용약관</a> |
+                <a href="#">개인정보처리방침</a> |
+                <a href="#">청소년보호정책</a> |
+                <a href="#">커뮤니티이용규칙</a> |
+                <a href="#">공지사항</a> |
+                <a href="#">문의하기</a> |
+                <span>© 에브리타임</span>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'js/detail.js' %}"></script>
 </body>
+</html>

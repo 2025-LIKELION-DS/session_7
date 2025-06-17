@@ -1,0 +1,97 @@
+{% load static %}
+<aside>
+        <div class="famous">
+            <h2 class="section-title">실시간 인기 글</h2>
+        
+            <div class="famous-item">
+                <strong class="title">점심 뭐 먹지</strong>
+                <p class="excerpt">제육덮밥..</p>
+                <div class="meta">
+                    <span class="category">비밀게시판</span>
+                    <div class="vote">
+                        <span class="like">
+                            <img src="{% static 'img/container.articles.vote.png' %}" alt="좋아요">43
+                        </span>
+                        <span class="comment">
+                            <img src="{% static 'img/container.articles.comment.png' %}" alt="댓글">6
+                        </span>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="famous-item">
+                <strong class="title">시험기간..</strong> 
+                <p class="excerpt">다들 화이팅</p>
+                <div class="meta">
+                    <span class="category">비밀게시판</span>
+                    <div class="vote">
+                        <span class="like">
+                            <img src="{% static 'img/container.articles.vote.png' %}" alt="좋아요">100
+                        </span>
+                        <span class="comment">
+                            <img src="{% static 'img/container.articles.comment.png' %}" alt="댓글">28
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        
+        <div class="hot">
+            <div class="header">
+                <h2>HOT 게시물</h2>
+                <a href="#">더 보기</a>
+            </div>
+            <ul class="list">
+                <li>
+                    <a href="#">배고파 <span class="date">04/06 12:52</span></a>
+                </li>
+                <li>
+                    <a href="#">덕다에<span class="date">04/06 15:16</span></a>
+                </li>
+                <li>
+                    <a href="#">A+ 기원<span class="date">04/06 14:59</span></a>
+                </li>
+                <li>
+                    <a href="#">카페 추천<span class="date">04/06 17:43</span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="best">
+            <div class="header">
+                <h2>BEST 게시판</h2>
+                <a href="#">더 보기</a>
+            </div>
+        </div>
+        <div class="news">
+            <h2>학교 소식</h2>
+            <div class="school-post">
+                <div class="badge">🔸D-1</div>
+                <p class="title">🎤 대학생을 위한, 대학생에 의한, 대학생의...</p>
+                <p class="desc">🎤 대학생을 위한, 대학생에 의한, 대학생들의 축제! 대학 가요제가 열린다고?!</p>
+                <div class="meta">
+                    <span class="category">운현방송국</span>
+                    <div class="vote">
+                        <span class="like">
+                            <img src="{% static 'img/container.articles.vote.png' %}" alt="좋아요">70
+                        </span>
+                        <span class="comment">
+                            <img src="{% static 'img/container.articles.comment.png' %}" alt="댓글">23
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="review">
+            <div class="header">
+                <h2>최근 강의평</h2>
+                <a href="#">더 보기</a>
+            </div>
+            <div class="lecture-review">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="title">여성과노동 · 김주희</p>
+                <p class="desc">물입해서 듣게되는 수업이고 정말 유익해요!</p>
+            </div>
+        </div>
+    </aside>
